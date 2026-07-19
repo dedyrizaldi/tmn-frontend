@@ -43,13 +43,10 @@ frontend
 │  ├─ api
 │  ├─ favicon.ico
 │  ├─ globals.css
-│  ├─ layout.tsx
 │  ├─ page.tsx
 │  ├─ robots.ts
 │  ├─ sitemap.ts
 │  └─ [locale]
-│     ├─ about
-│     │  └─ page.tsx
 │     ├─ clients
 │     │  └─ page.tsx
 │     ├─ contact
@@ -58,7 +55,6 @@ frontend
 │     │  ├─ page.tsx
 │     │  └─ [slug]
 │     ├─ error.tsx
-│     ├─ layout.tsx
 │     ├─ loading.tsx
 │     ├─ news
 │     │  ├─ page.tsx
@@ -79,30 +75,6 @@ frontend
 │           └─ page.tsx
 ├─ CLAUDE.md
 ├─ components
-│  ├─ about
-│  │  ├─ about.tsx
-│  │  ├─ clients
-│  │  │  ├─ client-marquee.tsx
-│  │  │  ├─ clients.data.ts
-│  │  │  └─ trusted-clients.tsx
-│  │  ├─ hero
-│  │  │  ├─ about-hero.tsx
-│  │  │  ├─ breadcrumb.tsx
-│  │  │  ├─ hero-background.tsx
-│  │  │  └─ hero-content.tsx
-│  │  ├─ timeline
-│  │  │  ├─ timeline-card.tsx
-│  │  │  ├─ timeline-item.tsx
-│  │  │  ├─ timeline.data.ts
-│  │  │  └─ timeline.tsx
-│  │  ├─ values
-│  │  │  ├─ value-card.tsx
-│  │  │  ├─ values.data.ts
-│  │  │  └─ values.tsx
-│  │  └─ who-we-are
-│  │     ├─ about-content.tsx
-│  │     ├─ about-image.tsx
-│  │     └─ about-preview.tsx
 │  ├─ card
 │  │  ├─ certificate-card
 │  │  ├─ clinet-card
@@ -207,14 +179,6 @@ frontend
 │  │  ├─ contact-form
 │  │  └─ quote-form
 │  ├─ home
-│  │  ├─ about-preview
-│  │  │  ├─ about-button.tsx
-│  │  │  ├─ about-content.tsx
-│  │  │  ├─ about-features.tsx
-│  │  │  ├─ about-image.tsx
-│  │  │  ├─ about-preview.tsx
-│  │  │  ├─ about-timeline.tsx
-│  │  │  └─ about-video.tsx
 │  │  ├─ cta
 │  │  │  ├─ cta-background.tsx
 │  │  │  ├─ cta-buttons.tsx
@@ -278,31 +242,6 @@ frontend
 │  │     ├─ why-choose.tsx
 │  │     └─ why.data.ts
 │  ├─ icons
-│  ├─ layout
-│  │  ├─ app-shell.tsx
-│  │  ├─ breadcrumb
-│  │  ├─ footer
-│  │  │  ├─ footer-bottom.tsx
-│  │  │  ├─ footer-brand.tsx
-│  │  │  ├─ footer-contact.tsx
-│  │  │  ├─ footer-links.tsx
-│  │  │  ├─ footer-services.tsx
-│  │  │  └─ footer.tsx
-│  │  ├─ footer_old
-│  │  │  ├─ footer-links.tsx
-│  │  │  └─ footer.tsx
-│  │  ├─ language-switcher
-│  │  ├─ navbar
-│  │  │  ├─ desktop-menu.tsx
-│  │  │  ├─ index.ts
-│  │  │  ├─ language-switcher.tsx
-│  │  │  ├─ logo.tsx
-│  │  │  ├─ mobile-menu.tsx
-│  │  │  ├─ nav-actions.tsx
-│  │  │  ├─ nav-link.tsx
-│  │  │  ├─ navbar.config.ts
-│  │  │  └─ navbar.tsx
-│  │  └─ sidebar
 │  ├─ news
 │  ├─ project
 │  │  ├─ detail-page
@@ -340,7 +279,6 @@ frontend
 │  │     ├─ project.data.ts
 │  │     └─ project.ts
 │  ├─ sections
-│  │  ├─ about
 │  │  ├─ clients
 │  │  ├─ contact
 │  │  ├─ cta
@@ -409,17 +347,18 @@ frontend
 ├─ constants
 │  └─ services.ts
 ├─ data
-│  └─ hero-stats.ts
+│  ├─ hero-stats.ts
+│  └─ project
+│     └─ project.data.ts
 ├─ eslint.config.mjs
-├─ frontend.zip
 ├─ hooks
 │  └─ use-scroll.ts
 ├─ i18n
 │  ├─ navigation.ts
-│  ├─ request.ts
-│  └─ routing.ts
+│  └─ request.ts
 ├─ lib
 │  ├─ animation.ts
+│  ├─ api.ts
 │  ├─ fonts.ts
 │  ├─ metadata.ts
 │  └─ utils.ts
@@ -428,6 +367,7 @@ frontend
 │  └─ id.json
 ├─ middleware_old.ts
 ├─ nex.config.ts_old
+├─ next-env.d.ts
 ├─ next.config.ts
 ├─ package-lock.json
 ├─ package.json
@@ -451,7 +391,6 @@ frontend
 │  │  ├─ vopak.png
 │  │  └─ worker.png
 │  ├─ images
-│  │  ├─ about.png
 │  │  ├─ contact
 │  │  │  └─ hero-contact.png
 │  │  ├─ project
@@ -485,13 +424,18 @@ frontend
 │  ├─ vercel.svg
 │  └─ window.svg
 ├─ README.md
+├─ repositories
+│  └─ project.repository.ts
 ├─ services
+│  └─ project.service.ts
 ├─ store
 ├─ structure.txt
 ├─ styles
 ├─ tsconfig.json
 ├─ types
-│  └─ navigation.ts
+│  ├─ api.ts
+│  ├─ navigation.ts
+│  └─ project.ts
 └─ utils
 
 ```
