@@ -1,4 +1,4 @@
-name: Deploy Next.js
+name: Deploy Next.js to cPanel
 
 on:
   push:
@@ -22,60 +22,39 @@ jobs:
       - name: Install Dependencies
         run: npm ci
 
-      - name: Build Next.js
+      - name: Build Application
         run: npm run build
 
-      - name: Debug Build Output
+      - name: Prepare Standalone Package
         run: |
-          echo "===== ROOT ====="
-          ls -la
+          mkdir package
 
-          echo ""
-          echo "===== .next ====="
-          ls -la .next
+          cp -R .next/standalone/* package/
 
-          echo ""
-          echo "===== .next/standalone ====="
-          ls -la .next/standalone || true
+          rm -rf package/.next
+          mkdir -p package/.next
 
-          echo ""
-          echo "===== .next/static ====="
-          ls -la .next/static || true
+          cp -R .next/standalone/.next/* package/.next/
 
-      - name: Prepare Deploy Files
-        run: |
-          rm -rf deploy
-          mkdir deploy
-
-          cp -r .next/standalone/* deploy/
-
-          mkdir -p deploy/.next
-          cp -r .next/static deploy/.next/
+          cp -R .next/static package/.next/
 
           if [ -d public ]; then
-            cp -r public deploy/
+            cp -R public package/
           fi
 
-          if [ -f package.json ]; then
-            cp package.json deploy/
-          fi
+          tar -czf deploy.tar.gz -C package .
 
-          echo ""
-          echo "===== DEPLOY ====="
-          ls -R deploy
-
-      - name: Upload Files
+      - name: Upload Package
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH_KEY }}
           port: ${{ secrets.PORT }}
-          source: "deploy/*"
-          target: "/home/tmncoid/public_html/myapp"
-          strip_components: 1
+          source: "deploy.tar.gz"
+          target: "/home/tmncoid"
 
-      - name: Restart Node App
+      - name: Extract Package
         uses: appleboy/ssh-action@v1.2.0
         with:
           host: ${{ secrets.HOST }}
@@ -83,9 +62,19 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           port: ${{ secrets.PORT }}
           script: |
-            source /home/tmncoid/nodevenv/public_html/myapp/22/bin/activate
+            APP=/home/tmncoid/public_html/myapp
 
-            mkdir -p /home/tmncoid/public_html/myapp/tmp
-            touch /home/tmncoid/public_html/myapp/tmp/restart.txt
+            mkdir -p $APP
 
-            echo "Application restarted."
+            cd $APP
+
+            cp -f /home/tmncoid/deploy.tar.gz .
+
+            tar -xzf deploy.tar.gz
+
+            rm deploy.tar.gz
+
+            mkdir -p tmp
+            touch tmp/restart.txt
+
+            echo "Deploy finished."
