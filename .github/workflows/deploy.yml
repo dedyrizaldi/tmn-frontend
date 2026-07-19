@@ -6,7 +6,7 @@ on:
       - develop
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -25,18 +25,46 @@ jobs:
       - name: Build Next.js
         run: npm run build
 
+      - name: Debug Build Output
+        run: |
+          echo "===== ROOT ====="
+          ls -la
+
+          echo ""
+          echo "===== .next ====="
+          ls -la .next
+
+          echo ""
+          echo "===== .next/standalone ====="
+          ls -la .next/standalone || true
+
+          echo ""
+          echo "===== .next/static ====="
+          ls -la .next/static || true
+
       - name: Prepare Deploy Files
         run: |
+          rm -rf deploy
           mkdir deploy
 
           cp -r .next/standalone/* deploy/
+
           mkdir -p deploy/.next
           cp -r .next/static deploy/.next/
-          cp -r public deploy/
-          cp package.json deploy/
-          cp server.js deploy/
 
-      - name: Copy Files to Server
+          if [ -d public ]; then
+            cp -r public deploy/
+          fi
+
+          if [ -f package.json ]; then
+            cp package.json deploy/
+          fi
+
+          echo ""
+          echo "===== DEPLOY ====="
+          ls -R deploy
+
+      - name: Upload Files
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.HOST }}
@@ -47,7 +75,7 @@ jobs:
           target: "/home/tmncoid/public_html/myapp"
           strip_components: 1
 
-      - name: Restart Application
+      - name: Restart Node App
         uses: appleboy/ssh-action@v1.2.0
         with:
           host: ${{ secrets.HOST }}
@@ -56,4 +84,8 @@ jobs:
           port: ${{ secrets.PORT }}
           script: |
             source /home/tmncoid/nodevenv/public_html/myapp/22/bin/activate
-            touch /home/tmncoid/public_html/myapp/tmp/restart.txt || true
+
+            mkdir -p /home/tmncoid/public_html/myapp/tmp
+            touch /home/tmncoid/public_html/myapp/tmp/restart.txt
+
+            echo "Application restarted."
