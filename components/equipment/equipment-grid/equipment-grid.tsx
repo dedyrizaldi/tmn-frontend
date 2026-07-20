@@ -6,15 +6,10 @@ import EquipmentPagination from "./equipment-pagination";
 
 interface Props {
   equipments: Equipment[];
-
   viewMode: "grid" | "list";
-
   currentPage: number;
-
   totalPages: number;
-
   onPageChange: (page: number) => void;
-
   onSelectEquipment: (equipment: Equipment) => void;
 }
 
@@ -39,11 +34,14 @@ export default function EquipmentGrid({
           viewMode === "grid"
             ? `
                 grid
-                gap-8
+                grid-cols-2
+                gap-5
 
-                md:grid-cols-2
+                md:grid-cols-3
 
-                xl:grid-cols-3
+                lg:grid-cols-4
+
+                xl:grid-cols-5
               `
             : `
                 flex

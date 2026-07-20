@@ -10,7 +10,7 @@ import EquipmentGrid from "./equipment-grid/equipment-grid";
 import EquipmentToolbar from "./toolbar/equipment-toolbar";
 import type { Equipment } from "./types/equipment";
 
-const ITEMS_PER_PAGE = 6;
+const ITEMS_PER_PAGE = 10;
 
 export default function Equipment() {
   /* Search */

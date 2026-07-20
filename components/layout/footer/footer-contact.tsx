@@ -9,25 +9,40 @@ export default function FooterContact() {
         <div className="flex gap-3">
           <MapPin size={18} className="mt-1 text-[#156CFF]" />
 
-          <p className="text-[14px] leading-6 text-slate-300">
-            Jl. Raya Merak No. 123
+          <p className="text-[14px] text-slate-300">
+            <b>Head Office & Workshop</b>
             <br />
-            Cilegon, Banten
+            Green Sedayu Bizpark Cakung Blok GS 17/25
             <br />
-            Indonesia
+            JL Cakung Cilincing Timur- Raya KM 2
+            <br />
           </p>
         </div>
 
+        <div className="flex gap-3">
+          <MapPin size={18} className="mt-1 text-[#156CFF]" />
+
+          <p className="text-[14px] text-slate-300">
+            <b>Operational Office</b>
+            <br />
+            JL. Sunter II NO 6A Komplek Deperla
+            <br />
+            Jakarta Utara 14230
+            <br />
+          </p>
+        </div>
         <div className="flex items-center gap-3">
           <Phone size={18} className="text-[#156CFF]" />
 
-          <span className="text-[14px] text-slate-300">+62 812-3456-7890</span>
+          <span className="text-[14px] text-slate-300">021-2945-231</span>
         </div>
 
         <div className="flex items-center gap-3">
           <Mail size={18} className="text-[#156CFF]" />
 
-          <span className="text-[14px] text-slate-300">info@tmn.co.id</span>
+          <span className="text-[14px] text-slate-300">
+            tirtameganusantara@tmn.co.id
+          </span>
         </div>
       </div>
     </div>

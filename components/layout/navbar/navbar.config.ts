@@ -25,10 +25,10 @@ export const navbarItems: NavigationItem[] = [
   //   key: "qhse",
   //   href: "/qhse",
   // },
-  // {
-  //   key: "news",
-  //   href: "/news",
-  // },
+  {
+    key: "news",
+    href: "/news",
+  },
   {
     key: "contact",
     href: "/contact",

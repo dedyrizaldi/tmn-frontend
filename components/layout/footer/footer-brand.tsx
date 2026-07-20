@@ -60,7 +60,7 @@ export default function FooterBrand() {
       {t("description")}
 
       {/* Social Media */}
-      <div className="mt-6 flex items-center gap-3">
+      {/* <div className="mt-6 flex items-center gap-3">
         {socials.map((item) => {
           const Icon = item.icon;
 
@@ -93,7 +93,7 @@ export default function FooterBrand() {
             </Link>
           );
         })}
-      </div>
+      </div> */}
     </div>
   );
 }

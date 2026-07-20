@@ -5,23 +5,15 @@ interface Props {
 
 export default function EquipmentSpec({ label, value }: Props) {
   return (
-    <div
-      className="
-        flex
-        items-center
-        justify-between
-
-        border-b
-
-        border-slate-100
-
-        py-2
-      "
-    >
+    <div className="flex items-start justify-between gap-3 text-[9px]">
       <span
         className="
-          text-sm
-          text-slate-500
+          shrink-0
+          text-[9px]
+          font-medium
+          uppercase
+          tracking-wide
+          text-slate-400
         "
       >
         {label}
@@ -29,9 +21,10 @@ export default function EquipmentSpec({ label, value }: Props) {
 
       <span
         className="
-          text-sm
-          font-semibold
-          text-[#04162E]
+          text-right
+          font-medium
+          text-slate-700
+          line-clamp-1
         "
       >
         {value}

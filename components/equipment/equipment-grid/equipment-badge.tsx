@@ -1,3 +1,5 @@
+import { CheckCircle2, Wrench } from "lucide-react";
+
 interface Props {
   status: "available" | "maintenance";
 }
@@ -10,20 +12,33 @@ export default function EquipmentBadge({ status }: Props) {
       className={`
         inline-flex
         items-center
-        rounded-full
-        px-3
+        gap-1.5
+        rounded-lg
+        px-2.5
         py-1
-        text-xs
+        text-[11px]
         font-semibold
+        shadow-sm
+        backdrop-blur-sm
 
         ${
           isAvailable
-            ? "bg-emerald-100 text-emerald-700"
-            : "bg-amber-100 text-amber-700"
+            ? "bg-emerald-500/90 text-white"
+            : "bg-amber-500/90 text-white"
         }
       `}
     >
-      {isAvailable ? "AVAILABLE" : "MAINTENANCE"}
+      {isAvailable ? (
+        <>
+          <CheckCircle2 size={12} />
+          Ready Stock
+        </>
+      ) : (
+        <>
+          <Wrench size={12} />
+          Maintenance
+        </>
+      )}
     </span>
   );
 }

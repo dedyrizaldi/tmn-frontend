@@ -20,15 +20,17 @@ export default function EquipmentCard({ equipment, onClick, viewMode }: Props) {
       className={`
         group
         overflow-hidden
-        rounded-3xl
+        rounded-2xl
         border
         border-slate-200
         bg-white
+        shadow-sm
         transition-all
-        duration-500
+        duration-300
+        hover:-translate-y-1
         hover:shadow-xl
 
-        ${isList ? "flex flex-col lg:flex-row" : "hover:-translate-y-2"}
+        ${isList ? "flex flex-col lg:flex-row" : "flex flex-col"}
       `}
     >
       {/* Image */}
@@ -38,15 +40,15 @@ export default function EquipmentCard({ equipment, onClick, viewMode }: Props) {
           isList
             ? `
                 relative
-                h-[260px]
+                h-[280px]
+                lg:w-[340px]
                 lg:h-auto
-                lg:w-[360px]
-                shrink-0
                 overflow-hidden
+                shrink-0
               `
             : `
                 relative
-                h-60
+                aspect-square
                 overflow-hidden
               `
         }
@@ -58,12 +60,12 @@ export default function EquipmentCard({ equipment, onClick, viewMode }: Props) {
           className="
             object-cover
             transition-transform
-            duration-700
-            group-hover:scale-110
+            duration-500
+            group-hover:scale-105
           "
         />
 
-        <div className="absolute left-5 top-5">
+        <div className="absolute left-3 top-3">
           <EquipmentBadge status={equipment.status} />
         </div>
       </div>
@@ -71,43 +73,33 @@ export default function EquipmentCard({ equipment, onClick, viewMode }: Props) {
       {/* Content */}
 
       <div
-        className={
-          isList
-            ? `
-                flex
-                flex-1
-                flex-col
-                justify-between
-                p-8
-              `
-            : `
-                p-6
-              `
-        }
+        className={`
+          flex
+          flex-1
+          flex-col
+          justify-between
+
+          ${isList ? "p-8" : "p-5"}
+        `}
       >
         <div>
+          {/* Title */}
+
           <h3
             className="
-              text-2xl
-              font-bold
+              line-clamp-2
+              text-base
+              font-semibold
+              leading-6
               text-[#04162E]
             "
           >
             {equipment.title}
           </h3>
 
-          <p
-            className="
-              mt-3
-              text-sm
-              leading-7
-              text-slate-600
-            "
-          >
-            {equipment.description}
-          </p>
+          {/* Specs */}
 
-          <div className="mt-6 space-y-2">
+          <div className="mt-5 space-y-2">
             <EquipmentSpec label="Category" value={equipment.category} />
 
             <EquipmentSpec label="Capacity" value={equipment.capacity} />
@@ -116,41 +108,37 @@ export default function EquipmentCard({ equipment, onClick, viewMode }: Props) {
           </div>
         </div>
 
+        {/* Button */}
+
         <button
           type="button"
           onClick={onClick}
-          className={`
-            mt-8
-
+          className="
+            mt-6
             inline-flex
-
             items-center
-
             justify-center
-
             gap-2
-
             rounded-xl
-
-            bg-[#156CFF]
-
-            px-6
-
-            py-3
-
+            border
+            border-[#156CFF]
+            bg-white
+            px-1
+            py-2
             font-semibold
-
-            text-white
-
-            transition
-
-            hover:bg-[#0E5DE8]
-
-            ${isList ? "w-fit" : "w-full"}
-          `}
+            text-[#156CFF]
+            transition-all
+            duration-300
+            hover:bg-[#156CFF]
+            hover:text-white
+            text-[13px]
+          "
         >
-          View Detail
-          <ArrowRight size={18} />
+          View Details
+          <ArrowRight
+            size={18}
+            className="transition-transform group-hover:translate-x-1"
+          />
         </button>
       </div>
     </article>

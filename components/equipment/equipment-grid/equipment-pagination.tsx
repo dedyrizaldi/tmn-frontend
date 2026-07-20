@@ -19,7 +19,7 @@ export default function EquipmentPagination({
 
   const pages: (number | "...")[] = [];
 
-  if (totalPages <= 7) {
+  if (totalPages <= 5) {
     for (let i = 1; i <= totalPages; i++) {
       pages.push(i);
     }
@@ -45,21 +45,7 @@ export default function EquipmentPagination({
   }
 
   return (
-    <div
-      className="
-        mt-12
-
-        flex
-
-        flex-wrap
-
-        items-center
-
-        justify-center
-
-        gap-3
-      "
-    >
+    <nav className="mt-12 flex items-center justify-center gap-2">
       {/* Previous */}
 
       <button
@@ -68,51 +54,32 @@ export default function EquipmentPagination({
         onClick={() => onPageChange(currentPage - 1)}
         className="
           flex
-
-          h-11
-
-          w-11
-
+          h-10
+          w-10
           items-center
-
           justify-center
-
-          rounded-xl
-
+          rounded-lg
           border
-
           border-slate-200
-
           bg-white
-
-          transition
-
+          text-slate-600
+          transition-all
+          duration-200
           hover:border-[#156CFF]
-
           hover:bg-[#156CFF]
-
           hover:text-white
-
           disabled:cursor-not-allowed
-
           disabled:opacity-40
         "
       >
         <ChevronLeft size={18} />
       </button>
 
-      {/* Numbers */}
+      {/* Page Number */}
 
       {pages.map((page, index) =>
         page === "..." ? (
-          <span
-            key={`ellipsis-${index}`}
-            className="
-              px-2
-
-              text-slate-400
-            "
-          >
+          <span key={`ellipsis-${index}`} className="px-2 text-slate-400">
             ...
           </span>
         ) : (
@@ -122,27 +89,33 @@ export default function EquipmentPagination({
             onClick={() => onPageChange(page)}
             className={`
               flex
-
-              h-11
-
-              w-11
-
+              h-10
+              w-10
               items-center
-
               justify-center
-
-              rounded-xl
-
+              rounded-lg
               border
-
+              text-sm
               font-semibold
-
-              transition
+              transition-all
+              duration-200
 
               ${
                 currentPage === page
-                  ? "border-[#156CFF] bg-[#156CFF] text-white"
-                  : "border-slate-200 bg-white hover:border-[#156CFF] hover:bg-[#156CFF] hover:text-white"
+                  ? `
+                    border-[#156CFF]
+                    bg-[#156CFF]
+                    text-white
+                    shadow-md
+                  `
+                  : `
+                    border-slate-200
+                    bg-white
+                    text-slate-700
+                    hover:border-[#156CFF]
+                    hover:bg-[#156CFF]
+                    hover:text-white
+                  `
               }
             `}
           >
@@ -159,38 +132,26 @@ export default function EquipmentPagination({
         onClick={() => onPageChange(currentPage + 1)}
         className="
           flex
-
-          h-11
-
-          w-11
-
+          h-10
+          w-10
           items-center
-
           justify-center
-
-          rounded-xl
-
+          rounded-lg
           border
-
           border-slate-200
-
           bg-white
-
-          transition
-
+          text-slate-600
+          transition-all
+          duration-200
           hover:border-[#156CFF]
-
           hover:bg-[#156CFF]
-
           hover:text-white
-
           disabled:cursor-not-allowed
-
           disabled:opacity-40
         "
       >
         <ChevronRight size={18} />
       </button>
-    </div>
+    </nav>
   );
 }
