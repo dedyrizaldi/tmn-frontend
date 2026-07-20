@@ -33,6 +33,7 @@ export default function NewsCard({ news }: Props) {
             src={news.thumbnail}
             alt={news.title}
             fill
+            sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 33vw"
             className="
               object-cover
               transition-transform

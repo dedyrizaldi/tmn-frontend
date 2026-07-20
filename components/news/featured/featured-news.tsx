@@ -36,6 +36,7 @@ export default function FeaturedNews({ news }: Props) {
               src={news.banner || news.thumbnail}
               alt={news.title}
               fill
+              sizes="(max-width: 1024px) 100vw, 50vw"
               className="
                 object-cover
                 transition-transform
