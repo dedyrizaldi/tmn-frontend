@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 
 import NewsDetail from "@/components/news/detail-page/news-detail";
 import { NEWS_DATA } from "@/components/news/news.data";
-
+export const dynamic = "force-dynamic";
 interface Props {
   params: Promise<{
     locale: string;
