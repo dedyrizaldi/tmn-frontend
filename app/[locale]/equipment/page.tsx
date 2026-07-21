@@ -21,34 +21,15 @@ interface PageProps {
 export default async function EquipmentPage({ searchParams }: PageProps) {
   const params = (await searchParams) ?? {};
 
-  const page = Number(params.page ?? "1");
+  const page = Number(params.page ?? 1);
   const search = params.search ?? "";
   const category = params.category ?? "";
-
-  console.log("=== Equipment Page ===");
-  console.log({
-    page,
-    search,
-    category,
-    api: process.env.NEXT_PUBLIC_API_URL,
-  });
 
   const result = await equipmentService.getEquipments({
     page,
     search,
     category,
   });
-
-  console.log("=== Equipment Result ===");
-  console.log(result);
-
-  if (!result) {
-    throw new Error("equipmentService.getEquipments() returned null");
-  }
-
-  if (!Array.isArray(result.data)) {
-    throw new Error("result.data is not an array");
-  }
 
   return (
     <EquipmentClient

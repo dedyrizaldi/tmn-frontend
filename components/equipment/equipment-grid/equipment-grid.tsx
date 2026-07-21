@@ -1,4 +1,8 @@
-import type { Equipment } from "@/types/equipment";
+import type {
+  Equipment,
+  PaginationLinks,
+  PaginationMeta,
+} from "@/types/equipment";
 
 import EmptyState from "./empty-state";
 import EquipmentCard from "./equipment-card";
@@ -7,18 +11,23 @@ import EquipmentPagination from "./equipment-pagination";
 interface Props {
   equipments: Equipment[];
   viewMode: "grid" | "list";
-  currentPage: number;
-  totalPages: number;
-  onPageChange: (page: number) => void;
+
+  meta: PaginationMeta;
+  links: PaginationLinks;
+
+  search: string;
+  category: string;
+
   onSelectEquipment: (equipment: Equipment) => void;
 }
 
 export default function EquipmentGrid({
   equipments,
   viewMode,
-  currentPage,
-  totalPages,
-  onPageChange,
+  meta,
+  links,
+  search,
+  category,
   onSelectEquipment,
 }: Props) {
   if (equipments.length === 0) {
@@ -27,8 +36,6 @@ export default function EquipmentGrid({
 
   return (
     <div className="space-y-10">
-      {/* Grid / List */}
-
       <div
         className={
           viewMode === "grid"
@@ -60,12 +67,11 @@ export default function EquipmentGrid({
         ))}
       </div>
 
-      {/* Pagination */}
-
       <EquipmentPagination
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onPageChange={onPageChange}
+        currentPage={meta.current_page}
+        totalPages={meta.last_page}
+        search={search}
+        category={category}
       />
     </div>
   );

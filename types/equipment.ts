@@ -12,14 +12,17 @@ export interface EquipmentGallery {
 
 export interface Equipment {
   id: number;
+
   title: string | null;
   name?: string;
+
   slug: string;
 
   excerpt: string;
   description: string;
 
   thumbnail: string | null;
+
   gallery: EquipmentGallery[];
 
   category: EquipmentCategory;
@@ -31,6 +34,7 @@ export interface Equipment {
   applications?: string[];
 
   featured: boolean;
+
   status: string;
 
   meta_title: string | null;
@@ -49,19 +53,19 @@ export interface PaginationLink {
 }
 
 export interface PaginationMeta {
-  current_page: number | number[];
-  from: number | number[];
-  last_page: number | number[];
+  current_page: number;
+  from: number | null;
+  last_page: number;
   links: PaginationLink[];
   path: string;
-  per_page: number | number[];
-  to: number | number[];
-  total: number | number[];
+  per_page: number;
+  to: number | null;
+  total: number;
 }
 
 export interface PaginationLinks {
-  first: string;
-  last: string;
+  first: string | null;
+  last: string | null;
   prev: string | null;
   next: string | null;
 }
@@ -69,7 +73,9 @@ export interface PaginationLinks {
 export interface EquipmentResponse {
   success: boolean;
   message: string;
+
   data: Equipment[];
+
   links: PaginationLinks;
   meta: PaginationMeta;
 }
@@ -77,5 +83,6 @@ export interface EquipmentResponse {
 export interface EquipmentDetailResponse {
   success: boolean;
   message: string;
+
   data: Equipment;
 }

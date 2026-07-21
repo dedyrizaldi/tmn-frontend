@@ -1,17 +1,35 @@
 "use client";
 
-import type { EquipmentResponse } from "@/types/equipment";
+import type {
+  Equipment,
+  PaginationLinks,
+  PaginationMeta,
+} from "@/types/equipment";
 
-import Equipment from "@/components/equipment/equipment";
+import EquipmentPage from "@/components/equipment/equipment";
 
 interface Props {
-  equipments: EquipmentResponse["data"];
-  links: EquipmentResponse["links"];
-  meta: EquipmentResponse["meta"];
+  equipments: Equipment[];
+  links: PaginationLinks;
+  meta: PaginationMeta;
   initialSearch: string;
   initialCategory: string;
 }
 
-export default function EquipmentClient({ equipments }: Props) {
-  return <Equipment equipments={equipments} />;
+export default function EquipmentClient({
+  equipments,
+  links,
+  meta,
+  initialSearch,
+  initialCategory,
+}: Props) {
+  return (
+    <EquipmentPage
+      equipments={equipments}
+      links={links}
+      meta={meta}
+      initialSearch={initialSearch}
+      initialCategory={initialCategory}
+    />
+  );
 }

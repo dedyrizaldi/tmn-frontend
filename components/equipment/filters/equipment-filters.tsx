@@ -1,5 +1,9 @@
 "use client";
 
+import { useState } from "react";
+
+import { usePathname, useRouter } from "next/navigation";
+
 import CategoryFilter from "./category-filter";
 import ResetFilter from "./reset-filter";
 import SearchBox from "./search-box";
@@ -7,10 +11,28 @@ import StatusFilter from "./status-filter";
 
 interface Props {
   search: string;
-  onSearchChange: (value: string) => void;
 }
 
-export default function EquipmentFilters({ search, onSearchChange }: Props) {
+export default function EquipmentFilters({ search }: Props) {
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const [keyword, setKeyword] = useState(search);
+
+  const submitSearch = (value: string) => {
+    const params = new URLSearchParams();
+
+    if (value.trim()) {
+      params.set("search", value.trim());
+    }
+
+    params.set("page", "1");
+
+    router.replace(`${pathname}?${params.toString()}`, {
+      scroll: false,
+    });
+  };
+
   return (
     <div
       className="
@@ -24,25 +46,23 @@ export default function EquipmentFilters({ search, onSearchChange }: Props) {
         shadow-sm
       "
     >
-      {/* Search */}
-
-      <SearchBox value={search} onChange={onSearchChange} />
+      <SearchBox
+        value={keyword}
+        onChange={(value) => {
+          setKeyword(value);
+          submitSearch(value);
+        }}
+      />
 
       <div className="my-8 border-t border-slate-200" />
-
-      {/* Category */}
 
       <CategoryFilter />
 
       <div className="my-8 border-t border-slate-200" />
 
-      {/* Status */}
-
       <StatusFilter />
 
       <div className="my-8 border-t border-slate-200" />
-
-      {/* Reset */}
 
       <ResetFilter />
     </div>

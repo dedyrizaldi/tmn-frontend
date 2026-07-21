@@ -12,16 +12,16 @@ export interface EquipmentQuery {
 function createQuery(params: EquipmentQuery = {}) {
   const query = new URLSearchParams();
 
-  if (params.page) {
+  if (params.page && params.page > 0) {
     query.set("page", params.page.toString());
   }
 
-  if (params.search) {
-    query.set("search", params.search);
+  if (params.search?.trim()) {
+    query.set("search", params.search.trim());
   }
 
-  if (params.category) {
-    query.set("category", params.category);
+  if (params.category?.trim()) {
+    query.set("category", params.category.trim());
   }
 
   if (params.featured) {
@@ -36,17 +36,36 @@ export async function fetchEquipments(
 ): Promise<EquipmentResponse> {
   const query = createQuery(params);
 
-  const response = await fetch(
-    `${API_URL}/api/v1/equipment${query ? `?${query}` : ""}`,
-    {
-      next: {
-        revalidate: 60,
-      },
+  const url = `${API_URL}/api/v1/equipment${query ? `?${query}` : ""}`;
+
+  console.log("[Equipment API]", url);
+
+  const response = await fetch(url, {
+    next: {
+      revalidate: 60,
     },
-  );
+    headers: {
+      Accept: "application/json",
+    },
+  });
 
   if (!response.ok) {
-    throw new Error("Failed to fetch equipments.");
+    let body = "";
+
+    try {
+      body = await response.text();
+    } catch {
+      body = "Unable to read response body.";
+    }
+
+    console.error("==================================");
+    console.error("Equipment API Error");
+    console.error("URL    :", url);
+    console.error("Status :", response.status);
+    console.error("Body   :", body);
+    console.error("==================================");
+
+    throw new Error(`Failed to fetch equipments. (${response.status})`);
   }
 
   return response.json();
@@ -55,14 +74,36 @@ export async function fetchEquipments(
 export async function fetchEquipment(
   slug: string,
 ): Promise<EquipmentDetailResponse> {
-  const response = await fetch(`${API_URL}/api/v1/equipment/${slug}`, {
+  const url = `${API_URL}/api/v1/equipment/${slug}`;
+
+  console.log("[Equipment Detail API]", url);
+
+  const response = await fetch(url, {
     next: {
       revalidate: 60,
+    },
+    headers: {
+      Accept: "application/json",
     },
   });
 
   if (!response.ok) {
-    throw new Error("Equipment not found.");
+    let body = "";
+
+    try {
+      body = await response.text();
+    } catch {
+      body = "Unable to read response body.";
+    }
+
+    console.error("==================================");
+    console.error("Equipment Detail API Error");
+    console.error("URL    :", url);
+    console.error("Status :", response.status);
+    console.error("Body   :", body);
+    console.error("==================================");
+
+    throw new Error(`Equipment not found. (${response.status})`);
   }
 
   return response.json();

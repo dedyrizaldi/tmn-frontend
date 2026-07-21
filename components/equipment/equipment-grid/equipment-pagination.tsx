@@ -1,21 +1,47 @@
 "use client";
 
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { usePathname, useRouter } from "next/navigation";
 
 interface Props {
   currentPage: number;
   totalPages: number;
-  onPageChange: (page: number) => void;
+  search: string;
+  category: string;
 }
 
 export default function EquipmentPagination({
   currentPage,
   totalPages,
-  onPageChange,
+  search,
+  category,
 }: Props) {
+  const router = useRouter();
+  const pathname = usePathname();
+
   if (totalPages <= 1) {
     return null;
   }
+
+  const buildUrl = (page: number) => {
+    const params = new URLSearchParams();
+
+    if (search) {
+      params.set("search", search);
+    }
+
+    if (category) {
+      params.set("category", category);
+    }
+
+    params.set("page", page.toString());
+
+    return `${pathname}?${params.toString()}`;
+  };
+
+  const goToPage = (page: number) => {
+    router.push(buildUrl(page));
+  };
 
   const pages: (number | "...")[] = [];
 
@@ -46,12 +72,10 @@ export default function EquipmentPagination({
 
   return (
     <nav className="mt-12 flex items-center justify-center gap-2">
-      {/* Previous */}
-
       <button
         type="button"
         disabled={currentPage === 1}
-        onClick={() => onPageChange(currentPage - 1)}
+        onClick={() => goToPage(currentPage - 1)}
         className="
           flex
           h-10
@@ -63,8 +87,7 @@ export default function EquipmentPagination({
           border-slate-200
           bg-white
           text-slate-600
-          transition-all
-          duration-200
+          transition
           hover:border-[#156CFF]
           hover:bg-[#156CFF]
           hover:text-white
@@ -75,8 +98,6 @@ export default function EquipmentPagination({
         <ChevronLeft size={18} />
       </button>
 
-      {/* Page Number */}
-
       {pages.map((page, index) =>
         page === "..." ? (
           <span key={`ellipsis-${index}`} className="px-2 text-slate-400">
@@ -86,7 +107,7 @@ export default function EquipmentPagination({
           <button
             key={page}
             type="button"
-            onClick={() => onPageChange(page)}
+            onClick={() => goToPage(page)}
             className={`
               flex
               h-10
@@ -97,8 +118,7 @@ export default function EquipmentPagination({
               border
               text-sm
               font-semibold
-              transition-all
-              duration-200
+              transition
 
               ${
                 currentPage === page
@@ -106,7 +126,6 @@ export default function EquipmentPagination({
                     border-[#156CFF]
                     bg-[#156CFF]
                     text-white
-                    shadow-md
                   `
                   : `
                     border-slate-200
@@ -124,12 +143,10 @@ export default function EquipmentPagination({
         ),
       )}
 
-      {/* Next */}
-
       <button
         type="button"
         disabled={currentPage === totalPages}
-        onClick={() => onPageChange(currentPage + 1)}
+        onClick={() => goToPage(currentPage + 1)}
         className="
           flex
           h-10
@@ -141,8 +158,7 @@ export default function EquipmentPagination({
           border-slate-200
           bg-white
           text-slate-600
-          transition-all
-          duration-200
+          transition
           hover:border-[#156CFF]
           hover:bg-[#156CFF]
           hover:text-white

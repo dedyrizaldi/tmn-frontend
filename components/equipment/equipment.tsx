@@ -1,65 +1,58 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useState } from "react";
 
-import type { Equipment as EquipmentType } from "@/types/equipment";
+import { useRouter } from "next/navigation";
+
+import type {
+  Equipment as EquipmentType,
+  PaginationLinks,
+  PaginationMeta,
+} from "@/types/equipment";
 
 import EquipmentModal from "./detail-modal/equipment-modal";
 import EquipmentFilters from "./filters/equipment-filters";
-import EquipmentHero from "./hero/hero";
 import EquipmentGrid from "./equipment-grid/equipment-grid";
+import EquipmentHero from "./hero/hero";
 import EquipmentToolbar from "./toolbar/equipment-toolbar";
-
-const ITEMS_PER_PAGE = 11;
 
 interface Props {
   equipments: EquipmentType[];
+  meta: PaginationMeta;
+  links: PaginationLinks;
+  initialSearch: string;
+  initialCategory: string;
 }
 
-export default function Equipment({ equipments }: Props) {
-  const [search, setSearch] = useState("");
+export default function Equipment({
+  equipments,
+  meta,
+  links,
+  initialSearch,
+  initialCategory,
+}: Props) {
+  const router = useRouter();
 
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
-
-  const [currentPage, setCurrentPage] = useState(1);
 
   const [selectedEquipment, setSelectedEquipment] =
     useState<EquipmentType | null>(null);
 
-  const filteredEquipment = useMemo(() => {
-    const keyword = search.trim().toLowerCase();
+  const handleSearch = (search: string) => {
+    const params = new URLSearchParams();
 
-    if (!keyword) {
-      return equipments;
+    if (search) {
+      params.set("search", search);
     }
 
-    return equipments.filter((item) => {
-      const title = (item.title ?? item.name ?? "").toLowerCase();
-      const category = (item.category?.name ?? "").toLowerCase();
-      const excerpt = (item.excerpt ?? "").toLowerCase();
-      const description = (item.description ?? "").toLowerCase();
+    if (initialCategory) {
+      params.set("category", initialCategory);
+    }
 
-      return (
-        title.includes(keyword) ||
-        category.includes(keyword) ||
-        excerpt.includes(keyword) ||
-        description.includes(keyword)
-      );
-    });
-  }, [equipments, search]);
+    params.set("page", "1");
 
-  const totalPages = Math.max(
-    1,
-    Math.ceil(filteredEquipment.length / ITEMS_PER_PAGE),
-  );
-
-  const safeCurrentPage = Math.min(currentPage, totalPages);
-
-  const paginatedEquipment = useMemo(() => {
-    const start = (safeCurrentPage - 1) * ITEMS_PER_PAGE;
-
-    return filteredEquipment.slice(start, start + ITEMS_PER_PAGE);
-  }, [filteredEquipment, safeCurrentPage]);
+    router.push(`/equipment?${params.toString()}`);
+  };
 
   return (
     <>
@@ -88,13 +81,7 @@ export default function Equipment({ equipments }: Props) {
             "
           >
             <aside>
-              <EquipmentFilters
-                search={search}
-                onSearchChange={(value) => {
-                  setSearch(value);
-                  setCurrentPage(1);
-                }}
-              />
+              <EquipmentFilters search={initialSearch} />
             </aside>
 
             <div className="space-y-8">
@@ -104,11 +91,12 @@ export default function Equipment({ equipments }: Props) {
               />
 
               <EquipmentGrid
-                equipments={paginatedEquipment}
+                equipments={equipments}
+                meta={meta}
+                links={links}
+                search={initialSearch}
+                category={initialCategory}
                 viewMode={viewMode}
-                currentPage={safeCurrentPage}
-                totalPages={totalPages}
-                onPageChange={setCurrentPage}
                 onSelectEquipment={setSelectedEquipment}
               />
             </div>
