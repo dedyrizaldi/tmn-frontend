@@ -2,66 +2,58 @@
 
 import { useMemo, useState } from "react";
 
+import type { Equipment as EquipmentType } from "@/types/equipment";
+
 import EquipmentModal from "./detail-modal/equipment-modal";
-import { equipmentData } from "./equipment.data";
 import EquipmentFilters from "./filters/equipment-filters";
 import EquipmentHero from "./hero/hero";
 import EquipmentGrid from "./equipment-grid/equipment-grid";
 import EquipmentToolbar from "./toolbar/equipment-toolbar";
-import type { Equipment } from "./types/equipment";
 
-const ITEMS_PER_PAGE = 10;
+const ITEMS_PER_PAGE = 11;
 
-export default function Equipment() {
-  /* Search */
+interface Props {
+  equipments: EquipmentType[];
+}
 
+export default function Equipment({ equipments }: Props) {
   const [search, setSearch] = useState("");
-
-  /* View */
 
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
 
-  /* Pagination */
-
   const [currentPage, setCurrentPage] = useState(1);
 
-  /* Modal */
-
-  const [selectedEquipment, setSelectedEquipment] = useState<Equipment | null>(
-    null,
-  );
-
-  /* Search Filter */
+  const [selectedEquipment, setSelectedEquipment] =
+    useState<EquipmentType | null>(null);
 
   const filteredEquipment = useMemo(() => {
-    if (!search.trim()) {
-      return equipmentData;
+    const keyword = search.trim().toLowerCase();
+
+    if (!keyword) {
+      return equipments;
     }
 
-    const keyword = search.toLowerCase();
+    return equipments.filter((item) => {
+      const title = (item.title ?? item.name ?? "").toLowerCase();
+      const category = (item.category?.name ?? "").toLowerCase();
+      const excerpt = (item.excerpt ?? "").toLowerCase();
+      const description = (item.description ?? "").toLowerCase();
 
-    return equipmentData.filter((item) => {
       return (
-        item.title.toLowerCase().includes(keyword) ||
-        item.category.toLowerCase().includes(keyword) ||
-        item.application.toLowerCase().includes(keyword) ||
-        item.description.toLowerCase().includes(keyword)
+        title.includes(keyword) ||
+        category.includes(keyword) ||
+        excerpt.includes(keyword) ||
+        description.includes(keyword)
       );
     });
-  }, [search]);
-
-  /* Total Page */
+  }, [equipments, search]);
 
   const totalPages = Math.max(
     1,
     Math.ceil(filteredEquipment.length / ITEMS_PER_PAGE),
   );
 
-  /* Prevent currentPage melebihi totalPage */
-
   const safeCurrentPage = Math.min(currentPage, totalPages);
-
-  /* Data per halaman */
 
   const paginatedEquipment = useMemo(() => {
     const start = (safeCurrentPage - 1) * ITEMS_PER_PAGE;
@@ -71,11 +63,7 @@ export default function Equipment() {
 
   return (
     <>
-      {/* Hero */}
-
       <EquipmentHero />
-
-      {/* Catalog */}
 
       <section
         className="
@@ -99,8 +87,6 @@ export default function Equipment() {
               lg:grid-cols-[300px_1fr]
             "
           >
-            {/* Sidebar */}
-
             <aside>
               <EquipmentFilters
                 search={search}
@@ -110,8 +96,6 @@ export default function Equipment() {
                 }}
               />
             </aside>
-
-            {/* Content */}
 
             <div className="space-y-8">
               <EquipmentToolbar
@@ -131,8 +115,6 @@ export default function Equipment() {
           </div>
         </div>
       </section>
-
-      {/* Modal */}
 
       <EquipmentModal
         open={selectedEquipment !== null}

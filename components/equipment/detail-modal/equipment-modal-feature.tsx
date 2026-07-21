@@ -1,15 +1,21 @@
-import { Gauge, ShieldCheck, Fuel, Wrench, Zap, Leaf } from "lucide-react";
+import {
+  FileText,
+  FolderOpen,
+  Gauge,
+  Images,
+  ShieldCheck,
+  Tag,
+} from "lucide-react";
+
+import type { Equipment } from "@/types/equipment";
 
 import EquipmentFeatureCard from "./equipment-feature-card";
 
 interface Props {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  equipment: any;
+  equipment: Equipment;
 }
 
 export default function EquipmentModalFeature({ equipment }: Props) {
-  const features = equipment.features ?? [];
-
   return (
     <section
       className="
@@ -30,7 +36,7 @@ export default function EquipmentModalFeature({ equipment }: Props) {
             text-[#156CFF]
           "
         >
-          FEATURES & CAPABILITIES
+          EQUIPMENT INFORMATION
         </span>
 
         <h2
@@ -41,7 +47,7 @@ export default function EquipmentModalFeature({ equipment }: Props) {
             text-[#04162E]
           "
         >
-          Keunggulan Peralatan
+          Informasi Peralatan
         </h2>
 
         <p
@@ -53,8 +59,7 @@ export default function EquipmentModalFeature({ equipment }: Props) {
             text-slate-600
           "
         >
-          Dirancang untuk memberikan performa maksimal, keamanan kerja, serta
-          efisiensi operasional pada berbagai proyek industri.
+          Detail informasi yang tersedia dari sistem Marine Notion.
         </p>
       </div>
 
@@ -68,55 +73,39 @@ export default function EquipmentModalFeature({ equipment }: Props) {
         "
       >
         <EquipmentFeatureCard
-          icon={Gauge}
-          title={features[0]?.title ?? "High Performance"}
-          description={
-            features[0]?.description ??
-            "Dirancang untuk performa tinggi pada pekerjaan industri."
-          }
+          icon={Tag}
+          title="Category"
+          description={equipment.category.name}
         />
 
         <EquipmentFeatureCard
           icon={ShieldCheck}
-          title={features[1]?.title ?? "Safety Standard"}
-          description={
-            features[1]?.description ??
-            "Memenuhi standar keselamatan kerja industri."
-          }
+          title="Status"
+          description={equipment.status}
         />
 
         <EquipmentFeatureCard
-          icon={Fuel}
-          title={features[2]?.title ?? "Fuel Efficient"}
-          description={
-            features[2]?.description ?? "Konsumsi bahan bakar lebih efisien."
-          }
+          icon={Images}
+          title="Gallery"
+          description={`${equipment.gallery.length} Images Available`}
         />
 
         <EquipmentFeatureCard
-          icon={Wrench}
-          title={features[3]?.title ?? "Easy Maintenance"}
-          description={
-            features[3]?.description ??
-            "Perawatan mudah dan suku cadang tersedia."
-          }
+          icon={Gauge}
+          title="Featured Equipment"
+          description={equipment.featured ? "Yes" : "No"}
         />
 
         <EquipmentFeatureCard
-          icon={Zap}
-          title={features[4]?.title ?? "Fast Operation"}
-          description={
-            features[4]?.description ?? "Meningkatkan produktivitas pekerjaan."
-          }
+          icon={FolderOpen}
+          title="Slug"
+          description={equipment.slug}
         />
 
         <EquipmentFeatureCard
-          icon={Leaf}
-          title={features[5]?.title ?? "Eco Friendly"}
-          description={
-            features[5]?.description ??
-            "Mendukung operasional yang ramah lingkungan."
-          }
+          icon={FileText}
+          title="Description"
+          description={equipment.excerpt}
         />
       </div>
     </section>

@@ -1,11 +1,40 @@
-import { CheckCircle2, Wrench } from "lucide-react";
+import { CheckCircle2, Circle, Wrench } from "lucide-react";
 
 interface Props {
-  status: "available" | "maintenance";
+  status: string;
 }
 
 export default function EquipmentBadge({ status }: Props) {
-  const isAvailable = status === "available";
+  const value = status.toLowerCase();
+
+  const config = {
+    available: {
+      label: "Ready Stock",
+      icon: <CheckCircle2 size={12} />,
+      className: "bg-emerald-500/90 text-white",
+    },
+    maintenance: {
+      label: "Maintenance",
+      icon: <Wrench size={12} />,
+      className: "bg-amber-500/90 text-white",
+    },
+    published: {
+      label: "Published",
+      icon: <CheckCircle2 size={12} />,
+      className: "bg-blue-600/90 text-white",
+    },
+    draft: {
+      label: "Draft",
+      icon: <Circle size={12} />,
+      className: "bg-slate-500/90 text-white",
+    },
+  } as const;
+
+  const badge = config[value as keyof typeof config] ?? {
+    label: status,
+    icon: <Circle size={12} />,
+    className: "bg-slate-500/90 text-white",
+  };
 
   return (
     <span
@@ -20,25 +49,11 @@ export default function EquipmentBadge({ status }: Props) {
         font-semibold
         shadow-sm
         backdrop-blur-sm
-
-        ${
-          isAvailable
-            ? "bg-emerald-500/90 text-white"
-            : "bg-amber-500/90 text-white"
-        }
+        ${badge.className}
       `}
     >
-      {isAvailable ? (
-        <>
-          <CheckCircle2 size={12} />
-          Ready Stock
-        </>
-      ) : (
-        <>
-          <Wrench size={12} />
-          Maintenance
-        </>
-      )}
+      {badge.icon}
+      {badge.label}
     </span>
   );
 }

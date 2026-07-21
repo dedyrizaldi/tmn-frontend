@@ -1,4 +1,4 @@
-import type { Equipment } from "../types/equipment";
+import type { Equipment } from "@/types/equipment";
 
 import EmptyState from "./empty-state";
 import EquipmentCard from "./equipment-card";

@@ -3,6 +3,8 @@
 import { X } from "lucide-react";
 import { useEffect } from "react";
 
+import type { Equipment } from "@/types/equipment";
+
 import EquipmentModalApplication from "./equipment-modal-application";
 import EquipmentModalCTA from "./equipment-modal-cta";
 import EquipmentModalFeature from "./equipment-modal-feature";
@@ -12,8 +14,7 @@ import EquipmentModalSpecs from "./equipment-modal-specs";
 
 interface Props {
   open: boolean;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  equipment: any;
+  equipment: Equipment | null;
   onClose: () => void;
 }
 
@@ -37,17 +38,11 @@ export default function EquipmentModal({ open, equipment, onClose }: Props) {
         fixed
         inset-0
         z-[9999]
-
         flex
-
         items-center
-
         justify-center
-
         bg-black/70
-
         backdrop-blur-sm
-
         p-5
       "
     >
@@ -55,17 +50,11 @@ export default function EquipmentModal({ open, equipment, onClose }: Props) {
         onClick={(e) => e.stopPropagation()}
         className="
           relative
-
           h-[92vh]
-
           w-full
-
           max-w-6xl
-
           overflow-y-auto
-
           rounded-[30px]
-
           bg-white
         "
       >
@@ -73,27 +62,16 @@ export default function EquipmentModal({ open, equipment, onClose }: Props) {
           onClick={onClose}
           className="
             absolute
-
             right-5
-
             top-5
-
             z-50
-
             flex
-
             h-11
-
             w-11
-
             items-center
-
             justify-center
-
             rounded-full
-
             bg-white
-
             shadow-lg
           "
         >

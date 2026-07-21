@@ -21,9 +21,9 @@ export default function ContactInfo() {
           border
           border-slate-200
           bg-white
-          p-8
+          p-10
           shadow-sm
-          lg:p-10
+          lg:p-5
         "
       >
         {/* Heading */}
@@ -180,7 +180,7 @@ export default function ContactInfo() {
 
         {/* Social */}
 
-        <div className="mt-12 border-t border-slate-200 pt-8">
+        {/* <div className="mt-12 border-t border-slate-200 pt-8">
           <h3
             className="
               text-lg
@@ -284,7 +284,7 @@ export default function ContactInfo() {
               <FaYoutube size={18} />
             </a>
           </div>
-        </div>
+        </div> */}
       </div>
     </Container>
   );

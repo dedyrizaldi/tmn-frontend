@@ -1,7 +1,8 @@
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 
-import type { Equipment } from "../types/equipment";
+import { mediaUrl } from "@/lib/media-url";
+import type { Equipment } from "@/types/equipment";
 
 import EquipmentBadge from "./equipment-badge";
 import EquipmentSpec from "./equipment-spec";
@@ -41,10 +42,10 @@ export default function EquipmentCard({ equipment, onClick, viewMode }: Props) {
             ? `
                 relative
                 h-[280px]
-                lg:w-[340px]
                 lg:h-auto
-                overflow-hidden
+                lg:w-[340px]
                 shrink-0
+                overflow-hidden
               `
             : `
                 relative
@@ -54,15 +55,11 @@ export default function EquipmentCard({ equipment, onClick, viewMode }: Props) {
         }
       >
         <Image
-          src={equipment.image}
-          alt={equipment.title}
+          src={mediaUrl(equipment.thumbnail)}
+          alt={equipment.title ?? equipment.name ?? ""}
           fill
-          className="
-            object-cover
-            transition-transform
-            duration-500
-            group-hover:scale-105
-          "
+          unoptimized
+          className="object-cover transition-transform duration-500 group-hover:scale-105"
         />
 
         <div className="absolute left-3 top-3">
@@ -83,8 +80,6 @@ export default function EquipmentCard({ equipment, onClick, viewMode }: Props) {
         `}
       >
         <div>
-          {/* Title */}
-
           <h3
             className="
               line-clamp-2
@@ -94,21 +89,32 @@ export default function EquipmentCard({ equipment, onClick, viewMode }: Props) {
               text-[#04162E]
             "
           >
-            {equipment.title}
+            {equipment.title ?? equipment.name}
           </h3>
 
-          {/* Specs */}
+          <p
+            className="
+              mt-3
+              line-clamp-3
+              text-sm
+              leading-6
+              text-slate-600
+            "
+          >
+            {equipment.excerpt}
+          </p>
 
           <div className="mt-5 space-y-2">
-            <EquipmentSpec label="Category" value={equipment.category} />
+            <EquipmentSpec label="Category" value={equipment.category.name} />
 
-            <EquipmentSpec label="Capacity" value={equipment.capacity} />
+            <EquipmentSpec label="Status" value={equipment.status} />
 
-            <EquipmentSpec label="Application" value={equipment.application} />
+            <EquipmentSpec
+              label="Gallery"
+              value={`${equipment.gallery.length} Photos`}
+            />
           </div>
         </div>
-
-        {/* Button */}
 
         <button
           type="button"
@@ -125,19 +131,22 @@ export default function EquipmentCard({ equipment, onClick, viewMode }: Props) {
             bg-white
             px-1
             py-2
+            text-[13px]
             font-semibold
             text-[#156CFF]
             transition-all
             duration-300
             hover:bg-[#156CFF]
             hover:text-white
-            text-[13px]
           "
         >
           View Details
           <ArrowRight
             size={18}
-            className="transition-transform group-hover:translate-x-1"
+            className="
+              transition-transform
+              group-hover:translate-x-1
+            "
           />
         </button>
       </div>

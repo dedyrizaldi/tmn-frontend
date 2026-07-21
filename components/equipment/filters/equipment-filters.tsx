@@ -1,6 +1,5 @@
 "use client";
 
-import ApplicationFilter from "./application-filter";
 import CategoryFilter from "./category-filter";
 import ResetFilter from "./reset-filter";
 import SearchBox from "./search-box";
@@ -17,17 +16,11 @@ export default function EquipmentFilters({ search, onSearchChange }: Props) {
       className="
         sticky
         top-24
-
         rounded-3xl
-
         border
-
         border-slate-200
-
         bg-white
-
         p-7
-
         shadow-sm
       "
     >
@@ -40,12 +33,6 @@ export default function EquipmentFilters({ search, onSearchChange }: Props) {
       {/* Category */}
 
       <CategoryFilter />
-
-      <div className="my-8 border-t border-slate-200" />
-
-      {/* Application */}
-
-      <ApplicationFilter />
 
       <div className="my-8 border-t border-slate-200" />
 

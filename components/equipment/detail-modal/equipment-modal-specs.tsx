@@ -1,8 +1,9 @@
+import type { Equipment } from "@/types/equipment";
+
 import EquipmentSpecItem from "./equipment-spec-item";
 
 interface Props {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  equipment: any;
+  equipment: Equipment;
 }
 
 export default function EquipmentModalSpecs({ equipment }: Props) {
@@ -10,13 +11,9 @@ export default function EquipmentModalSpecs({ equipment }: Props) {
     <section
       className="
         border-b
-
         border-slate-200
-
         bg-white
-
         p-8
-
         lg:p-10
       "
     >
@@ -24,78 +21,75 @@ export default function EquipmentModalSpecs({ equipment }: Props) {
         <span
           className="
             text-xs
-
             font-bold
-
             uppercase
-
             tracking-[0.25em]
-
             text-[#156CFF]
           "
         >
-          TECHNICAL SPECIFICATIONS
+          EQUIPMENT INFORMATION
         </span>
 
         <h2
           className="
             mt-4
-
             text-3xl
-
             font-bold
-
             text-[#04162E]
           "
         >
-          Spesifikasi Teknis
+          Informasi Peralatan
         </h2>
 
         <p
           className="
             mt-4
-
             max-w-2xl
-
             leading-8
-
             text-slate-600
           "
         >
-          Informasi teknis mengenai unit peralatan yang digunakan untuk
-          mendukung pekerjaan industri secara aman dan efisien.
+          Informasi utama mengenai peralatan yang tersedia pada sistem Marine
+          Notion.
         </p>
       </div>
 
       <div
         className="
           mt-10
-
           grid
-
           gap-x-12
-
           md:grid-cols-2
         "
       >
-        <EquipmentSpecItem label="Engine" value={equipment.engine} />
+        <EquipmentSpecItem label="Name" value={equipment.name} />
 
-        <EquipmentSpecItem label="Power" value={equipment.power} />
+        <EquipmentSpecItem label="Title" value={equipment.title ?? "-"} />
 
-        <EquipmentSpecItem label="Tank Capacity" value={equipment.capacity} />
+        <EquipmentSpecItem label="Category" value={equipment.category.name} />
 
-        <EquipmentSpecItem label="Vacuum Pump" value={equipment.pump} />
-
-        <EquipmentSpecItem label="Drive" value={equipment.drive} />
-
-        <EquipmentSpecItem label="Fuel" value={equipment.fuel} />
+        <EquipmentSpecItem label="Status" value={equipment.status} />
 
         <EquipmentSpecItem
-          label="Transmission"
-          value={equipment.transmission}
+          label="Featured"
+          value={equipment.featured ? "Yes" : "No"}
         />
 
-        <EquipmentSpecItem label="Weight" value={equipment.weight} />
+        <EquipmentSpecItem
+          label="Gallery"
+          value={`${equipment.gallery.length} Images`}
+        />
+
+        <EquipmentSpecItem label="Slug" value={equipment.slug} />
+
+        <EquipmentSpecItem
+          label="Published"
+          value={
+            equipment.published_at
+              ? new Date(equipment.published_at).toLocaleString()
+              : "-"
+          }
+        />
       </div>
     </section>
   );

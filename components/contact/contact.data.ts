@@ -2,14 +2,11 @@ import type { ContactData } from "./types/contact";
 
 export const contactData: ContactData = {
   info: {
-    phone: "+62 21 1234 5678",
-    email: "info@tmn.co.id",
-    whatsapp: "+62 812 3456 7890",
+    phone: "021-2945-231",
+    email: "tirtameganusantara@tmn.co.id",
+    whatsapp: "",
 
-    address: `Jl. Industri Raya No.10
-Kawasan Industri Cakung
-Jakarta Timur 13910
-Indonesia`,
+    address: `Green Sedayu Bizpark Cakung Blok GS 17/25 JL Cakung Cilincing Timur- Raya KM 2`,
 
     officeHours: "Monday - Friday • 08:00 - 17:00 WIB",
   },
@@ -66,5 +63,5 @@ Indonesia`,
   ],
 
   googleMap:
-    "https://www.google.com/maps?q=PT+Trans+Mandiri+Nusantara&output=embed",
+    "https://www.google.com/maps/place/Tirta+Mega+Nusantara/@-6.181829,106.9408064,17z/data=!3m1!4b1!4m6!3m5!1s0x2e698b1a6c9c3ecf:0x6daea4229f9ea92d!8m2!3d-6.181829!4d106.9433813!16s%2Fg%2F11htp9wc4m?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D",
 };

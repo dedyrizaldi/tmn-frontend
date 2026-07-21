@@ -1,35 +1,47 @@
-import { Droplets, Factory, Truck, Wrench, Recycle, Ship } from "lucide-react";
+import {
+  Droplets,
+  Factory,
+  FileText,
+  Images,
+  ShieldCheck,
+  Ship,
+} from "lucide-react";
+
+import type { Equipment } from "@/types/equipment";
 
 import EquipmentApplicationCard from "./equipment-application-card";
 
 interface Props {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  equipment: any;
+  equipment: Equipment;
 }
 
-const icons = [Droplets, Factory, Truck, Wrench, Recycle, Ship];
+const cards = [
+  {
+    title: "Marine Operations",
+    icon: Ship,
+  },
+  {
+    title: "Industrial Services",
+    icon: Factory,
+  },
+  {
+    title: "Inspection & Survey",
+    icon: ShieldCheck,
+  },
+  {
+    title: "Field Operations",
+    icon: Droplets,
+  },
+];
 
 export default function EquipmentModalApplication({ equipment }: Props) {
-  const applications = equipment.applications ?? [
-    "Tank Cleaning",
-    "Industrial Cleaning",
-    "Sludge Removal",
-    "Pumping",
-    "Waste Management",
-    "Marine",
-  ];
-
   return (
     <section
       className="
         border-b
-
         border-slate-200
-
         bg-white
-
         p-8
-
         lg:p-10
       "
     >
@@ -37,71 +49,61 @@ export default function EquipmentModalApplication({ equipment }: Props) {
         <span
           className="
             text-xs
-
             font-bold
-
             uppercase
-
             tracking-[0.25em]
-
             text-[#156CFF]
           "
         >
-          APPLICATIONS
+          USAGE INFORMATION
         </span>
 
         <h2
           className="
             mt-4
-
             text-3xl
-
             font-bold
-
             text-[#04162E]
           "
         >
-          Aplikasi Penggunaan
+          Informasi Penggunaan
         </h2>
 
         <p
           className="
             mx-auto
-
             mt-4
-
             max-w-3xl
-
             leading-8
-
             text-slate-600
           "
         >
-          Peralatan ini dirancang untuk mendukung berbagai pekerjaan industri
-          dengan performa tinggi dan standar keselamatan terbaik.
+          {equipment.description || equipment.excerpt}
         </p>
       </div>
 
       <div
         className="
           mt-12
-
           grid
-
           gap-5
-
           md:grid-cols-2
-
           xl:grid-cols-3
         "
       >
-        {applications.map((item: string, index: number) => {
-          const Icon = icons[index % icons.length];
+        {cards.map(({ title, icon: Icon }) => (
+          <EquipmentApplicationCard key={title} icon={Icon} title={title} />
+        ))}
 
-          return (
-            <EquipmentApplicationCard key={item} icon={Icon} title={item} />
-          );
-        })}
+        <EquipmentApplicationCard
+          icon={FileText}
+          title={`Category: ${equipment.category.name}`}
+        />
+
+        <EquipmentApplicationCard
+          icon={Images}
+          title={`${equipment.gallery.length} Gallery Images`}
+        />
       </div>
     </section>
   );

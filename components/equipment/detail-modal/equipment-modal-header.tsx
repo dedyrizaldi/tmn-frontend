@@ -1,11 +1,13 @@
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 
+import type { Equipment } from "@/types/equipment";
+import { mediaUrl } from "@/lib/media-url";
+
 import EquipmentBadge from "../equipment-grid/equipment-badge";
 
 interface Props {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  equipment: any;
+  equipment: Equipment;
 }
 
 export default function EquipmentModalHeader({ equipment }: Props) {
@@ -22,8 +24,8 @@ export default function EquipmentModalHeader({ equipment }: Props) {
         "
       >
         <Image
-          src={equipment.image}
-          alt={equipment.title}
+          src={mediaUrl(equipment.thumbnail)}
+          alt={equipment.name ?? equipment.title ?? equipment.name ?? ""}
           fill
           priority
           className="object-cover"
@@ -59,7 +61,7 @@ export default function EquipmentModalHeader({ equipment }: Props) {
               lg:text-5xl
             "
           >
-            {equipment.title}
+            {equipment.title ?? equipment.name}
           </h1>
 
           <p
@@ -71,33 +73,22 @@ export default function EquipmentModalHeader({ equipment }: Props) {
               text-slate-200
             "
           >
-            {equipment.description}
+            {equipment.excerpt}
           </p>
 
           <button
             className="
               mt-8
-
               inline-flex
-
               items-center
-
               gap-2
-
               rounded-xl
-
               bg-[#156CFF]
-
               px-7
-
               py-4
-
               font-semibold
-
               text-white
-
               transition
-
               hover:bg-[#0F5BE7]
             "
           >
@@ -113,27 +104,31 @@ export default function EquipmentModalHeader({ equipment }: Props) {
         className="
           grid
           gap-6
-
           border-b
-
           border-slate-200
-
           bg-white
-
           p-8
-
           md:grid-cols-2
-
           lg:grid-cols-4
         "
       >
-        <SummaryItem label="Category" value={equipment.category} />
-
-        <SummaryItem label="Capacity" value={equipment.capacity} />
-
-        <SummaryItem label="Application" value={equipment.application} />
+        <SummaryItem label="Category" value={equipment.category.name} />
 
         <SummaryItem label="Status" value={equipment.status} />
+
+        <SummaryItem
+          label="Gallery"
+          value={`${equipment.gallery.length} Photos`}
+        />
+
+        <SummaryItem
+          label="Published"
+          value={
+            equipment.published_at
+              ? new Date(equipment.published_at).toLocaleDateString()
+              : "-"
+          }
+        />
       </div>
     </section>
   );
@@ -150,13 +145,9 @@ function SummaryItem({ label, value }: SummaryProps) {
       <p
         className="
           text-xs
-
           font-semibold
-
           uppercase
-
           tracking-[0.2em]
-
           text-slate-400
         "
       >
@@ -166,11 +157,8 @@ function SummaryItem({ label, value }: SummaryProps) {
       <p
         className="
           mt-2
-
           text-lg
-
           font-bold
-
           text-[#04162E]
         "
       >

@@ -1,17 +1,31 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import Image from "next/image";
+
+import type { Equipment } from "@/types/equipment";
+import { mediaUrl } from "@/lib/media-url";
 
 import EquipmentGalleryThumb from "./equipment-gallery-thumb";
 
 interface Props {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  equipment: any;
+  equipment: Equipment;
 }
 
 export default function EquipmentModalGallery({ equipment }: Props) {
-  const gallery = equipment.gallery ?? [equipment.image];
+  const gallery = useMemo(() => {
+    if (equipment.gallery.length > 0) {
+      return equipment.gallery;
+    }
+
+    return [
+      {
+        id: equipment.id,
+        name: equipment.title ?? equipment.name,
+        url: equipment.thumbnail,
+      },
+    ];
+  }, [equipment]);
 
   const [selected, setSelected] = useState(gallery[0]);
 
@@ -60,8 +74,7 @@ export default function EquipmentModalGallery({ equipment }: Props) {
             text-slate-600
           "
         >
-          Beberapa dokumentasi unit peralatan yang digunakan dalam berbagai
-          pekerjaan industri.
+          Dokumentasi unit peralatan yang tersedia pada sistem Marine Notion.
         </p>
       </div>
 
@@ -77,8 +90,8 @@ export default function EquipmentModalGallery({ equipment }: Props) {
         "
       >
         <Image
-          src={selected}
-          alt={equipment.title}
+          src={mediaUrl(selected.url)}
+          alt={selected.name ?? equipment.title ?? equipment.name ?? ""}
           fill
           className="
             object-cover
@@ -100,11 +113,11 @@ export default function EquipmentModalGallery({ equipment }: Props) {
           lg:grid-cols-5
         "
       >
-        {gallery.map((image: string, index: number) => (
+        {gallery.map((image) => (
           <EquipmentGalleryThumb
-            key={index}
-            image={image}
-            active={selected === image}
+            key={image.id}
+            image={mediaUrl(image.url)}
+            active={selected.id === image.id}
             onClick={() => setSelected(image)}
           />
         ))}
