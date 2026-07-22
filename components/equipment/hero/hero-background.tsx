@@ -4,7 +4,7 @@ export default function HeroBackground() {
   return (
     <>
       <Image
-        src="/images/services/hero.png"
+        src="/images/services/hero-v1.png"
         alt="Equipment"
         fill
         priority

@@ -15,7 +15,7 @@ export default function ProjectCTA() {
 
       <div className="absolute inset-0">
         <Image
-          src="/images/project/cta-background.png"
+          src="/images/project/cta-background-v1.png"
           alt="Industrial Project"
           fill
           className="object-cover"

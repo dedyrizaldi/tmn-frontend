@@ -14,7 +14,7 @@ export default function ProjectHero() {
 
       <div className="absolute inset-0">
         <Image
-          src="/images/project/hero-project.png"
+          src="/images/project/hero-project-v1.png"
           alt="Industrial Project"
           fill
           priority
