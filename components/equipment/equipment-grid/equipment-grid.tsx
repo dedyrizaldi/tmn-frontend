@@ -25,7 +25,6 @@ export default function EquipmentGrid({
   equipments,
   viewMode,
   meta,
-  links,
   search,
   category,
   onSelectEquipment,

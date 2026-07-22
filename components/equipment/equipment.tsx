@@ -2,8 +2,6 @@
 
 import { useState } from "react";
 
-import { useRouter } from "next/navigation";
-
 import type {
   Equipment as EquipmentType,
   PaginationLinks,
@@ -31,28 +29,10 @@ export default function Equipment({
   initialSearch,
   initialCategory,
 }: Props) {
-  const router = useRouter();
-
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
 
   const [selectedEquipment, setSelectedEquipment] =
     useState<EquipmentType | null>(null);
-
-  const handleSearch = (search: string) => {
-    const params = new URLSearchParams();
-
-    if (search) {
-      params.set("search", search);
-    }
-
-    if (initialCategory) {
-      params.set("category", initialCategory);
-    }
-
-    params.set("page", "1");
-
-    router.push(`/equipment?${params.toString()}`);
-  };
 
   return (
     <>
