@@ -1,31 +1,29 @@
 "use client";
 
+import type { ProjectCategory } from "@/types/project";
+
 import CategoryFilter from "./category-filter";
 import ResetFilter from "./reset-filter";
 import SearchBox from "./search-box";
-import YearFilter from "./year-filter";
 
 interface Props {
   search: string;
 
   category: string;
 
-  year: string;
+  categories: ProjectCategory[];
 
   onSearchChange: (value: string) => void;
 
   onCategoryChange: (value: string) => void;
-
-  onYearChange: (value: string) => void;
 }
 
 export default function ProjectFilters({
   search,
   category,
-  year,
+  categories,
   onSearchChange,
   onCategoryChange,
-  onYearChange,
 }: Props) {
   return (
     <div
@@ -54,13 +52,11 @@ export default function ProjectFilters({
 
       {/* Category */}
 
-      <CategoryFilter value={category} onChange={onCategoryChange} />
-
-      <div className="my-8 border-t border-slate-200" />
-
-      {/* Year */}
-
-      <YearFilter value={year} onChange={onYearChange} />
+      <CategoryFilter
+        value={category}
+        categories={categories}
+        onChange={onCategoryChange}
+      />
 
       <div className="my-8 border-t border-slate-200" />
 
@@ -70,7 +66,6 @@ export default function ProjectFilters({
         onReset={() => {
           onSearchChange("");
           onCategoryChange("all");
-          onYearChange("all");
         }}
       />
     </div>

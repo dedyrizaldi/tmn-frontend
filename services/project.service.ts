@@ -1,32 +1,49 @@
 import { ProjectRepository } from "@/repositories/project.repository";
-import type { Project } from "@/types/project";
+
+import type {
+  Project,
+  ProjectResponse,
+  ProjectDetailResponse,
+  ProjectCategoryResponse,
+} from "@/types/project";
+
+import type { GetProjectsParams } from "@/repositories/project.repository";
 
 /**
  * Get all projects
  */
-export async function getProjects(): Promise<Project[]> {
-  return ProjectRepository.all();
+export async function getProjects(
+  params: GetProjectsParams = {},
+): Promise<ProjectResponse> {
+  return ProjectRepository.all(params);
 }
-
-/**
- * Get featured projects
- */
-// export async function getFeaturedProjects(): Promise<Project[]> {
-//   return ProjectRepository.featured();
-// }
 
 /**
  * Get project by slug
  */
-export async function getProjectBySlug(slug: string): Promise<Project | null> {
-  return ProjectRepository.findBySlug(slug);
+export async function getProjectBySlug(slug: string): Promise<Project> {
+  const response: ProjectDetailResponse =
+    await ProjectRepository.findBySlug(slug);
+
+  return response.data;
+}
+
+/**
+ * Get project categories
+ */
+export async function getProjectCategories(): Promise<ProjectCategoryResponse> {
+  return ProjectRepository.categories();
 }
 
 /**
  * Search projects
  */
-export async function searchProjects(keyword: string): Promise<Project[]> {
-  return ProjectRepository.search(keyword);
+export async function searchProjects(
+  keyword: string,
+): Promise<ProjectResponse> {
+  return ProjectRepository.all({
+    search: keyword,
+  });
 }
 
 /**
@@ -34,19 +51,17 @@ export async function searchProjects(keyword: string): Promise<Project[]> {
  */
 export async function getProjectsByCategory(
   category: string,
-): Promise<Project[]> {
-  return ProjectRepository.byCategory(category);
+): Promise<ProjectResponse> {
+  return ProjectRepository.all({
+    category,
+  });
 }
 
 /**
- * Get related projects
+ * Get featured projects
  */
-export async function getRelatedProjects(
-  slug: string,
-  category: string,
-  limit = 3,
-): Promise<Project[]> {
-  const projects = ProjectRepository.byCategory(category);
-
-  return projects.filter((project) => project.slug !== slug).slice(0, limit);
+export async function getFeaturedProjects(): Promise<ProjectResponse> {
+  return ProjectRepository.all({
+    featured: true,
+  });
 }

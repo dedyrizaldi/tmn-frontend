@@ -1,4 +1,4 @@
-import type { Project } from "../types/project";
+import type { Project } from "@/types/project";
 
 import ProjectCTA from "./project-cta";
 import ProjectEquipment from "./project-equipment";
@@ -21,9 +21,9 @@ export default function ProjectDetail({ project }: Props) {
       <ProjectOverview project={project} />
       <ProjectGallery project={project} />
       <ProjectScope project={project} />
-      <ProjectEquipment project={project} />
-      <ProjectTimeline project={project} />
-      <ProjectResults project={project} />
+      {/* <ProjectEquipment project={project} /> */}
+      {/* <ProjectTimeline project={project} /> */}
+      {/* <ProjectResults project={project} /> */}
       {/* <ProjectRelated currentProject={project} /> */}
       <ProjectCTA />
     </>

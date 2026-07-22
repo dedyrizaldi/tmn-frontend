@@ -1,7 +1,3 @@
-"use client";
-
-import { ChevronLeft, ChevronRight } from "lucide-react";
-
 interface Props {
   currentPage: number;
   totalPages: number;
@@ -17,141 +13,126 @@ export default function ProjectPagination({
     return null;
   }
 
-  const pages: (number | "...")[] = [];
+  const pages: number[] = [];
 
-  if (totalPages <= 7) {
-    for (let i = 1; i <= totalPages; i++) {
-      pages.push(i);
-    }
-  } else {
-    pages.push(1);
+  const start = Math.max(1, currentPage - 2);
+  const end = Math.min(totalPages, currentPage + 2);
 
-    if (currentPage > 3) {
-      pages.push("...");
-    }
-
-    const start = Math.max(2, currentPage - 1);
-    const end = Math.min(totalPages - 1, currentPage + 1);
-
-    for (let i = start; i <= end; i++) {
-      pages.push(i);
-    }
-
-    if (currentPage < totalPages - 2) {
-      pages.push("...");
-    }
-
-    pages.push(totalPages);
+  for (let i = start; i <= end; i++) {
+    pages.push(i);
   }
 
   return (
-    <div className="mt-14 flex flex-col items-center gap-6">
-      {/* Info */}
+    <div className="flex items-center justify-center gap-2 pt-6">
+      {/* Previous */}
 
-      <p className="text-sm text-slate-500">
-        Page <span className="font-semibold text-[#04162E]">{currentPage}</span>{" "}
-        of <span className="font-semibold text-[#04162E]">{totalPages}</span>
-      </p>
+      <button
+        disabled={currentPage === 1}
+        onClick={() => onPageChange(currentPage - 1)}
+        className="
+          rounded-xl
+          border
+          border-slate-200
+          px-4
+          py-2
+          text-sm
+          transition
+          hover:bg-slate-100
+          disabled:cursor-not-allowed
+          disabled:opacity-40
+        "
+      >
+        Previous
+      </button>
 
-      {/* Pagination */}
+      {/* First */}
 
-      <div className="flex flex-wrap items-center justify-center gap-3">
-        {/* Previous */}
+      {start > 1 && (
+        <>
+          <button
+            onClick={() => onPageChange(1)}
+            className="
+              h-10
+              w-10
+              rounded-xl
+              border
+              border-slate-200
+            "
+          >
+            1
+          </button>
 
+          {start > 2 && <span className="px-1 text-slate-400">...</span>}
+        </>
+      )}
+
+      {/* Middle */}
+
+      {pages.map((page) => (
         <button
-          type="button"
-          disabled={currentPage === 1}
-          onClick={() => onPageChange(currentPage - 1)}
-          className="
-            flex
-            h-11
-            w-11
-            items-center
-            justify-center
+          key={page}
+          onClick={() => onPageChange(page)}
+          className={`
+            h-10
+            w-10
             rounded-xl
             border
-            border-slate-200
-            bg-white
-            transition-all
-            duration-300
+            transition
 
-            hover:border-[#156CFF]
-            hover:bg-[#156CFF]
-            hover:text-white
-
-            disabled:cursor-not-allowed
-            disabled:opacity-40
-          "
+            ${
+              page === currentPage
+                ? "border-[#009688] bg-[#009688] text-white"
+                : "border-slate-200 hover:bg-slate-100"
+            }
+          `}
         >
-          <ChevronLeft size={18} />
+          {page}
         </button>
+      ))}
 
-        {/* Numbers */}
+      {/* Last */}
 
-        {pages.map((page, index) =>
-          page === "..." ? (
-            <span key={`ellipsis-${index}`} className="px-2 text-slate-400">
-              ...
-            </span>
-          ) : (
-            <button
-              key={page}
-              type="button"
-              onClick={() => onPageChange(page)}
-              className={`
-                flex
-                h-11
-                w-11
-                items-center
-                justify-center
-                rounded-xl
-                border
-                font-semibold
-                transition-all
-                duration-300
+      {end < totalPages && (
+        <>
+          {end < totalPages - 1 && (
+            <span className="px-1 text-slate-400">...</span>
+          )}
 
-                ${
-                  currentPage === page
-                    ? "border-[#156CFF] bg-[#156CFF] text-white shadow-lg shadow-blue-200"
-                    : "border-slate-200 bg-white hover:border-[#156CFF] hover:bg-[#156CFF] hover:text-white"
-                }
-              `}
-            >
-              {page}
-            </button>
-          ),
-        )}
+          <button
+            onClick={() => onPageChange(totalPages)}
+            className="
+              h-10
+              w-10
+              rounded-xl
+              border
+              border-slate-200
+            "
+          >
+            {totalPages}
+          </button>
+        </>
+      )}
 
-        {/* Next */}
+      {/* Next */}
 
-        <button
-          type="button"
-          disabled={currentPage === totalPages}
-          onClick={() => onPageChange(currentPage + 1)}
-          className="
-            flex
-            h-11
-            w-11
-            items-center
-            justify-center
-            rounded-xl
-            border
-            border-slate-200
-            bg-white
-            transition-all
-            duration-300
-
-            hover:border-[#156CFF]
-            hover:bg-[#156CFF]
-            hover:text-white
-
-            disabled:cursor-not-allowed
-            disabled:opacity-40
-          "
-        >
-          <ChevronRight size={18} />
-        </button>
-      </div>
+      <button
+        disabled={currentPage === totalPages}
+        onClick={() => onPageChange(currentPage + 1)}
+        className="
+          rounded-xl
+          border
+          border-slate-200
+          px-4
+          py-2
+          text-sm
+          transition
+          hover:bg-slate-100
+          disabled:cursor-not-allowed
+          disabled:opacity-40
+        "
+      >
+        Next
+      </button>
     </div>
   );
 }

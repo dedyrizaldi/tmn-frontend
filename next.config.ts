@@ -17,6 +17,7 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "api.tmn.co.id",
+        pathname: "/storage/**",
       },
 
       // Untuk development lokal (opsional)

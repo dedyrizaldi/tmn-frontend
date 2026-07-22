@@ -1,118 +1,135 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 
 import ProjectHero from "./hero/hero";
 import ProjectFilters from "./filters/project-filters";
 import ProjectToolbar from "./toolbar/project-toolbar";
 import ProjectGrid from "./project-grid/project-grid";
-
 import ProjectCTA from "./detail-page/project-cta";
 
-import { projectData } from "./project.data";
-import type { Project } from "./types/project";
+import { getProjectCategories, getProjects } from "@/services/project.service";
 
-const ITEMS_PER_PAGE = 6;
+import type {
+  PaginationMeta,
+  Project as ProjectType,
+  ProjectCategory,
+} from "@/types/project";
 
 export default function Project() {
-  /* Search */
+  /**
+   * ==========================
+   * Data
+   * ==========================
+   */
+
+  const [projects, setProjects] = useState<ProjectType[]>([]);
+
+  const [categories, setCategories] = useState<ProjectCategory[]>([]);
+
+  const [meta, setMeta] = useState<PaginationMeta>();
+
+  const [loading, setLoading] = useState(true);
+
+  /**
+   * ==========================
+   * Search
+   * ==========================
+   */
 
   const [search, setSearch] = useState("");
 
-  /* Filters */
+  /**
+   * ==========================
+   * Filters
+   * ==========================
+   */
 
   const [category, setCategory] = useState("all");
 
-  const [year, setYear] = useState("all");
-
-  /* Sort */
+  /**
+   * ==========================
+   * Sort
+   * ==========================
+   */
 
   const [sortBy, setSortBy] = useState("newest");
 
-  /* View */
+  /**
+   * ==========================
+   * View
+   * ==========================
+   */
 
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
 
-  /* Pagination */
+  /**
+   * ==========================
+   * Pagination
+   * ==========================
+   */
 
   const [currentPage, setCurrentPage] = useState(1);
 
-  /* Filtering */
+  /**
+   * ==========================
+   * Load Categories
+   * ==========================
+   */
 
-  const filteredProjects = useMemo(() => {
-    let data = [...projectData];
+  useEffect(() => {
+    async function loadCategories() {
+      try {
+        const response = await getProjectCategories();
 
-    /* Search */
-
-    if (search.trim()) {
-      const keyword = search.toLowerCase();
-
-      data = data.filter((project) => {
-        return (
-          project.title.toLowerCase().includes(keyword) ||
-          project.client.toLowerCase().includes(keyword) ||
-          project.location.toLowerCase().includes(keyword) ||
-          project.category.toLowerCase().includes(keyword)
-        );
-      });
+        setCategories(response.data);
+      } catch (error) {
+        console.error(error);
+      }
     }
 
-    /* Category */
+    loadCategories();
+  }, []);
 
-    if (category !== "all") {
-      data = data.filter((project) => project.category === category);
+  /**
+   * ==========================
+   * Load Projects
+   * ==========================
+   */
+
+  useEffect(() => {
+    async function loadProjects() {
+      try {
+        setLoading(true);
+
+        const response = await getProjects({
+          page: currentPage,
+          search: search || undefined,
+          category: category !== "all" ? category : undefined,
+          sort_by:
+            sortBy === "name-asc" || sortBy === "name-desc"
+              ? "title"
+              : "project_date",
+          sort_direction:
+            sortBy === "oldest" || sortBy === "name-asc" ? "asc" : "desc",
+        });
+        console.log(response.data[0]);
+        console.log(response.data[0].thumbnail);
+        setProjects(response.data);
+        setMeta(response.meta);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
     }
 
-    /* Year */
-
-    if (year !== "all") {
-      data = data.filter((project) => project.year === Number(year));
-    }
-
-    /* Sort */
-
-    switch (sortBy) {
-      case "oldest":
-        data.sort((a, b) => a.year - b.year);
-        break;
-
-      case "name-asc":
-        data.sort((a, b) => a.title.localeCompare(b.title));
-        break;
-
-      case "name-desc":
-        data.sort((a, b) => b.title.localeCompare(a.title));
-        break;
-
-      default:
-        data.sort((a, b) => b.year - a.year);
-    }
-
-    return data;
-  }, [search, category, year, sortBy]);
-
-  /* Pagination */
-
-  const totalPages = Math.max(
-    1,
-    Math.ceil(filteredProjects.length / ITEMS_PER_PAGE),
-  );
-
-  const safeCurrentPage = Math.min(currentPage, totalPages);
-
-  const paginatedProjects = useMemo(() => {
-    const start = (safeCurrentPage - 1) * ITEMS_PER_PAGE;
-
-    return filteredProjects.slice(start, start + ITEMS_PER_PAGE);
-  }, [filteredProjects, safeCurrentPage]);
+    loadProjects();
+  }, [currentPage, search, category, sortBy]);
 
   return (
     <>
-      {/* Hero */}
-
       <ProjectHero />
-
-      {/* Content */}
 
       <section
         className="
@@ -136,52 +153,75 @@ export default function Project() {
               lg:grid-cols-[300px_1fr]
             "
           >
-            {/* Sidebar */}
-
             <aside>
               <ProjectFilters
                 search={search}
                 category={category}
-                year={year}
+                categories={categories}
                 onSearchChange={(value) => {
-                  setSearch(value);
                   setCurrentPage(1);
+                  setSearch(value);
                 }}
                 onCategoryChange={(value) => {
+                  setCurrentPage(1);
                   setCategory(value);
-                  setCurrentPage(1);
-                }}
-                onYearChange={(value) => {
-                  setYear(value);
-                  setCurrentPage(1);
                 }}
               />
             </aside>
 
-            {/* Content */}
-
             <div className="space-y-8">
               <ProjectToolbar
-                total={filteredProjects.length}
+                total={meta?.total ?? 0}
                 viewMode={viewMode}
                 sortBy={sortBy}
-                onSortChange={setSortBy}
+                onSortChange={(value) => {
+                  setCurrentPage(1);
+                  setSortBy(value);
+                }}
                 onViewChange={setViewMode}
               />
 
-              <ProjectGrid
-                projects={paginatedProjects}
-                viewMode={viewMode}
-                currentPage={safeCurrentPage}
-                totalPages={totalPages}
-                onPageChange={setCurrentPage}
-              />
+              {loading ? (
+                <div
+                  className="
+                    flex
+                    min-h-[400px]
+                    items-center
+                    justify-center
+                  "
+                >
+                  <div
+                    className="
+                      h-12
+                      w-12
+                      animate-spin
+                      rounded-full
+                      border-4
+                      border-[#156CFF]
+                      border-t-transparent
+                    "
+                  />
+                </div>
+              ) : (
+                <ProjectGrid
+                  projects={projects}
+                  viewMode={viewMode}
+                  currentPage={meta?.current_page ?? 1}
+                  totalPages={meta?.last_page ?? 1}
+                  onPageChange={(page) => {
+                    setCurrentPage(page);
+
+                    window.scrollTo({
+                      top: 0,
+                      behavior: "smooth",
+                    });
+                  }}
+                />
+              )}
             </div>
           </div>
         </div>
       </section>
-
-      {/* CTA */}
 
       <ProjectCTA />
     </>

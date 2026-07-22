@@ -1,42 +1,20 @@
 "use client";
 
-import { useTranslations } from "next-intl";
+interface CategoryOption {
+  id: number;
+  name: string;
+  slug: string;
+}
 
 interface Props {
   value: string;
+
+  categories: CategoryOption[];
+
   onChange: (value: string) => void;
 }
 
-export default function CategoryFilter({ value, onChange }: Props) {
-  const t = useTranslations("projectPage.filters");
-
-  const categories = [
-    {
-      value: "all",
-      label: t("categories.all"),
-    },
-    {
-      value: "Tank Cleaning",
-      label: t("categories.tankCleaning"),
-    },
-    {
-      value: "Industrial Cleaning",
-      label: t("categories.industrialCleaning"),
-    },
-    {
-      value: "Waste Management",
-      label: t("categories.wasteManagement"),
-    },
-    {
-      value: "Sludge Removal",
-      label: t("categories.sludgeRemoval"),
-    },
-    {
-      value: "Pumping",
-      label: t("categories.pumping"),
-    },
-  ];
-
+export default function CategoryFilter({ value, categories, onChange }: Props) {
   return (
     <div>
       {/* Title */}
@@ -44,54 +22,65 @@ export default function CategoryFilter({ value, onChange }: Props) {
       <h3
         className="
           mb-5
-
           text-sm
-
           font-bold
-
           uppercase
-
           tracking-[0.15em]
-
           text-[#04162E]
         "
       >
-        {t("category")}
+        Category
       </h3>
 
       {/* Pills */}
 
       <div className="flex flex-wrap gap-3">
+        <button
+          type="button"
+          onClick={() => onChange("all")}
+          className={`
+            rounded-full
+            border
+            px-4
+            py-2
+            text-sm
+            font-medium
+            transition-all
+            duration-300
+
+            ${
+              value === "all"
+                ? "border-[#156CFF] bg-[#156CFF] text-white shadow-lg shadow-blue-100"
+                : "border-slate-200 bg-white text-slate-600 hover:border-[#156CFF] hover:text-[#156CFF]"
+            }
+          `}
+        >
+          All
+        </button>
+
         {categories.map((category) => (
           <button
-            key={category.value}
+            key={category.id}
             type="button"
-            onClick={() => onChange(category.value)}
+            onClick={() => onChange(category.slug)}
             className={`
               rounded-full
-
               border
-
               px-4
-
               py-2
-
               text-sm
-
               font-medium
-
               transition-all
-
               duration-300
 
               ${
-                value === category.value
+                value === category.slug
                   ? "border-[#156CFF] bg-[#156CFF] text-white shadow-lg shadow-blue-100"
                   : "border-slate-200 bg-white text-slate-600 hover:border-[#156CFF] hover:text-[#156CFF]"
               }
             `}
           >
-            {category.label}
+            {category.name}
           </button>
         ))}
       </div>

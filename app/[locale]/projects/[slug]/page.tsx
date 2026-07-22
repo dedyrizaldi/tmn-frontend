@@ -1,8 +1,7 @@
 import { notFound } from "next/navigation";
-import { routing } from "@/i18n/routing";
 
 import ProjectDetail from "@/components/project/detail-page/project-detail";
-import { projectData } from "@/components/project/project.data";
+import { getProjectBySlug } from "@/services/project.service";
 
 interface Props {
   params: Promise<{
@@ -11,21 +10,15 @@ interface Props {
   }>;
 }
 
-export function generateStaticParams() {
-  return routing.locales.flatMap((locale) =>
-    projectData.map((project) => ({
-      locale,
-      slug: project.slug,
-    })),
-  );
-}
-
 export default async function ProjectDetailPage({ params }: Props) {
   const { slug } = await params;
 
-  const project = projectData.find((item) => item.slug === slug);
+  let project;
 
-  if (!project) {
+  try {
+    project = await getProjectBySlug(slug);
+  } catch (error) {
+    console.error("Failed to load project:", error);
     notFound();
   }
 

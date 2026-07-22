@@ -1,51 +1,77 @@
+export interface ProjectCategory {
+  id: number;
+  name: string;
+  slug: string;
+}
+
 export interface ProjectGallery {
-  image: string;
-  title?: string;
-  type?: "before" | "after" | "progress";
-}
-
-export interface ProjectResult {
-  title: string;
-  description: string;
-}
-
-export interface ProjectTimeline {
-  title: string;
-  date: string;
+  id: number;
+  name: string;
+  url: string;
 }
 
 export interface Project {
   id: number;
-
-  slug: string;
-
   title: string;
-
+  slug: string;
   client: string;
-
-  category: string;
-
   location: string;
-
-  year: number;
-
-  duration: string;
-
+  project_date: string;
+  excerpt: string;
   description: string;
-
   thumbnail: string;
-
-  heroImage: string;
-
   gallery: ProjectGallery[];
+  category: ProjectCategory;
+  featured: boolean;
+  status: string;
+  meta_title: string;
+  meta_description: string;
+  published_at: string;
+  created_at: string;
+  updated_at: string;
+}
 
-  services: string[];
+export interface PaginationLink {
+  url: string | null;
+  label: string;
+  page: number | null;
+  active: boolean;
+}
 
-  equipment: string[];
+export interface PaginationMeta {
+  current_page: number;
+  from: number;
+  last_page: number;
+  links: PaginationLink[];
+  path: string;
+  per_page: number;
+  to: number;
+  total: number;
+}
 
-  scope: string[];
+export interface PaginationLinks {
+  first: string | null;
+  last: string | null;
+  prev: string | null;
+  next: string | null;
+}
 
-  results: ProjectResult[];
+export interface ProjectResponse {
+  success: boolean;
+  message: string;
+  data: Project[];
+  links: PaginationLinks;
+  meta: PaginationMeta;
+}
 
-  timeline: ProjectTimeline[];
+export interface ProjectDetailResponse {
+  data: Project;
+}
+
+export interface ProjectCategoryResponse {
+  success: boolean;
+
+  message: string;
+
+  data: ProjectCategory[];
 }

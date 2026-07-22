@@ -126,3 +126,34 @@ export interface HomeResponse {
 
   data: HomeData;
 }
+
+// types/home-project.ts
+
+export interface Project {
+  id: number;
+  slug: string;
+  title: string;
+  client: string;
+  category: string;
+  location: string;
+  year: number;
+  duration: string;
+  description: string;
+  thumbnail: string;
+  heroImage: string;
+  gallery: {
+    image: string;
+    type: string;
+  }[];
+  services: string[];
+  equipment: string[];
+  scope: string[];
+  results: {
+    title: string;
+    description: string;
+  }[];
+  timeline: {
+    title: string;
+    date: string;
+  }[];
+}

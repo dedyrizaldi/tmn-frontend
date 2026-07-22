@@ -1,4 +1,4 @@
-import type { Project } from "../types/project";
+import type { Project } from "@/types/project";
 
 import EmptyState from "./empty-state";
 import ProjectCard from "./project-card";
@@ -33,18 +33,18 @@ export default function ProjectGrid({
         className={
           viewMode === "grid"
             ? `
-              grid
-              gap-8
+                grid
+                gap-8
 
-              md:grid-cols-2
+                md:grid-cols-2
 
-              xl:grid-cols-3
-            `
+                xl:grid-cols-3
+              `
             : `
-              flex
-              flex-col
-              gap-8
-            `
+                flex
+                flex-col
+                gap-8
+              `
         }
       >
         {projects.map((project) => (
