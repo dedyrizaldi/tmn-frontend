@@ -54,17 +54,17 @@ export default function EquipmentFilters({ search }: Props) {
         }}
       />
 
-      <div className="my-8 border-t border-slate-200" />
+      {/* <div className="my-8 border-t border-slate-200" /> */}
 
-      <CategoryFilter />
+      {/* <CategoryFilter /> */}
 
-      <div className="my-8 border-t border-slate-200" />
+      {/* <div className="my-8 border-t border-slate-200" /> */}
 
-      <StatusFilter />
+      {/* <StatusFilter /> */}
 
-      <div className="my-8 border-t border-slate-200" />
+      {/* <div className="my-8 border-t border-slate-200" /> */}
 
-      <ResetFilter />
+      {/* <ResetFilter /> */}
     </div>
   );
 }
