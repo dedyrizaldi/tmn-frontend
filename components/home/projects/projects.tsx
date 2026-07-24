@@ -5,12 +5,17 @@ import Container from "@/components/common/container/container";
 import Section from "@/components/common/section/section";
 import { Link } from "@/i18n/navigation";
 
+import type { Project } from "@/types/project";
+
 import Commitment from "./commitment";
 import ProjectCard from "./project-card";
-import { projects } from "./projects.data";
 import ProjectsCarousel from "./projects-carousel";
 
-export default function Projects() {
+interface Props {
+  projects: Project[];
+}
+
+export default function Projects({ projects }: Props) {
   const t = useTranslations("projects");
 
   return (
@@ -52,7 +57,6 @@ export default function Projects() {
                 flex
                 flex-col
                 gap-5
-
                 lg:mb-5
                 lg:flex-row
                 lg:items-start
@@ -67,7 +71,6 @@ export default function Projects() {
                     uppercase
                     tracking-[0.3em]
                     text-[#1F7BFF]
-
                     sm:text-xs
                   "
                 >
@@ -81,9 +84,7 @@ export default function Projects() {
                     font-bold
                     leading-tight
                     text-white
-
                     sm:text-[36px]
-
                     lg:text-[28px]
                   "
                 >
@@ -99,10 +100,8 @@ export default function Projects() {
                   inline-flex
                   items-center
                   gap-2
-
                   text-sm
                   font-semibold
-
                   text-[#1F7BFF]
                 "
               >
@@ -124,9 +123,13 @@ export default function Projects() {
               <ProjectsCarousel desktop>
                 {projects.map((project) => (
                   <ProjectCard
-                    key={project.slug}
-                    {...project}
-                    category={t(project.category)}
+                    key={project.id}
+                    title={project.title}
+                    slug={project.slug}
+                    thumbnail={project.thumbnail}
+                    category={project.category.name}
+                    location={project.location}
+                    projectDate={project.project_date}
                   />
                 ))}
               </ProjectsCarousel>
@@ -138,14 +141,21 @@ export default function Projects() {
               <ProjectsCarousel>
                 {projects.map((project) => (
                   <div
-                    key={project.slug}
+                    key={project.id}
                     className="
                       w-[calc(100vw-40px)]
                       shrink-0
                       snap-start
                     "
                   >
-                    <ProjectCard {...project} category={t(project.category)} />
+                    <ProjectCard
+                      title={project.title}
+                      slug={project.slug}
+                      thumbnail={project.thumbnail}
+                      category={project.category.name}
+                      location={project.location}
+                      projectDate={project.project_date}
+                    />
                   </div>
                 ))}
               </ProjectsCarousel>

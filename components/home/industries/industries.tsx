@@ -1,5 +1,7 @@
 import Container from "@/components/common/container/container";
 
+import type { News } from "@/types/news";
+
 import IndustriesHeader from "./industries-header";
 import IndustriesGrid from "./industries-grid";
 import IndustriesGridMobile from "./industries-grid-mobile";
@@ -7,7 +9,11 @@ import IndustriesGridMobile from "./industries-grid-mobile";
 import NewsPreview from "../news/news-preview";
 import NewsPreviewMobile from "../news/news-preview-mobile";
 
-export default function Industries() {
+interface Props {
+  latestNews: News[];
+}
+
+export default function Industries({ latestNews }: Props) {
   return (
     <section className="py-8">
       <Container className="max-w-[1180px]">
@@ -31,7 +37,7 @@ export default function Industries() {
           {/* RIGHT */}
 
           <div className="lg:col-span-6">
-            <NewsPreview />
+            <NewsPreview news={latestNews} />
           </div>
         </div>
 
@@ -43,7 +49,7 @@ export default function Industries() {
           <IndustriesGridMobile />
 
           <div className="mt-10">
-            <NewsPreview />
+            <NewsPreviewMobile news={latestNews} />
           </div>
         </div>
       </Container>

@@ -1,10 +1,15 @@
 import { ArrowRight } from "lucide-react";
-import { Link } from "@/i18n/navigation";
 
-import { news } from "./news.data";
+import { Link } from "@/i18n/navigation";
+import type { News } from "@/types/news";
+
 import NewsCard from "./news-card";
 
-export default function NewsPreviewMobile() {
+interface Props {
+  news: News[];
+}
+
+export default function NewsPreviewMobile({ news }: Props) {
   return (
     <section className="mt-10">
       {/* Header */}
@@ -55,7 +60,13 @@ export default function NewsPreviewMobile() {
 
       <div className="space-y-4">
         {news.slice(0, 3).map((item) => (
-          <NewsCard key={item.slug} {...item} />
+          <NewsCard
+            key={item.id}
+            title={item.title}
+            slug={item.slug}
+            thumbnail={item.thumbnail}
+            publishedAt={item.published_at}
+          />
         ))}
       </div>
     </section>

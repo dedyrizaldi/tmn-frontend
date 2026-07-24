@@ -113,8 +113,7 @@ export default function Project() {
           sort_direction:
             sortBy === "oldest" || sortBy === "name-asc" ? "asc" : "desc",
         });
-        console.log(response.data[0]);
-        console.log(response.data[0].thumbnail);
+
         setProjects(response.data);
         setMeta(response.meta);
       } catch (error) {

@@ -3,9 +3,17 @@ import type { Metadata } from "next";
 import Hero from "@/components/news/hero/hero";
 import News from "@/components/news/news";
 
+import { getNews, getNewsCategories } from "@/services/news.service";
+
 interface Props {
   params: Promise<{
     locale: string;
+  }>;
+
+  searchParams: Promise<{
+    page?: string;
+    search?: string;
+    category?: string;
   }>;
 }
 
@@ -50,12 +58,29 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default async function NewsPage() {
+export default async function NewsPage({ searchParams }: Props) {
+  const { page, search, category } = await searchParams;
+
+  const [newsResponse, categories] = await Promise.all([
+    getNews({
+      page: Number(page) || 1,
+      search,
+      category,
+    }),
+    getNewsCategories(),
+  ]);
+
   return (
     <>
       <Hero />
 
-      <News />
+      <News
+        news={newsResponse.data}
+        meta={newsResponse.meta}
+        categories={categories}
+        search={search ?? ""}
+        category={category ?? ""}
+      />
     </>
   );
 }

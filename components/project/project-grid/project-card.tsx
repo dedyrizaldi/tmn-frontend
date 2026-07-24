@@ -1,3 +1,7 @@
+"use client";
+
+import { useState } from "react";
+
 import Image from "next/image";
 import { ArrowRight, Calendar, MapPin } from "lucide-react";
 
@@ -13,7 +17,14 @@ interface Props {
 }
 
 export default function ProjectCard({ project, viewMode }: Props) {
+  const [loading, setLoading] = useState(true);
+
   const isList = viewMode === "list";
+
+  const image =
+    project.thumbnail && project.thumbnail.length > 0
+      ? project.thumbnail
+      : "/images/project/project-placeholder.png";
 
   return (
     <article
@@ -53,21 +64,53 @@ export default function ProjectCard({ project, viewMode }: Props) {
               `
         }
       >
+        {/* Skeleton */}
+
+        <div
+          className={`
+            absolute
+            inset-0
+            z-10
+            overflow-hidden
+            bg-slate-200
+            transition-opacity
+            duration-300
+
+            ${loading ? "opacity-100" : "pointer-events-none opacity-0"}
+          `}
+        >
+          <div
+            className="
+              absolute
+              inset-0
+              -translate-x-full
+              animate-[shimmer_1.4s_infinite]
+              bg-gradient-to-r
+              from-transparent
+              via-white/60
+              to-transparent
+            "
+          />
+        </div>
+
         <Image
-          src={project.thumbnail}
+          src={image}
           alt={project.title}
-          unoptimized
           fill
-          sizes={isList ? "380px" : "(max-width:768px) 100vw, 33vw"}
-          className="
+          unoptimized
+          sizes={isList ? "380px" : "(max-width:768px)100vw,33vw"}
+          onLoad={() => setLoading(false)}
+          className={`
             object-cover
-            transition-transform
+            transition-all
             duration-700
             group-hover:scale-110
-          "
+
+            ${loading ? "opacity-0" : "opacity-100"}
+          `}
         />
 
-        <div className="absolute left-5 top-5">
+        <div className="absolute left-5 top-5 z-20">
           <ProjectBadge category={project.category.name} />
         </div>
 
@@ -156,6 +199,7 @@ export default function ProjectCard({ project, viewMode }: Props) {
 
             <div className="flex items-center gap-2">
               <Calendar size={16} />
+
               {new Date(project.project_date).toLocaleDateString("id-ID", {
                 day: "2-digit",
                 month: "long",

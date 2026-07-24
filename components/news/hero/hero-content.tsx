@@ -64,12 +64,13 @@ export default function HeroContent() {
           "
         >
           Stay informed with the latest company updates, industrial projects,
-          technology innovations, and insights from PT Tirta Mega Nusantara.
+          technology innovations, and insights from{" "}
+          <b>PT Tirta Mega Nusantara.</b>
         </p>
 
         {/* Search */}
 
-        <div className="mt-12 w-full max-w-xl">
+        {/* <div className="mt-12 w-full max-w-xl">
           <div className="relative">
             <Search
               size={20}
@@ -104,7 +105,7 @@ export default function HeroContent() {
               "
             />
           </div>
-        </div>
+        </div> */}
       </div>
     </Container>
   );

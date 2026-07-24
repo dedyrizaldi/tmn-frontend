@@ -1,17 +1,13 @@
 import { api } from "@/lib/api";
-import type { HomeResponse } from "@/types/home";
 
-class HomeRepository {
-  /**
-   * Get homepage data.
-   */
-  async getHome(): Promise<HomeResponse> {
-    return api.get<HomeResponse>("/home", {
-      next: {
-        revalidate: 300, // 5 minutes
-      },
-    });
-  }
+import type { HomeData, HomeResponse } from "@/types/home";
+
+export async function fetchHome(): Promise<HomeData> {
+  const response = await api.get<HomeResponse>("/api/v1/home", {
+    next: {
+      revalidate: 30,
+    },
+  });
+
+  return response.data;
 }
-
-export const homeRepository = new HomeRepository();

@@ -3,10 +3,15 @@
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
-import NewsCard from "./news-card";
-import { news } from "./news.data";
+import type { News } from "@/types/news";
 
-export default function NewsGridMobile() {
+import NewsCard from "./news-card";
+
+interface Props {
+  news: News[];
+}
+
+export default function NewsGridMobile({ news }: Props) {
   const sliderRef = useRef<HTMLDivElement>(null);
 
   const [active, setActive] = useState(0);
@@ -52,6 +57,7 @@ export default function NewsGridMobile() {
       window.removeEventListener("resize", handleScroll);
     };
   }, []);
+
   return (
     <>
       {/* ================= Navigation ================= */}
@@ -140,19 +146,14 @@ export default function NewsGridMobile() {
       >
         {news.map((item, index) => (
           <div
-            key={item.slug + index}
+            key={item.id}
             className={`
               min-w-full
               w-full
-
               shrink-0
-
               snap-center
-
               px-1
-
               transition-all
-
               duration-500
 
               ${
@@ -162,7 +163,12 @@ export default function NewsGridMobile() {
               }
             `}
           >
-            <NewsCard {...item} />
+            <NewsCard
+              title={item.title}
+              slug={item.slug}
+              thumbnail={item.thumbnail}
+              publishedAt={item.published_at}
+            />
           </div>
         ))}
       </div>
@@ -170,9 +176,9 @@ export default function NewsGridMobile() {
       {/* ================= Indicator ================= */}
 
       <div className="mt-6 flex justify-center gap-2">
-        {news.map((_, index) => (
+        {news.map((item, index) => (
           <button
-            key={index}
+            key={item.id}
             onClick={() => {
               const slider = sliderRef.current;
 
@@ -185,11 +191,8 @@ export default function NewsGridMobile() {
             }}
             className={`
               h-2
-
               rounded-full
-
               transition-all
-
               duration-300
 
               ${active === index ? "w-8 bg-[#156CFF]" : "w-2 bg-slate-300"}

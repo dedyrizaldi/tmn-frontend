@@ -1,4 +1,5 @@
-import type { News } from "../types/news";
+import type { News } from "@/types/news";
+
 import NewsCard from "./news-card";
 
 interface Props {
@@ -6,12 +7,13 @@ interface Props {
 }
 
 export default function NewsGrid({ news }: Props) {
-  if (news.length === 0) {
+  if (!news.length) {
     return (
       <section className="py-16">
         <div
           className="
             flex
+            min-h-[320px]
             flex-col
             items-center
             justify-center
@@ -21,17 +23,15 @@ export default function NewsGrid({ news }: Props) {
             border-slate-300
             bg-slate-50
             px-8
-            py-20
             text-center
           "
         >
-          <h3 className="text-2xl font-bold text-slate-800">
-            No Articles Found
+          <h3 className="text-2xl font-bold text-[#04162E]">
+            Belum Ada Artikel
           </h3>
 
           <p className="mt-3 max-w-md text-slate-500">
-            We couldn&apos;t find any articles matching your search or selected
-            category. Please try another keyword.
+            Saat ini belum tersedia artikel yang dapat ditampilkan.
           </p>
         </div>
       </section>
@@ -39,7 +39,7 @@ export default function NewsGrid({ news }: Props) {
   }
 
   return (
-    <section>
+    <section className="py-4">
       <div
         className="
           grid

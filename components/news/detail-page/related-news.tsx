@@ -1,4 +1,5 @@
-import type { News } from "../types/news";
+import type { News } from "@/types/news";
+
 import NewsCard from "../news-grid/news-card";
 
 interface Props {
@@ -60,7 +61,7 @@ export default function RelatedNews({ news }: Props) {
           xl:grid-cols-3
         "
       >
-        {news.slice(0, 3).map((article) => (
+        {news.map((article) => (
           <NewsCard key={article.id} news={article} />
         ))}
       </div>

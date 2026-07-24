@@ -1,3 +1,7 @@
+"use client";
+
+import { useState } from "react";
+
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 
@@ -14,7 +18,13 @@ interface Props {
 }
 
 export default function EquipmentCard({ equipment, onClick, viewMode }: Props) {
+  const [loading, setLoading] = useState(true);
+
   const isList = viewMode === "list";
+
+  const image = equipment.thumbnail
+    ? mediaUrl(equipment.thumbnail)
+    : "/images/equipment/equipment-placeholder.png";
 
   return (
     <article
@@ -54,15 +64,52 @@ export default function EquipmentCard({ equipment, onClick, viewMode }: Props) {
               `
         }
       >
+        {/* Skeleton */}
+
+        <div
+          className={`
+            absolute
+            inset-0
+            z-10
+            overflow-hidden
+            bg-slate-200
+            transition-opacity
+            duration-300
+
+            ${loading ? "opacity-100" : "pointer-events-none opacity-0"}
+          `}
+        >
+          <div
+            className="
+              absolute
+              inset-0
+              -translate-x-full
+              animate-[shimmer_1.4s_infinite]
+              bg-gradient-to-r
+              from-transparent
+              via-white/60
+              to-transparent
+            "
+          />
+        </div>
+
         <Image
-          src={mediaUrl(equipment.thumbnail)}
+          src={image}
           alt={equipment.title ?? equipment.name ?? ""}
           fill
           unoptimized
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
+          onLoad={() => setLoading(false)}
+          className={`
+            object-cover
+            transition-all
+            duration-500
+            group-hover:scale-105
+
+            ${loading ? "opacity-0" : "opacity-100"}
+          `}
         />
 
-        <div className="absolute left-3 top-3">
+        <div className="absolute left-3 top-3 z-20">
           <EquipmentBadge status={equipment.status} />
         </div>
       </div>

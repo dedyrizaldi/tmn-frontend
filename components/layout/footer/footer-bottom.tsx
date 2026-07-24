@@ -78,7 +78,7 @@ export default function FooterBottom() {
               text-[13px]
             "
           >
-            <Link
+            {/* <Link
               href="/privacy-policy"
               className="
                 text-slate-400
@@ -91,9 +91,9 @@ export default function FooterBottom() {
               "
             >
               Privacy Policy
-            </Link>
+            </Link> */}
 
-            <Link
+            {/* <Link
               href="/terms"
               className="
                 text-slate-400
@@ -106,7 +106,7 @@ export default function FooterBottom() {
               "
             >
               Terms & Conditions
-            </Link>
+            </Link> */}
 
             <Link
               href="/sitemap"

@@ -2,7 +2,8 @@
 
 import Container from "@/components/common/container/container";
 
-import type { News } from "../types/news";
+import type { News } from "@/types/news";
+
 import NewsBreadcrumb from "./news-breadcrumb";
 import NewsContent from "./news-content";
 import NewsHero from "./news-hero";
@@ -16,7 +17,11 @@ interface Props {
 export default function NewsDetail({ news, relatedNews }: Props) {
   return (
     <>
+      {/* Hero */}
+
       <NewsHero news={news} />
+
+      {/* Content */}
 
       <Container className="py-16">
         <NewsBreadcrumb news={news} />
@@ -24,6 +29,8 @@ export default function NewsDetail({ news, relatedNews }: Props) {
         <div className="mx-auto mt-10 max-w-4xl">
           <NewsContent news={news} />
         </div>
+
+        {/* Related News */}
 
         <RelatedNews news={relatedNews} />
       </Container>

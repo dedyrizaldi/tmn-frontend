@@ -73,7 +73,7 @@ export default function FloatingActions() {
 
         {/* Quote */}
 
-        <Link href="/quote">
+        {/* <Link href="/quote">
           <motion.div
             whileHover={{
               scale: 1.05,
@@ -116,7 +116,7 @@ export default function FloatingActions() {
               <p className="font-semibold">Request Quote</p>
             </div>
           </motion.div>
-        </Link>
+        </Link> */}
       </div>
 
       {/* ========================= */}
@@ -139,7 +139,7 @@ export default function FloatingActions() {
       >
         {/* Quote */}
 
-        <Link href="/quote">
+        {/* <Link href="/quote">
           <motion.div
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -161,7 +161,7 @@ export default function FloatingActions() {
           >
             <FileText size={20} />
           </motion.div>
-        </Link>
+        </Link> */}
 
         {/* WhatsApp */}
 

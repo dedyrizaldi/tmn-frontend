@@ -1,17 +1,57 @@
 "use client";
 
-import { Copy, Link, Mail, Share2 } from "lucide-react";
+import { useCallback } from "react";
 
-import type { News } from "../types/news";
+import { Copy, Link as LinkIcon, Mail, Share2 } from "lucide-react";
+
+import type { News } from "@/types/news";
 
 interface Props {
   news: News;
 }
 
 export default function NewsContent({ news }: Props) {
+  const articleUrl = typeof window !== "undefined" ? window.location.href : "";
+
+  const handleCopyLink = useCallback(async () => {
+    if (!articleUrl) return;
+
+    await navigator.clipboard.writeText(articleUrl);
+  }, [articleUrl]);
+
+  const handleOpenLink = useCallback(() => {
+    if (!articleUrl) return;
+
+    window.open(articleUrl, "_blank");
+  }, [articleUrl]);
+
+  const handleShareEmail = useCallback(() => {
+    if (!articleUrl) return;
+
+    window.location.href = `mailto:?subject=${encodeURIComponent(
+      news.title,
+    )}&body=${encodeURIComponent(articleUrl)}`;
+  }, [articleUrl, news.title]);
+
+  const handleShare = useCallback(async () => {
+    if (!articleUrl) return;
+
+    if (navigator.share) {
+      await navigator.share({
+        title: news.title,
+        text: news.excerpt,
+        url: articleUrl,
+      });
+
+      return;
+    }
+
+    await navigator.clipboard.writeText(articleUrl);
+  }, [articleUrl, news]);
+
   return (
     <article>
-      {/* Article Content */}
+      {/* Article */}
 
       <div
         className="
@@ -38,37 +78,6 @@ export default function NewsContent({ news }: Props) {
         }}
       />
 
-      {/* Tags */}
-
-      {news.tags.length > 0 && (
-        <div className="mt-12">
-          <h3 className="mb-4 text-lg font-semibold text-[#04162E]">Tags</h3>
-
-          <div className="flex flex-wrap gap-3">
-            {news.tags.map((tag) => (
-              <span
-                key={tag}
-                className="
-                  rounded-full
-                  bg-slate-100
-                  px-4
-                  py-2
-                  text-sm
-                  font-medium
-                  text-slate-700
-                  transition-all
-
-                  hover:bg-[#156CFF]
-                  hover:text-white
-                "
-              >
-                #{tag}
-              </span>
-            ))}
-          </div>
-        </div>
-      )}
-
       {/* Share */}
 
       <div className="mt-12 border-t border-slate-200 pt-8">
@@ -84,6 +93,7 @@ export default function NewsContent({ news }: Props) {
           <div className="flex items-center gap-3">
             <button
               type="button"
+              onClick={handleOpenLink}
               className="
                 rounded-xl
                 border
@@ -96,11 +106,12 @@ export default function NewsContent({ news }: Props) {
                 hover:text-[#156CFF]
               "
             >
-              <Link size={18} />
+              <LinkIcon size={18} />
             </button>
 
             <button
               type="button"
+              onClick={handleCopyLink}
               className="
                 rounded-xl
                 border
@@ -118,6 +129,7 @@ export default function NewsContent({ news }: Props) {
 
             <button
               type="button"
+              onClick={handleShareEmail}
               className="
                 rounded-xl
                 border
@@ -131,6 +143,24 @@ export default function NewsContent({ news }: Props) {
               "
             >
               <Mail size={18} />
+            </button>
+
+            <button
+              type="button"
+              onClick={handleShare}
+              className="
+                rounded-xl
+                border
+                border-slate-200
+                p-3
+                text-slate-600
+                transition-all
+
+                hover:border-[#156CFF]
+                hover:text-[#156CFF]
+              "
+            >
+              <Share2 size={18} />
             </button>
           </div>
         </div>
@@ -163,19 +193,11 @@ export default function NewsContent({ news }: Props) {
               text-white
             "
           >
-            {news.author.name.charAt(0)}
+            {news.author.charAt(0).toUpperCase()}
           </div>
 
           <div className="flex-1">
-            <h3 className="text-xl font-bold text-[#04162E]">
-              {news.author.name}
-            </h3>
-
-            {news.author.position && (
-              <p className="mt-1 font-medium text-[#156CFF]">
-                {news.author.position}
-              </p>
-            )}
+            <h3 className="text-xl font-bold text-[#04162E]">{news.author}</h3>
 
             <p className="mt-4 leading-7 text-slate-600">
               PT Tirta Mega Nusantara Editorial Team delivers insights on

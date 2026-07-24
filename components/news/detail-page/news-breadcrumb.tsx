@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ChevronRight, Home } from "lucide-react";
 
-import type { News } from "../types/news";
+import type { News } from "@/types/news";
 
 interface Props {
   news: News;
@@ -54,7 +54,7 @@ export default function NewsBreadcrumb({ news }: Props) {
           text-[#156CFF]
         "
       >
-        {news.category}
+        {news.category.name}
       </span>
 
       <ChevronRight size={16} className="text-slate-400" />

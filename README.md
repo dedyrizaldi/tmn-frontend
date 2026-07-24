@@ -1,4 +1,3 @@
-
 ```
 frontend
 ├─ AGENTS.md
@@ -405,12 +404,12 @@ frontend
 │  │  │  ├─ news-banner-7.png
 │  │  │  └─ news-banner-8.png
 │  │  ├─ project
-│  │  │  ├─ cta-background.png
+│  │  │  ├─ cta-background-v1.png
 │  │  │  ├─ gallery
 │  │  │  │  ├─ project-1-1.png
 │  │  │  │  ├─ project-1-2.png
 │  │  │  │  └─ project-1-3.png
-│  │  │  ├─ hero-project.png
+│  │  │  ├─ hero-project-v1.png
 │  │  │  ├─ project-1.png
 │  │  │  ├─ project-2.png
 │  │  │  ├─ project-3.png
@@ -419,7 +418,7 @@ frontend
 │  │  │  └─ project-6.png
 │  │  └─ services
 │  │     ├─ disposal-handling.png
-│  │     ├─ hero.png
+│  │     ├─ hero-v1.png
 │  │     ├─ pumping.png
 │  │     ├─ rafting.png
 │  │     ├─ sludge-removal.png

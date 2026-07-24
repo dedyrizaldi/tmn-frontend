@@ -1,65 +1,111 @@
 "use client";
 
+import { useState } from "react";
+
 import Image from "next/image";
 import { motion } from "motion/react";
 import { MapPin } from "lucide-react";
+
 import { Link } from "@/i18n/navigation";
 
 interface Props {
-  image: string;
-  category: string;
-  client: string;
-  location: string;
+  title: string;
   slug: string;
+  thumbnail: string;
+  category: string;
+  location: string;
+  projectDate: string;
 }
 
 export default function ProjectCard({
-  image,
-  category,
-  client,
-  location,
+  title,
   slug,
+  thumbnail,
+  category,
+  location,
+  projectDate,
 }: Props) {
+  const [loading, setLoading] = useState(true);
+
+  const image =
+    thumbnail && thumbnail.length > 0
+      ? thumbnail
+      : "/images/project/project-placeholder.png";
+
+  const year = projectDate ? new Date(projectDate).getFullYear() : "-";
+
   return (
     <Link href={`/projects/${slug}`}>
       <motion.article
         whileHover={{
           y: -4,
-          transition: { duration: 0.25 },
+          transition: {
+            duration: 0.25,
+          },
         }}
         className="
+          group
+          cursor-pointer
           overflow-hidden
           rounded-xl
-          bg-white
           border
           border-slate-200
+          bg-white
           shadow-sm
           transition-all
           duration-300
           hover:shadow-lg
-          cursor-pointer
         "
       >
-        {/* IMAGE */}
-
         <div className="relative h-[92px] overflow-hidden">
+          {/* Skeleton */}
+          <div
+            className={`
+              absolute
+              inset-0
+              z-10
+              overflow-hidden
+              bg-slate-200
+              transition-opacity
+              duration-300
+              ${loading ? "opacity-100" : "pointer-events-none opacity-0"}
+            `}
+          >
+            <div
+              className="
+                absolute
+                inset-0
+                -translate-x-full
+                animate-[shimmer_1.4s_infinite]
+                bg-gradient-to-r
+                from-transparent
+                via-white/60
+                to-transparent
+              "
+            />
+          </div>
+
           <Image
             src={image}
-            alt={client}
+            alt={title}
             fill
-            className="
+            unoptimized
+            sizes="(max-width:1024px)100vw,320px"
+            onLoad={() => setLoading(false)}
+            className={`
               object-cover
-              transition
+              transition-all
               duration-500
               group-hover:scale-105
-            "
+              ${loading ? "opacity-0" : "opacity-100"}
+            `}
           />
 
           <div
             className="
               absolute
-              left-2
               bottom-2
+              left-2
               rounded
               bg-[#156CFF]
               px-2
@@ -73,8 +119,6 @@ export default function ProjectCard({
           </div>
         </div>
 
-        {/* CONTENT */}
-
         <div className="p-3">
           <h3
             className="
@@ -85,7 +129,7 @@ export default function ProjectCard({
               text-slate-900
             "
           >
-            {client}
+            {title}
           </h3>
 
           <div
@@ -110,7 +154,7 @@ export default function ProjectCard({
               text-slate-500
             "
           >
-            2024
+            {year}
           </p>
         </div>
       </motion.article>

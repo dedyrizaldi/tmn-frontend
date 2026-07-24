@@ -51,7 +51,7 @@ export class ProjectRepository {
 
     const url = `${API_URL}/api/v1/projects${query ? `?${query}` : ""}`;
 
-    console.log("[Project API]", url);
+    // console.log("[Project API]", url);
 
     const response = await fetch(url, {
       next: {
@@ -71,12 +71,12 @@ export class ProjectRepository {
         body = "Unable to read response body.";
       }
 
-      console.error("==================================");
-      console.error("Project API Error");
-      console.error("URL    :", url);
-      console.error("Status :", response.status);
-      console.error("Body   :", body);
-      console.error("==================================");
+      // console.error("==================================");
+      // console.error("Project API Error");
+      // console.error("URL    :", url);
+      // console.error("Status :", response.status);
+      // console.error("Body   :", body);
+      // console.error("==================================");
 
       throw new Error(`Failed to fetch projects. (${response.status})`);
     }
@@ -87,7 +87,7 @@ export class ProjectRepository {
   static async findBySlug(slug: string): Promise<ProjectDetailResponse> {
     const url = `${API_URL}/api/v1/projects/${slug}`;
 
-    console.log("[Project Detail API]", url);
+    // console.log("[Project Detail API]", url);
 
     const response = await fetch(url, {
       next: {
@@ -107,12 +107,12 @@ export class ProjectRepository {
         body = "Unable to read response body.";
       }
 
-      console.error("==================================");
-      console.error("Project Detail API Error");
-      console.error("URL    :", url);
-      console.error("Status :", response.status);
-      console.error("Body   :", body);
-      console.error("==================================");
+      // console.error("==================================");
+      // console.error("Project Detail API Error");
+      // console.error("URL    :", url);
+      // console.error("Status :", response.status);
+      // console.error("Body   :", body);
+      // console.error("==================================");
 
       throw new Error(`Project not found. (${response.status})`);
     }
@@ -123,7 +123,7 @@ export class ProjectRepository {
   static async categories(): Promise<ProjectCategoryResponse> {
     const url = `${API_URL}/api/v1/project-categories`;
 
-    console.log("[Project Category API]", url);
+    // console.log("[Project Category API]", url);
 
     const response = await fetch(url, {
       next: {
@@ -143,12 +143,12 @@ export class ProjectRepository {
         body = "Unable to read response body.";
       }
 
-      console.error("==================================");
-      console.error("Project Category API Error");
-      console.error("URL    :", url);
-      console.error("Status :", response.status);
-      console.error("Body   :", body);
-      console.error("==================================");
+      // console.error("==================================");
+      // console.error("Project Category API Error");
+      // console.error("URL    :", url);
+      // console.error("Status :", response.status);
+      // console.error("Body   :", body);
+      // console.error("==================================");
 
       throw new Error(
         `Failed to fetch project categories. (${response.status})`,

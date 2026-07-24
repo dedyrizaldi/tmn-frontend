@@ -1,9 +1,9 @@
 import Image from "next/image";
-import { Calendar, Clock, User } from "lucide-react";
+import { Calendar, User } from "lucide-react";
 
 import Container from "@/components/common/container/container";
 
-import type { News } from "../types/news";
+import type { News } from "@/types/news";
 
 interface Props {
   news: News;
@@ -12,15 +12,14 @@ interface Props {
 export default function NewsHero({ news }: Props) {
   return (
     <section className="relative overflow-hidden">
-      {/* Background Image */}
-
       <div className="relative h-[420px] md:h-[520px]">
         <Image
-          src={news.banner || news.thumbnail}
+          src={news.thumbnail}
           alt={news.title}
           fill
           priority
           className="object-cover"
+          sizes="100vw"
         />
 
         {/* Overlay */}
@@ -44,7 +43,7 @@ export default function NewsHero({ news }: Props) {
                 font-semibold
               "
             >
-              {news.category}
+              {news.category.name}
             </span>
 
             {/* Title */}
@@ -63,6 +62,14 @@ export default function NewsHero({ news }: Props) {
               {news.title}
             </h1>
 
+            {/* Excerpt */}
+
+            {news.excerpt && (
+              <p className="mt-6 max-w-3xl text-lg leading-8 text-blue-100">
+                {news.excerpt}
+              </p>
+            )}
+
             {/* Meta */}
 
             <div
@@ -79,7 +86,7 @@ export default function NewsHero({ news }: Props) {
               <div className="flex items-center gap-2">
                 <Calendar size={18} />
 
-                {new Date(news.publishedAt).toLocaleDateString("en-US", {
+                {new Date(news.published_at).toLocaleDateString("en-US", {
                   day: "2-digit",
                   month: "long",
                   year: "numeric",
@@ -87,14 +94,8 @@ export default function NewsHero({ news }: Props) {
               </div>
 
               <div className="flex items-center gap-2">
-                <Clock size={18} />
-                {news.readingTime} min read
-              </div>
-
-              <div className="flex items-center gap-2">
                 <User size={18} />
-
-                {news.author.name}
+                {news.author}
               </div>
             </div>
           </div>

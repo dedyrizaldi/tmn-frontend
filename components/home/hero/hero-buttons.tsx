@@ -69,7 +69,7 @@ export default function HeroButtons() {
       </motion.div>
 
       {/* Secondary */}
-      <motion.div whileHover={{ y: -2 }} whileTap={{ scale: 0.98 }}>
+      {/* <motion.div whileHover={{ y: -2 }} whileTap={{ scale: 0.98 }}>
         <button
           type="button"
           className="
@@ -143,7 +143,7 @@ export default function HeroButtons() {
             </p>
           </div>
         </button>
-      </motion.div>
+      </motion.div> */}
     </div>
   );
 }

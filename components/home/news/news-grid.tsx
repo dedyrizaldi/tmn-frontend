@@ -3,16 +3,19 @@
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
-import { news } from "./news.data";
+import type { News } from "@/types/news";
+
 import NewsCard from "./news-card";
 
-export default function NewsGrid() {
+interface Props {
+  news: News[];
+}
+
+export default function NewsGrid({ news }: Props) {
   const sliderRef = useRef<HTMLDivElement>(null);
 
   const [active, setActive] = useState(0);
-
   const [canLeft, setCanLeft] = useState(false);
-
   const [canRight, setCanRight] = useState(true);
 
   const gap = 16;
@@ -60,7 +63,9 @@ export default function NewsGrid() {
 
     handleScroll();
 
-    return () => slider.removeEventListener("scroll", handleScroll);
+    return () => {
+      slider.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   return (
@@ -139,7 +144,7 @@ export default function NewsGrid() {
       >
         {news.map((item, index) => (
           <div
-            key={item.slug + index}
+            key={item.id}
             className={`
               shrink-0
               snap-start
@@ -155,7 +160,12 @@ export default function NewsGrid() {
               ${active === index ? "opacity-100" : "opacity-60"}
             `}
           >
-            <NewsCard {...item} />
+            <NewsCard
+              title={item.title}
+              slug={item.slug}
+              thumbnail={item.thumbnail}
+              publishedAt={item.published_at}
+            />
           </div>
         ))}
       </div>
@@ -163,9 +173,9 @@ export default function NewsGrid() {
       {/* ================= Indicator ================= */}
 
       <div className="mt-6 flex justify-center gap-2">
-        {news.map((_, index) => (
+        {news.map((item, index) => (
           <button
-            key={index}
+            key={item.id}
             onClick={() => {
               const slider = sliderRef.current;
 

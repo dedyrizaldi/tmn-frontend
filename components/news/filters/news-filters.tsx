@@ -1,50 +1,56 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+
+import type { NewsCategory } from "@/types/news";
 
 import CategoryFilter from "./category-filter";
 import ResetFilter from "./reset-filter";
 import SearchBox from "./search-box";
 
 interface Props {
-  onSearchChange: (value: string) => void;
-  onCategoryChange: (category: string) => void;
+  search: string;
+  category: string;
+  categories: NewsCategory[];
 }
 
-export default function NewsFilters({
-  onSearchChange,
-  onCategoryChange,
-}: Props) {
-  const categories = useMemo(
-    () => ["All", "Company", "Project", "Equipment", "Technology", "CSR"],
-    [],
-  );
+export default function NewsFilters({ search, category, categories }: Props) {
+  const router = useRouter();
+  const pathname = usePathname();
+  const params = useSearchParams();
 
-  const [search, setSearch] = useState("");
-  const [category, setCategory] = useState("All");
+  function updateQuery(key: string, value: string) {
+    const query = new URLSearchParams(params.toString());
 
-  function handleSearch(value: string) {
-    setSearch(value);
-    onSearchChange(value);
-  }
+    if (value.trim()) {
+      query.set(key, value);
+    } else {
+      query.delete(key);
+    }
 
-  function handleCategory(value: string) {
-    setCategory(value);
-    onCategoryChange(value);
+    // Reset ke halaman pertama saat filter berubah
+    query.delete("page");
+
+    const url = query.toString() ? `${pathname}?${query.toString()}` : pathname;
+
+    router.replace(url, {
+      scroll: false,
+    });
   }
 
   function handleReset() {
-    setSearch("");
-    setCategory("All");
-
-    onSearchChange("");
-    onCategoryChange("All");
+    router.replace(pathname, {
+      scroll: false,
+    });
   }
 
   return (
     <section className="space-y-6">
       <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-        <SearchBox value={search} onChange={handleSearch} />
+        <SearchBox
+          value={search}
+          onChange={(value) => updateQuery("search", value)}
+        />
 
         <ResetFilter onReset={handleReset} />
       </div>
@@ -52,7 +58,7 @@ export default function NewsFilters({
       <CategoryFilter
         categories={categories}
         selected={category}
-        onSelect={handleCategory}
+        onSelect={(value) => updateQuery("category", value)}
       />
     </section>
   );

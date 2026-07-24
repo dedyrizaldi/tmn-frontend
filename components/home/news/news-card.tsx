@@ -1,15 +1,40 @@
+"use client";
+
+import { useState } from "react";
+
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
+
 import { Link } from "@/i18n/navigation";
 
 interface Props {
-  image: string;
   title: string;
-  date: string;
   slug: string;
+  thumbnail: string;
+  publishedAt: string;
 }
 
-export default function NewsCard({ image, title, date, slug }: Props) {
+export default function NewsCard({
+  title,
+  slug,
+  thumbnail,
+  publishedAt,
+}: Props) {
+  const [loading, setLoading] = useState(true);
+
+  const image =
+    thumbnail && thumbnail.length > 0
+      ? thumbnail
+      : "/images/news/news-placeholder.png";
+
+  const date = publishedAt
+    ? new Date(publishedAt).toLocaleDateString("en-US", {
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+      })
+    : "-";
+
   return (
     <Link
       href={`/news/${slug}`}
@@ -26,17 +51,50 @@ export default function NewsCard({ image, title, date, slug }: Props) {
         hover:shadow-lg
       "
     >
-      {/* Image */}
       <div className="relative h-[120px] overflow-hidden">
+        {/* Skeleton Shimmer */}
+        <div
+          className={`
+            absolute inset-0
+            z-10
+            overflow-hidden
+            bg-slate-200
+            transition-opacity
+            duration-300
+            ${loading ? "opacity-100" : "opacity-0 pointer-events-none"}
+          `}
+        >
+          <div
+            className="
+              absolute
+              inset-0
+              -translate-x-full
+              animate-[shimmer_1.4s_infinite]
+              bg-gradient-to-r
+              from-transparent
+              via-white/60
+              to-transparent
+            "
+          />
+        </div>
+
         <Image
           src={image}
           alt={title}
           fill
-          className="object-cover transition duration-500 group-hover:scale-105"
+          unoptimized
+          sizes="(max-width:768px)100vw,400px"
+          onLoad={() => setLoading(false)}
+          className={`
+            object-cover
+            transition-all
+            duration-500
+            group-hover:scale-105
+            ${loading ? "opacity-0" : "opacity-100"}
+          `}
         />
       </div>
 
-      {/* Content */}
       <div className="p-4">
         <p className="text-[11px] text-slate-500">{date}</p>
 

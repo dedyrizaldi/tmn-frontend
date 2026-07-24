@@ -1,14 +1,35 @@
+"use client";
+
+import { useState } from "react";
+
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Calendar, Clock } from "lucide-react";
 
-import type { News } from "../types/news";
+import type { News } from "@/types/news";
 
 interface Props {
   news: News;
 }
 
 export default function NewsCard({ news }: Props) {
+  const [loading, setLoading] = useState(true);
+
+  const image =
+    news.thumbnail && news.thumbnail.length > 0
+      ? news.thumbnail
+      : "/images/news/news-placeholder.png";
+
+  const readingTime = Math.max(
+    1,
+    Math.ceil(
+      news.content
+        .replace(/<[^>]+>/g, "")
+        .trim()
+        .split(/\s+/).length / 200,
+    ),
+  );
+
   return (
     <article
       className="
@@ -25,26 +46,55 @@ export default function NewsCard({ news }: Props) {
         hover:shadow-xl
       "
     >
-      {/* Thumbnail */}
-
       <Link href={`/news/${news.slug}`}>
         <div className="relative aspect-[16/10] overflow-hidden">
+          {/* Skeleton */}
+
+          <div
+            className={`
+              absolute
+              inset-0
+              z-10
+              overflow-hidden
+              bg-slate-200
+              transition-opacity
+              duration-300
+
+              ${loading ? "opacity-100" : "pointer-events-none opacity-0"}
+            `}
+          >
+            <div
+              className="
+                absolute
+                inset-0
+                -translate-x-full
+                animate-[shimmer_1.4s_infinite]
+                bg-gradient-to-r
+                from-transparent
+                via-white/60
+                to-transparent
+              "
+            />
+          </div>
+
           <Image
-            src={news.thumbnail}
+            src={image}
             alt={news.title}
             fill
-            sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 33vw"
-            className="
+            unoptimized
+            sizes="(max-width:640px)100vw,(max-width:1280px)50vw,33vw"
+            onLoad={() => setLoading(false)}
+            className={`
               object-cover
-              transition-transform
+              transition-all
               duration-500
               group-hover:scale-105
-            "
+
+              ${loading ? "opacity-0" : "opacity-100"}
+            `}
           />
 
-          {/* Category */}
-
-          <div className="absolute left-4 top-4">
+          <div className="absolute left-4 top-4 z-20">
             <span
               className="
                 rounded-full
@@ -56,43 +106,29 @@ export default function NewsCard({ news }: Props) {
                 text-white
               "
             >
-              {news.category}
+              {news.category.name}
             </span>
           </div>
         </div>
       </Link>
 
-      {/* Content */}
-
       <div className="flex h-[260px] flex-col p-6">
-        {/* Date */}
-
-        <div
-          className="
-            flex
-            items-center
-            gap-4
-            text-sm
-            text-slate-500
-          "
-        >
+        <div className="flex items-center gap-5 text-sm text-slate-500">
           <div className="flex items-center gap-2">
-            <Calendar size={16} />
+            <Calendar size={15} />
 
-            {new Date(news.publishedAt).toLocaleDateString("en-US", {
+            {new Date(news.published_at).toLocaleDateString("id-ID", {
               day: "2-digit",
-              month: "short",
+              month: "long",
               year: "numeric",
             })}
           </div>
 
           <div className="flex items-center gap-2">
-            <Clock size={16} />
-            {news.readingTime} min
+            <Clock size={15} />
+            {readingTime} menit
           </div>
         </div>
-
-        {/* Title */}
 
         <Link href={`/news/${news.slug}`}>
           <h3
@@ -111,8 +147,6 @@ export default function NewsCard({ news }: Props) {
           </h3>
         </Link>
 
-        {/* Excerpt */}
-
         <p
           className="
             mt-4
@@ -124,8 +158,6 @@ export default function NewsCard({ news }: Props) {
         >
           {news.excerpt}
         </p>
-
-        {/* Footer */}
 
         <div className="mt-auto pt-6">
           <Link
@@ -140,7 +172,7 @@ export default function NewsCard({ news }: Props) {
               hover:gap-3
             "
           >
-            Read Article
+            Baca Selengkapnya
             <ArrowRight size={18} />
           </Link>
         </div>

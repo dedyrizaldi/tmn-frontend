@@ -38,7 +38,7 @@ export async function fetchEquipments(
 
   const url = `${API_URL}/api/v1/equipment${query ? `?${query}` : ""}`;
 
-  console.log("[Equipment API]", url);
+  // console.log("[Equipment API]", url);
 
   const response = await fetch(url, {
     next: {
@@ -58,12 +58,12 @@ export async function fetchEquipments(
       body = "Unable to read response body.";
     }
 
-    console.error("==================================");
-    console.error("Equipment API Error");
-    console.error("URL    :", url);
-    console.error("Status :", response.status);
-    console.error("Body   :", body);
-    console.error("==================================");
+    // console.error("==================================");
+    // console.error("Equipment API Error");
+    // console.error("URL    :", url);
+    // console.error("Status :", response.status);
+    // console.error("Body   :", body);
+    // console.error("==================================");
 
     throw new Error(`Failed to fetch equipments. (${response.status})`);
   }
@@ -76,7 +76,7 @@ export async function fetchEquipment(
 ): Promise<EquipmentDetailResponse> {
   const url = `${API_URL}/api/v1/equipment/${slug}`;
 
-  console.log("[Equipment Detail API]", url);
+  // console.log("[Equipment Detail API]", url);
 
   const response = await fetch(url, {
     next: {
@@ -96,12 +96,12 @@ export async function fetchEquipment(
       body = "Unable to read response body.";
     }
 
-    console.error("==================================");
-    console.error("Equipment Detail API Error");
-    console.error("URL    :", url);
-    console.error("Status :", response.status);
-    console.error("Body   :", body);
-    console.error("==================================");
+    // console.error("==================================");
+    // console.error("Equipment Detail API Error");
+    // console.error("URL    :", url);
+    // console.error("Status :", response.status);
+    // console.error("Body   :", body);
+    // console.error("==================================");
 
     throw new Error(`Equipment not found. (${response.status})`);
   }

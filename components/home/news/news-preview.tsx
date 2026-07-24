@@ -1,22 +1,24 @@
+import type { News } from "@/types/news";
+
 import NewsHeader from "./news-header";
 import NewsGrid from "./news-grid";
 import NewsGridMobile from "./news-grid-mobile";
 
-export default function NewsPreview() {
+interface Props {
+  news: News[];
+}
+
+export default function NewsPreview({ news }: Props) {
   return (
     <>
-      {/* Desktop */}
-
       <div className="hidden lg:block">
         <NewsHeader />
-        <NewsGrid />
+        <NewsGrid news={news} />
       </div>
-
-      {/* Mobile */}
 
       <div className="lg:hidden">
         <NewsHeader />
-        <NewsGridMobile />
+        <NewsGridMobile news={news} />
       </div>
     </>
   );

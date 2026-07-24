@@ -1,8 +1,12 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import NewsDetail from "@/components/news/detail-page/news-detail";
-import { NEWS_DATA } from "@/components/news/news.data";
+
+import { getNews, getNewsBySlug } from "@/services/news.service";
+
 export const dynamic = "force-dynamic";
+
 interface Props {
   params: Promise<{
     locale: string;
@@ -10,47 +14,53 @@ interface Props {
   }>;
 }
 
-export async function generateMetadata({ params }: Props) {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
 
-  const news = NEWS_DATA.find((item) => item.slug === slug);
+  try {
+    const news = await getNewsBySlug(slug);
 
-  if (!news) {
+    return {
+      title: news.meta_title || news.title,
+      description: news.meta_description || news.excerpt,
+      keywords: [
+        news.title,
+        news.category.name,
+        "PT Tirta Mega Nusantara",
+        "TMN",
+      ],
+      openGraph: {
+        title: news.meta_title || news.title,
+        description: news.meta_description || news.excerpt,
+        type: "article",
+        images: news.thumbnail ? [news.thumbnail] : [],
+      },
+    };
+  } catch {
     return {
       title: "News Not Found",
     };
   }
-
-  return {
-    title: news.seo.metaTitle,
-    description: news.seo.metaDescription,
-    keywords: news.seo.keywords,
-    openGraph: {
-      title: news.seo.metaTitle,
-      description: news.seo.metaDescription,
-      images: [news.banner || news.thumbnail],
-    },
-  };
 }
 
 export default async function NewsDetailPage({ params }: Props) {
   const { slug } = await params;
 
-  const news = NEWS_DATA.find((item) => item.slug === slug);
+  let news;
 
-  if (!news) {
+  try {
+    news = await getNewsBySlug(slug);
+  } catch {
     notFound();
   }
 
-  const relatedNews = NEWS_DATA.filter(
-    (item) => item.id !== news.id && item.category === news.category,
-  ).slice(0, 3);
+  const response = await getNews({
+    category: news.category.slug,
+  });
+
+  const relatedNews = response.data
+    .filter((item) => item.id !== news.id)
+    .slice(0, 3);
 
   return <NewsDetail news={news} relatedNews={relatedNews} />;
-}
-
-export async function generateStaticParams() {
-  return NEWS_DATA.map((news) => ({
-    slug: news.slug,
-  }));
 }
