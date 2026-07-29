@@ -6,6 +6,7 @@ import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 
 import Container from "@/components/common/container/container";
 import Section from "@/components/common/section/section";
+import DetailServices from "@/components/services/detail-services/detail-services";
 
 import { Link } from "@/i18n/navigation";
 
@@ -63,7 +64,6 @@ export default function Services() {
         "
       >
         {/* ================= HEADER ================= */}
-
         <div
           className="
             mb-10
@@ -147,214 +147,8 @@ export default function Services() {
             </span>
           </Link>
         </div>
-        {/* ================= DESKTOP ================= */}
 
-        <div
-          className="
-            hidden
-
-            xl:grid
-            xl:grid-cols-5
-
-            gap-5
-          "
-        >
-          {services.map((service) => (
-            <ServiceCard
-              key={service.href}
-              icon={service.icon}
-              title={t(service.title)}
-              description={t(service.description)}
-              href={service.href}
-            />
-          ))}
-        </div>
-
-        {/* ================= MOBILE / TABLET ================= */}
-
-        <div className="xl:hidden">
-          {/* Navigation */}
-
-          <div className="mb-5 flex items-center justify-between">
-            <p className="text-sm font-medium text-slate-500">
-              {services.length} Services
-            </p>
-
-            <div className="flex gap-2">
-              <button
-                type="button"
-                onClick={() => scroll("left")}
-                className="
-                  flex
-                  h-10
-                  w-10
-                  items-center
-                  justify-center
-
-                  rounded-full
-
-                  border
-                  border-slate-200
-
-                  bg-white
-
-                  transition-all
-
-                  hover:border-[#156CFF]
-                  hover:bg-[#156CFF]
-                  hover:text-white
-                "
-              >
-                <ChevronLeft size={18} />
-              </button>
-
-              <button
-                type="button"
-                onClick={() => scroll("right")}
-                className="
-                  flex
-                  h-10
-                  w-10
-                  items-center
-                  justify-center
-
-                  rounded-full
-
-                  border
-                  border-slate-200
-
-                  bg-white
-
-                  transition-all
-
-                  hover:border-[#156CFF]
-                  hover:bg-[#156CFF]
-                  hover:text-white
-                "
-              >
-                <ChevronRight size={18} />
-              </button>
-            </div>
-          </div>
-
-          {/* Slider */}
-
-          <div
-            ref={sliderRef}
-            className="
-              flex
-
-              gap-5
-
-              overflow-x-auto
-
-              scroll-smooth
-
-              snap-x
-              snap-mandatory
-
-              pb-2
-
-              [-ms-overflow-style:none]
-              [scrollbar-width:none]
-
-              [&::-webkit-scrollbar]:hidden
-            "
-          >
-            {services.map((service, index) => (
-              <div
-                key={service.href}
-                className={`
-                  shrink-0
-
-                  snap-start
-
-                  w-[88%]
-                  max-w-[340px]
-
-                  transition-all
-                  duration-500
-
-                  ${active === index ? "scale-100 opacity-100" : "scale-[.96] opacity-70"}
-              `}
-              >
-                <ServiceCard
-                  icon={service.icon}
-                  title={t(service.title)}
-                  description={t(service.description)}
-                  href={service.href}
-                />
-              </div>
-            ))}
-          </div>
-          <div className="mt-6 flex justify-center gap-2">
-            {services.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => {
-                  sliderRef.current?.scrollTo({
-                    left: index * 330,
-                    behavior: "smooth",
-                  });
-                }}
-                className={`
-                h-2
-                rounded-full
-                transition-all
-                duration-300
-
-                ${active === index ? "w-8 bg-[#156CFF]" : "w-2 bg-slate-300"}
-            `}
-              />
-            ))}
-          </div>
-          {/* View All */}
-
-          <div className="mt-8 flex justify-center">
-            <Link
-              href="/services"
-              className="
-                group++
-
-                inline-flex
-
-                items-center
-
-                gap-3
-
-                font-semibold
-
-                text-[#156CFF]
-              "
-            >
-              {t("button")}
-
-              <span
-                className="
-                  flex
-
-                  h-10
-                  w-10
-
-                  items-center
-                  justify-center
-
-                  rounded-full
-
-                  border
-                  border-slate-200
-
-                  transition-all
-
-                  group-hover:bg-[#156CFF]
-                  group-hover:text-white
-                "
-              >
-                <ArrowRight size={16} />
-              </span>
-            </Link>
-          </div>
-        </div>
+        <DetailServices />
       </Container>
     </Section>
   );

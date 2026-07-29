@@ -34,7 +34,7 @@ export default function FooterContact() {
         <div className="flex items-center gap-3">
           <Phone size={18} className="text-[#156CFF]" />
 
-          <span className="text-[14px] text-slate-300">021-2945-231</span>
+          <span className="text-[14px] text-slate-300">021-2945-2321</span>
         </div>
 
         <div className="flex items-center gap-3">

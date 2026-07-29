@@ -2,7 +2,7 @@ import type { ContactData } from "./types/contact";
 
 export const contactData: ContactData = {
   info: {
-    phone: "021-2945-231",
+    phone: "021-2945-2321",
     email: "tirtameganusantara@tmn.co.id",
     whatsapp: "",
 
