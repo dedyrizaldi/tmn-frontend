@@ -115,42 +115,32 @@ export default function HeroContent() {
       >
         {/* Primary */}
 
-        <Link
-          href="/quote"
+        <a
+          href={`mailto:info@tmn.co.id?subject=${encodeURIComponent(
+            "Request for Quotation",
+          )}&body=${encodeURIComponent(
+            "Dear TMN Team,\n\nI would like to request a quotation for your services.\n\nCompany:\nContact Person:\nPhone:\nService Required:\nProject Details:\n\nThank you.",
+          )}`}
           className="
-            inline-flex
-
-            h-12
-
-            items-center
-
-            justify-center
-
-            gap-2
-
-            rounded-lg
-
-            bg-[#156CFF]
-
-            px-6
-
-            text-sm
-
-            font-semibold
-
-            text-white
-
-            transition-all
-
-            duration-300
-
-            hover:bg-[#0E5DE8]
-          "
+    inline-flex
+    h-12
+    items-center
+    justify-center
+    gap-2
+    rounded-lg
+    bg-[#156CFF]
+    px-6
+    text-sm
+    font-semibold
+    text-white
+    transition-all
+    duration-300
+    hover:bg-[#0E5DE8]
+  "
         >
           {t("primary")}
-
           <ArrowRight size={16} />
-        </Link>
+        </a>
 
         {/* Secondary */}
 

@@ -53,11 +53,11 @@ export default function Commitment() {
         </div>
 
         {/* ISO */}
-        <div className="mt-3 grid grid-cols-4 gap-1.5">
+        {/* <div className="mt-3 grid grid-cols-4 gap-1.5">
           {certifications.map((item) => (
             <IsoCard key={item} title={item} />
           ))}
-        </div>
+        </div> */}
       </div>
     </div>
   );
