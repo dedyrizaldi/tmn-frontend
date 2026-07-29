@@ -116,7 +116,7 @@ export default function HeroContent() {
         {/* Primary */}
 
         <a
-          href={`mailto:info@tmn.co.id?subject=${encodeURIComponent(
+          href={`mailto:tirtameganusantara@tmn.co.id?subject=${encodeURIComponent(
             "Request for Quotation",
           )}&body=${encodeURIComponent(
             "Dear TMN Team,\n\nI would like to request a quotation for your services.\n\nCompany:\nContact Person:\nPhone:\nService Required:\nProject Details:\n\nThank you.",
