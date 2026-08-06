@@ -97,16 +97,21 @@ export default function EquipmentCard({ equipment, onClick, viewMode }: Props) {
           src={image}
           alt={equipment.title ?? equipment.name ?? ""}
           fill
+          sizes={
+            isList
+              ? "(max-width: 1024px) 100vw, 340px"
+              : "(max-width: 768px) 50vw, (max-width: 1280px) 33vw, 20vw"
+          }
           unoptimized
           onLoad={() => setLoading(false)}
           className={`
-            object-cover
-            transition-all
-            duration-500
-            group-hover:scale-105
+    object-cover
+    transition-all
+    duration-500
+    group-hover:scale-105
 
-            ${loading ? "opacity-0" : "opacity-100"}
-          `}
+    ${loading ? "opacity-0" : "opacity-100"}
+  `}
         />
 
         <div className="absolute left-3 top-3 z-20">
@@ -148,10 +153,10 @@ export default function EquipmentCard({ equipment, onClick, viewMode }: Props) {
               text-slate-600
             "
           >
-            {equipment.excerpt}
+            {/* {equipment.excerpt} */}
           </p>
 
-          <div className="mt-5 space-y-2">
+          {/* <div className="mt-5 space-y-2">
             <EquipmentSpec label="Category" value={equipment.category.name} />
 
             <EquipmentSpec label="Status" value={equipment.status} />
@@ -160,7 +165,7 @@ export default function EquipmentCard({ equipment, onClick, viewMode }: Props) {
               label="Gallery"
               value={`${equipment.gallery.length} Photos`}
             />
-          </div>
+          </div> */}
         </div>
 
         <button

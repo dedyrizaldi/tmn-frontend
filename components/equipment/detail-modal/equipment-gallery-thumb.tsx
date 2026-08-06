@@ -25,7 +25,7 @@ export default function EquipmentGalleryThumb({
         ${active ? "ring-4 ring-[#156CFF]" : "opacity-70 hover:opacity-100"}
       `}
     >
-      <Image src={image} alt="" fill className="object-cover" />
+      <Image src={image} alt="" fill unoptimized className="object-cover" />
     </button>
   );
 }

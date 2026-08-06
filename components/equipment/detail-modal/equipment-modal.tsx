@@ -1,16 +1,11 @@
 "use client";
 
-import { X } from "lucide-react";
 import { useEffect } from "react";
+import { X } from "lucide-react";
 
 import type { Equipment } from "@/types/equipment";
 
-import EquipmentModalApplication from "./equipment-modal-application";
-import EquipmentModalCTA from "./equipment-modal-cta";
-import EquipmentModalFeature from "./equipment-modal-feature";
 import EquipmentModalGallery from "./equipment-modal-gallery";
-import EquipmentModalHeader from "./equipment-modal-header";
-import EquipmentModalSpecs from "./equipment-modal-specs";
 
 interface Props {
   open: boolean;
@@ -24,10 +19,19 @@ export default function EquipmentModal({ open, equipment, onClose }: Props) {
 
     document.body.style.overflow = "hidden";
 
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        onClose();
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+
     return () => {
       document.body.style.overflow = "";
+      document.removeEventListener("keydown", handleKeyDown);
     };
-  }, [open]);
+  }, [open, onClose]);
 
   if (!open || !equipment) return null;
 
@@ -43,27 +47,30 @@ export default function EquipmentModal({ open, equipment, onClose }: Props) {
         justify-center
         bg-black/70
         backdrop-blur-sm
-        p-5
+        p-4
       "
     >
       <div
         onClick={(e) => e.stopPropagation()}
         className="
           relative
-          h-[92vh]
           w-full
-          max-w-6xl
+          max-w-5xl
+          max-h-[90vh]
           overflow-y-auto
-          rounded-[30px]
+          rounded-3xl
           bg-white
+          shadow-2xl
         "
       >
         <button
+          type="button"
           onClick={onClose}
+          aria-label="Close modal"
           className="
             absolute
-            right-5
-            top-5
+            right-4
+            top-4
             z-50
             flex
             h-11
@@ -73,22 +80,16 @@ export default function EquipmentModal({ open, equipment, onClose }: Props) {
             rounded-full
             bg-white
             shadow-lg
+            transition-all
+            duration-200
+            hover:scale-105
+            hover:bg-slate-100
           "
         >
-          <X size={18} />
+          <X size={20} />
         </button>
 
-        <EquipmentModalHeader equipment={equipment} />
-
-        <EquipmentModalSpecs equipment={equipment} />
-
-        <EquipmentModalFeature equipment={equipment} />
-
-        <EquipmentModalApplication equipment={equipment} />
-
         <EquipmentModalGallery equipment={equipment} />
-
-        <EquipmentModalCTA equipment={equipment} />
       </div>
     </div>
   );

@@ -9,6 +9,7 @@ export default function HeroBackground() {
           src="/home/hero-1.png"
           alt="PT Tirta Mega Nusantara"
           fill
+          unoptimized
           priority
           quality={100}
           className="

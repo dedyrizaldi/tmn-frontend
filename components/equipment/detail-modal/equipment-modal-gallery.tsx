@@ -1,6 +1,7 @@
+/* eslint-disable react-hooks/set-state-in-effect */
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 
 import type { Equipment } from "@/types/equipment";
@@ -27,7 +28,17 @@ export default function EquipmentModalGallery({ equipment }: Props) {
     ];
   }, [equipment]);
 
-  const [selected, setSelected] = useState(gallery[0]);
+  const [selected, setSelected] = useState(() => gallery[0]);
+
+  useEffect(() => {
+    if (gallery.length > 0) {
+      setSelected(gallery[0]);
+    }
+  }, [gallery]);
+
+  if (!selected) {
+    return null;
+  }
 
   return (
     <section
@@ -35,8 +46,8 @@ export default function EquipmentModalGallery({ equipment }: Props) {
         border-b
         border-slate-200
         bg-[#F8FAFC]
-        p-8
-        lg:p-10
+        p-5
+        lg:p-8
       "
     >
       {/* Heading */}
@@ -57,25 +68,14 @@ export default function EquipmentModalGallery({ equipment }: Props) {
         <h2
           className="
             mt-4
-            text-3xl
+            text-2xl
             font-bold
             text-[#04162E]
+            lg:text-3xl
           "
         >
-          Dokumentasi Peralatan
+          {equipment.title ?? equipment.name}
         </h2>
-
-        <p
-          className="
-            mx-auto
-            mt-4
-            max-w-2xl
-            leading-8
-            text-slate-600
-          "
-        >
-          Dokumentasi unit peralatan yang tersedia pada sistem Marine Notion.
-        </p>
       </div>
 
       {/* Main Image */}
@@ -83,18 +83,21 @@ export default function EquipmentModalGallery({ equipment }: Props) {
       <div
         className="
           relative
-          mt-12
-          h-[520px]
+          mt-8
+          aspect-[16/9]
+          w-full
           overflow-hidden
           rounded-3xl
+          bg-slate-100
         "
       >
         <Image
           src={mediaUrl(selected.url)}
           alt={selected.name ?? equipment.title ?? equipment.name ?? ""}
           fill
+          unoptimized
           className="
-            object-cover
+            object-contain
             transition-all
             duration-500
           "
@@ -103,25 +106,31 @@ export default function EquipmentModalGallery({ equipment }: Props) {
 
       {/* Thumbnail */}
 
-      <div
-        className="
-          mt-6
-          grid
-          grid-cols-2
-          gap-4
-          md:grid-cols-4
-          lg:grid-cols-5
-        "
-      >
-        {gallery.map((image) => (
-          <EquipmentGalleryThumb
-            key={image.id}
-            image={mediaUrl(image.url)}
-            active={selected.id === image.id}
-            onClick={() => setSelected(image)}
-          />
-        ))}
-      </div>
+      {gallery.length > 1 && (
+        <div
+          className="
+            mt-6
+            grid
+            grid-cols-2
+            gap-3
+
+            sm:grid-cols-3
+
+            md:grid-cols-4
+
+            lg:grid-cols-5
+          "
+        >
+          {gallery.map((image) => (
+            <EquipmentGalleryThumb
+              key={image.id}
+              image={mediaUrl(image.url)}
+              active={selected.id === image.id}
+              onClick={() => setSelected(image)}
+            />
+          ))}
+        </div>
+      )}
     </section>
   );
 }

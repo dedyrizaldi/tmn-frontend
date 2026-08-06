@@ -1,3 +1,4 @@
+
 ```
 frontend
 ├─ AGENTS.md
@@ -341,7 +342,6 @@ frontend
 ├─ data
 │  ├─ hero-stats.ts
 │  └─ project
-│     └─ project.data.ts
 ├─ eslint.config.mjs
 ├─ hooks
 │  └─ use-scroll.ts
@@ -437,9 +437,12 @@ frontend
 ├─ repositories
 │  ├─ equipment.repository.ts
 │  ├─ home.repository.ts
+│  ├─ news.repository.ts
 │  └─ project.repository.ts
 ├─ services
 │  ├─ equipment.service.ts
+│  ├─ home.service.ts
+│  ├─ news.service.ts
 │  └─ project.service.ts
 ├─ store
 ├─ styles
@@ -449,6 +452,7 @@ frontend
 │  ├─ equipment.ts
 │  ├─ home.ts
 │  ├─ navigation.ts
+│  ├─ news.ts
 │  └─ project.ts
 └─ utils
 
