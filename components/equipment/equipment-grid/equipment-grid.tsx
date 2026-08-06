@@ -21,6 +21,7 @@ interface Props {
   onSelectEquipment: (equipment: Equipment) => void;
 }
 
+//penahmbahahn
 export default function EquipmentGrid({
   equipments,
   viewMode,
