@@ -1,30 +1,70 @@
 export const trustedClients = [
   {
-    name: "Pertamina",
-    logo: "/home/pertamina.png",
+    name: "",
+    logo: "/home/1.jpeg",
   },
   {
-    name: "Pelindo",
-    logo: "/home/pelindo.png",
+    name: "",
+    logo: "/home/2.jpg",
   },
   {
-    name: "AKR",
-    logo: "/home/akr.png",
+    name: "",
+    logo: "/home/3.png",
   },
   {
-    name: "Shell",
-    logo: "/home/shell.png",
+    name: "",
+    logo: "/home/4.jpg",
   },
   {
-    name: "Vopak",
-    logo: "/home/vopak.png",
+    name: "",
+    logo: "/home/5.jpeg",
   },
   {
-    name: "Chevron",
-    logo: "/home/chevron.png",
+    name: "",
+    logo: "/home/6.jpg",
   },
   {
-    name: "ExxonMobil",
-    logo: "/home/exxonmobil.png",
+    name: "",
+    logo: "/home/7.jpg",
+  },
+  {
+    name: "",
+    logo: "/home/8.jpg",
+  },
+  {
+    name: "",
+    logo: "/home/9.jpg",
+  },
+  {
+    name: "",
+    logo: "/home/10.jpeg",
+  },
+  {
+    name: "",
+    logo: "/home/11.jpg",
+  },
+  {
+    name: "",
+    logo: "/home/12.jpg",
+  },
+  {
+    name: "",
+    logo: "/home/13.jpg",
+  },
+  {
+    name: "",
+    logo: "/home/14.png",
+  },
+  {
+    name: "",
+    logo: "/home/15.jpg",
+  },
+  {
+    name: "",
+    logo: "/home/16.png",
+  },
+  {
+    name: "",
+    logo: "/home/17.jpeg",
   },
 ];
