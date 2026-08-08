@@ -9,8 +9,10 @@ export default function ProjectHero() {
   const t = useTranslations("projectPage.hero");
 
   return (
-    <Section className="relative overflow-hidden py-0">
-      {/* Background */}
+    <Section className="relative overflow-hidden bg-[#04162E]">
+      {/* =========================================================
+          BACKGROUND
+      ========================================================= */}
 
       <div className="absolute inset-0">
         <Image
@@ -23,32 +25,45 @@ export default function ProjectHero() {
 
         <div className="absolute inset-0 bg-[#04162E]/75" />
 
-        <div className="absolute inset-0 bg-gradient-to-r from-[#04162E] via-[#04162E]/80 to-transparent" />
+        <div
+          className="
+            absolute
+            inset-0
+            bg-gradient-to-r
+            from-[#04162E]
+            via-[#04162E]/80
+            to-transparent
+          "
+        />
       </div>
+
+      {/* =========================================================
+          CONTENT
+      ========================================================= */}
 
       <Container className="relative z-10">
         <div
           className="
             flex
-            min-h-[520px]
+            min-h-[230px]
             items-center
+            py-6
+            lg:min-h-[250px]
+            lg:py-7
           "
         >
-          <div className="max-w-[760px]">
-            {/* Breadcrumb */}
+          <div className="max-w-[650px]">
+            {/* ===================================================
+                BREADCRUMB
+            =================================================== */}
 
             <div
               className="
-                mb-8
-
+                mb-2
                 flex
-
                 items-center
-
                 gap-2
-
                 text-sm
-
                 text-white/70
               "
             >
@@ -61,92 +76,77 @@ export default function ProjectHero() {
               <span className="text-white">{t("projects")}</span>
             </div>
 
-            {/* Badge */}
+            {/* ===================================================
+                BADGE
+            =================================================== */}
 
             <span
               className="
                 inline-flex
-
                 rounded-full
-
                 bg-[#156CFF]/20
-
-                px-4
-
-                py-2
-
-                text-xs
-
+                px-3
+                py-1
+                text-[10px]
                 font-bold
-
                 uppercase
-
-                tracking-[0.25em]
-
+                tracking-[0.18em]
                 text-[#7FB3FF]
               "
             >
               {t("badge")}
             </span>
 
-            {/* Title */}
+            {/* ===================================================
+                TITLE
+            =================================================== */}
 
             <h1
               className="
-                mt-6
-
-                text-5xl
-
+                mt-2
+                text-3xl
                 font-bold
-
                 leading-tight
-
                 text-white
-
-                lg:text-6xl
+                sm:text-4xl
               "
             >
               {t("title")}
             </h1>
 
-            {/* Description */}
+            {/* ===================================================
+                DESCRIPTION
+            =================================================== */}
 
             <p
               className="
-                mt-8
-
-                max-w-[650px]
-
-                text-lg
-
-                leading-8
-
+                mt-2
+                max-w-[560px]
+                text-sm
+                leading-6
                 text-slate-200
+                sm:text-base
               "
             >
               {t("description")}
             </p>
 
-            {/* CTA */}
+            {/* ===================================================
+                CTA
+            =================================================== */}
 
-            <div className="mt-10 flex flex-wrap gap-4">
+            <div className="mt-3 flex flex-wrap gap-2">
               <Link
                 href="/contact"
                 className="
-                  rounded-xl
-
+                  rounded-lg
                   bg-[#156CFF]
-
-                  px-7
-
-                  py-4
-
+                  px-5
+                  py-2
+                  text-sm
                   font-semibold
-
                   text-white
-
                   transition
-
                   hover:bg-[#0E5DE8]
                 "
               >
@@ -156,26 +156,17 @@ export default function ProjectHero() {
               <Link
                 href="/services"
                 className="
-                  rounded-xl
-
+                  rounded-lg
                   border
-
                   border-white/20
-
                   bg-white/10
-
-                  px-7
-
-                  py-4
-
+                  px-5
+                  py-2
+                  text-sm
                   font-semibold
-
                   text-white
-
                   backdrop-blur
-
                   transition
-
                   hover:bg-white/20
                 "
               >
@@ -183,39 +174,39 @@ export default function ProjectHero() {
               </Link>
             </div>
 
-            {/* Stats */}
+            {/* ===================================================
+                STATS
+            =================================================== */}
 
             <div
               className="
-                mt-14
-
+                mt-4
                 flex
-
                 flex-wrap
-
-                gap-10
+                gap-x-7
+                gap-y-2
               "
             >
               <div>
-                <p className="text-4xl font-bold text-white">150+</p>
+                <p className="text-xl font-bold text-white sm:text-2xl">150+</p>
 
-                <span className="text-sm text-slate-300">
+                <span className="text-[11px] text-slate-300 sm:text-xs">
                   {t("stats.projects")}
                 </span>
               </div>
 
               <div>
-                <p className="text-4xl font-bold text-white">35+</p>
+                <p className="text-xl font-bold text-white sm:text-2xl">35+</p>
 
-                <span className="text-sm text-slate-300">
+                <span className="text-[11px] text-slate-300 sm:text-xs">
                   {t("stats.clients")}
                 </span>
               </div>
 
               <div>
-                <p className="text-4xl font-bold text-white">12+</p>
+                <p className="text-xl font-bold text-white sm:text-2xl">12+</p>
 
-                <span className="text-sm text-slate-300">
+                <span className="text-[11px] text-slate-300 sm:text-xs">
                   {t("stats.years")}
                 </span>
               </div>

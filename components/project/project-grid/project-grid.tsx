@@ -3,6 +3,7 @@ import type { Project } from "@/types/project";
 import EmptyState from "./empty-state";
 import ProjectCard from "./project-card";
 import ProjectPagination from "./project-pagination";
+import ProjectTable from "./project-table";
 
 interface Props {
   projects: Project[];
@@ -23,34 +24,54 @@ export default function ProjectGrid({
   totalPages,
   onPageChange,
 }: Props) {
+  /**
+   * =========================================================
+   * EMPTY STATE
+   * =========================================================
+   */
+
   if (projects.length === 0) {
     return <EmptyState />;
   }
 
   return (
     <div className="space-y-10">
-      <div
-        className={
-          viewMode === "grid"
-            ? `
-                grid
-                gap-8
+      {/* =======================================================
+          PROJECT CONTENT
+      ======================================================= */}
 
-                md:grid-cols-2
+      {viewMode === "list" ? (
+        /**
+         * =====================================================
+         * TABLE VIEW
+         * =====================================================
+         */
 
-                xl:grid-cols-3
-              `
-            : `
-                flex
-                flex-col
-                gap-8
-              `
-        }
-      >
-        {projects.map((project) => (
-          <ProjectCard key={project.id} project={project} viewMode={viewMode} />
-        ))}
-      </div>
+        <ProjectTable projects={projects} />
+      ) : (
+        /**
+         * =====================================================
+         * GRID VIEW
+         * =====================================================
+         */
+
+        <div
+          className="
+            grid
+            gap-8
+            md:grid-cols-2
+            xl:grid-cols-3
+          "
+        >
+          {projects.map((project) => (
+            <ProjectCard key={project.id} project={project} viewMode="grid" />
+          ))}
+        </div>
+      )}
+
+      {/* =======================================================
+          PAGINATION
+      ======================================================= */}
 
       <ProjectPagination
         currentPage={currentPage}

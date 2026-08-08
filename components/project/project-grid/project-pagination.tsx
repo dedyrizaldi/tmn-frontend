@@ -22,13 +22,21 @@ export default function ProjectPagination({
     pages.push(i);
   }
 
-  return (
-    <div className="flex items-center justify-center gap-2 pt-6">
-      {/* Previous */}
+  const handlePageChange = (page: number) => {
+    if (page < 1 || page > totalPages || page === currentPage) {
+      return;
+    }
 
+    onPageChange(page);
+  };
+
+  return (
+    <div className="flex items-center justify-center gap-2">
+      {/* Previous */}
       <button
+        type="button"
         disabled={currentPage === 1}
-        onClick={() => onPageChange(currentPage - 1)}
+        onClick={() => handlePageChange(currentPage - 1)}
         className="
           rounded-xl
           border
@@ -46,17 +54,19 @@ export default function ProjectPagination({
       </button>
 
       {/* First */}
-
       {start > 1 && (
         <>
           <button
-            onClick={() => onPageChange(1)}
+            type="button"
+            onClick={() => handlePageChange(1)}
             className="
               h-10
               w-10
               rounded-xl
               border
               border-slate-200
+              transition
+              hover:bg-slate-100
             "
           >
             1
@@ -67,11 +77,12 @@ export default function ProjectPagination({
       )}
 
       {/* Middle */}
-
       {pages.map((page) => (
         <button
+          type="button"
           key={page}
-          onClick={() => onPageChange(page)}
+          onClick={() => handlePageChange(page)}
+          aria-current={page === currentPage ? "page" : undefined}
           className={`
             h-10
             w-10
@@ -91,7 +102,6 @@ export default function ProjectPagination({
       ))}
 
       {/* Last */}
-
       {end < totalPages && (
         <>
           {end < totalPages - 1 && (
@@ -99,13 +109,16 @@ export default function ProjectPagination({
           )}
 
           <button
-            onClick={() => onPageChange(totalPages)}
+            type="button"
+            onClick={() => handlePageChange(totalPages)}
             className="
               h-10
               w-10
               rounded-xl
               border
               border-slate-200
+              transition
+              hover:bg-slate-100
             "
           >
             {totalPages}
@@ -114,10 +127,10 @@ export default function ProjectPagination({
       )}
 
       {/* Next */}
-
       <button
+        type="button"
         disabled={currentPage === totalPages}
-        onClick={() => onPageChange(currentPage + 1)}
+        onClick={() => handlePageChange(currentPage + 1)}
         className="
           rounded-xl
           border

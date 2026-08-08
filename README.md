@@ -372,6 +372,23 @@ frontend
 │  ├─ file.svg
 │  ├─ globe.svg
 │  ├─ home
+│  │  ├─ 1.jpeg
+│  │  ├─ 10.jpeg
+│  │  ├─ 11.jpg
+│  │  ├─ 12.jpg
+│  │  ├─ 13.jpg
+│  │  ├─ 14.png
+│  │  ├─ 15.jpg
+│  │  ├─ 16.png
+│  │  ├─ 17.jpeg
+│  │  ├─ 2.jpg
+│  │  ├─ 3.png
+│  │  ├─ 4.jpg
+│  │  ├─ 5.jpeg
+│  │  ├─ 6.jpg
+│  │  ├─ 7.jpg
+│  │  ├─ 8.jpg
+│  │  ├─ 9.png
 │  │  ├─ akr.png
 │  │  ├─ chevron.png
 │  │  ├─ exxonmobil.png

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import ProjectHero from "./hero/hero";
 import ProjectFilters from "./filters/project-filters";
@@ -18,63 +18,73 @@ import type {
 
 export default function Project() {
   /**
-   * ==========================
-   * Data
-   * ==========================
+   * =========================================================
+   * DATA
+   * =========================================================
    */
 
   const [projects, setProjects] = useState<ProjectType[]>([]);
 
   const [categories, setCategories] = useState<ProjectCategory[]>([]);
 
-  const [meta, setMeta] = useState<PaginationMeta>();
+  const [meta, setMeta] = useState<PaginationMeta | undefined>();
 
   const [loading, setLoading] = useState(true);
 
   /**
-   * ==========================
-   * Search
-   * ==========================
+   * =========================================================
+   * SEARCH
+   * =========================================================
    */
 
   const [search, setSearch] = useState("");
 
   /**
-   * ==========================
-   * Filters
-   * ==========================
+   * =========================================================
+   * FILTER
+   * =========================================================
    */
 
   const [category, setCategory] = useState("all");
 
   /**
-   * ==========================
-   * Sort
-   * ==========================
+   * =========================================================
+   * SORT
+   * =========================================================
    */
 
   const [sortBy, setSortBy] = useState("newest");
 
   /**
-   * ==========================
-   * View
-   * ==========================
+   * =========================================================
+   * VIEW
+   * =========================================================
    */
 
-  const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
+  const [viewMode, setViewMode] = useState<"grid" | "list">("list");
 
   /**
-   * ==========================
-   * Pagination
-   * ==========================
+   * =========================================================
+   * PAGINATION
+   * =========================================================
    */
 
   const [currentPage, setCurrentPage] = useState(1);
 
   /**
-   * ==========================
-   * Load Categories
-   * ==========================
+   * =========================================================
+   * SCROLL POSITION
+   * =========================================================
+   *
+   * Menyimpan posisi scroll sebelum pagination berubah.
+   */
+
+  const scrollPositionRef = useRef<number | null>(null);
+
+  /**
+   * =========================================================
+   * LOAD CATEGORIES
+   * =========================================================
    */
 
   useEffect(() => {
@@ -84,7 +94,7 @@ export default function Project() {
 
         setCategories(response.data);
       } catch (error) {
-        console.error(error);
+        console.error("Failed to load project categories:", error);
       }
     }
 
@@ -92,43 +102,146 @@ export default function Project() {
   }, []);
 
   /**
-   * ==========================
-   * Load Projects
-   * ==========================
+   * =========================================================
+   * LOAD PROJECTS
+   * =========================================================
    */
 
   useEffect(() => {
+    let cancelled = false;
+
     async function loadProjects() {
       try {
         setLoading(true);
 
         const response = await getProjects({
           page: currentPage,
+
           search: search || undefined,
+
           category: category !== "all" ? category : undefined,
+
           sort_by:
             sortBy === "name-asc" || sortBy === "name-desc"
               ? "title"
               : "project_date",
+
           sort_direction:
             sortBy === "oldest" || sortBy === "name-asc" ? "asc" : "desc",
         });
 
+        if (cancelled) {
+          return;
+        }
+
         setProjects(response.data);
+
         setMeta(response.meta);
       } catch (error) {
-        console.error(error);
+        if (!cancelled) {
+          console.error("Failed to load projects:", error);
+        }
       } finally {
-        setLoading(false);
+        if (!cancelled) {
+          setLoading(false);
+        }
       }
     }
 
     loadProjects();
+
+    return () => {
+      cancelled = true;
+    };
   }, [currentPage, search, category, sortBy]);
+
+  /**
+   * =========================================================
+   * RESTORE SCROLL POSITION
+   * =========================================================
+   */
+
+  useEffect(() => {
+    if (loading) {
+      return;
+    }
+
+    if (scrollPositionRef.current === null) {
+      return;
+    }
+
+    const savedPosition = scrollPositionRef.current;
+
+    scrollPositionRef.current = null;
+
+    requestAnimationFrame(() => {
+      window.scrollTo({
+        top: savedPosition,
+        left: 0,
+        behavior: "instant",
+      });
+    });
+  }, [loading]);
+
+  /**
+   * =========================================================
+   * PAGE CHANGE
+   * =========================================================
+   */
+
+  const handlePageChange = (page: number) => {
+    /*
+     * Simpan posisi user saat ini.
+     */
+    scrollPositionRef.current = window.scrollY;
+
+    /*
+     * Ganti halaman.
+     */
+    setCurrentPage(page);
+  };
+
+  /**
+   * =========================================================
+   * SEARCH CHANGE
+   * =========================================================
+   */
+
+  const handleSearchChange = (value: string) => {
+    setCurrentPage(1);
+
+    setSearch(value);
+  };
+
+  /**
+   * =========================================================
+   * CATEGORY CHANGE
+   * =========================================================
+   */
+
+  const handleCategoryChange = (value: string) => {
+    setCurrentPage(1);
+
+    setCategory(value);
+  };
+
+  /**
+   * =========================================================
+   * SORT CHANGE
+   * =========================================================
+   */
+
+  const handleSortChange = (value: string) => {
+    setCurrentPage(1);
+
+    setSortBy(value);
+  };
 
   return (
     <>
-      <ProjectHero />
+      {/* =====================================================
+          PROJECT SECTION
+      ===================================================== */}
 
       <section
         className="
@@ -136,6 +249,9 @@ export default function Project() {
           py-16
           lg:py-24
         "
+        style={{
+          overflowAnchor: "none",
+        }}
       >
         <div
           className="
@@ -152,75 +268,126 @@ export default function Project() {
               lg:grid-cols-[300px_1fr]
             "
           >
+            {/* =================================================
+                FILTER
+            ================================================= */}
+
             <aside>
               <ProjectFilters
                 search={search}
                 category={category}
                 categories={categories}
-                onSearchChange={(value) => {
-                  setCurrentPage(1);
-                  setSearch(value);
-                }}
-                onCategoryChange={(value) => {
-                  setCurrentPage(1);
-                  setCategory(value);
-                }}
+                onSearchChange={handleSearchChange}
+                onCategoryChange={handleCategoryChange}
               />
             </aside>
 
+            {/* =================================================
+                PROJECT CONTENT
+            ================================================= */}
+
             <div className="space-y-8">
+              {/* =================================================
+                  TOOLBAR
+              ================================================= */}
+
               <ProjectToolbar
                 total={meta?.total ?? 0}
                 viewMode={viewMode}
                 sortBy={sortBy}
-                onSortChange={(value) => {
-                  setCurrentPage(1);
-                  setSortBy(value);
-                }}
+                onSortChange={handleSortChange}
                 onViewChange={setViewMode}
               />
 
-              {loading ? (
-                <div
-                  className="
-                    flex
-                    min-h-[400px]
-                    items-center
-                    justify-center
-                  "
-                >
-                  <div
-                    className="
-                      h-12
-                      w-12
-                      animate-spin
-                      rounded-full
-                      border-4
-                      border-[#156CFF]
-                      border-t-transparent
-                    "
-                  />
-                </div>
-              ) : (
+              {/* =================================================
+                  PROJECT GRID / TABLE
+              ================================================= */}
+
+              <div
+                className="
+                  relative
+                  min-h-[400px]
+                "
+              >
+                {/* =================================================
+                    EXISTING PROJECT CONTENT
+                    Tetap dirender ketika loading
+                ================================================= */}
+
                 <ProjectGrid
                   projects={projects}
                   viewMode={viewMode}
                   currentPage={meta?.current_page ?? 1}
                   totalPages={meta?.last_page ?? 1}
-                  onPageChange={(page) => {
-                    setCurrentPage(page);
-
-                    window.scrollTo({
-                      top: 0,
-                      behavior: "smooth",
-                    });
-                  }}
+                  onPageChange={handlePageChange}
                 />
-              )}
+
+                {/* =================================================
+                    LOADING OVERLAY
+                ================================================= */}
+
+                {loading && (
+                  <div
+                    className="
+                      absolute
+                      inset-0
+                      z-20
+                      flex
+                      items-start
+                      justify-center
+                      rounded-2xl
+                      bg-[#F8FAFC]/70
+                      pt-20
+                      backdrop-blur-[1px]
+                    "
+                  >
+                    <div
+                      className="
+                        flex
+                        items-center
+                        gap-3
+                        rounded-xl
+                        border
+                        border-slate-200
+                        bg-white
+                        px-5
+                        py-3
+                        shadow-sm
+                      "
+                    >
+                      <div
+                        className="
+                          h-5
+                          w-5
+                          animate-spin
+                          rounded-full
+                          border-2
+                          border-[#156CFF]
+                          border-t-transparent
+                        "
+                      />
+
+                      <span
+                        className="
+                          text-sm
+                          font-medium
+                          text-slate-600
+                        "
+                      >
+                        Loading projects...
+                      </span>
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </div>
       </section>
+
+      {/* =======================================================
+          CTA
+      ======================================================= */}
 
       <ProjectCTA />
     </>
