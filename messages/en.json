@@ -310,5 +310,43 @@
       "nameAsc": "Name A-Z",
       "nameDesc": "Name Z-A"
     }
+  },
+  "home": {
+  "industries": {
+    "badge": "INDUSTRIES WE SERVE",
+    "title": "Supporting Various <blue>Industries Across Indonesia</blue>",
+    "description": "We provide professional industrial cleaning and waste management solutions for a wide range of industries and operational environments.",
+
+    "items": {
+      "oilGas": "Oil & Gas",
+      "marineShipping": "Marine & Shipping",
+      "petrochemical": "Petrochemical",
+      "manufacturing": "Manufacturing",
+      "portTerminal": "Port & Terminal"
+    },
+
+    "whyChooseLabel": "WHY CHOOSE US",
+    "whyChooseTitle": "Why Choose Tirta Mega Nusantara",
+    "whyChooseDescription": "We combine professional people, reliable equipment, and safety-focused procedures to deliver dependable industrial cleaning and waste management solutions.",
+
+    "reasons": {
+      "experiencedTeam": {
+        "title": "Experienced Team",
+        "description": "Supported by experienced professionals with practical knowledge in industrial cleaning and waste management."
+      },
+      "safetyFirst": {
+        "title": "Safety First",
+        "description": "Safety is our priority in every project, with careful procedures designed to protect people, equipment, and the environment."
+      },
+      "professionalService": {
+        "title": "Professional Service",
+        "description": "We provide reliable and professional services tailored to the operational requirements of each client."
+      },
+      "reliableSolutions": {
+        "title": "Reliable Solutions",
+        "description": "Our team delivers practical and efficient solutions to help clients complete their industrial operations safely and effectively."
+      }
+    }
   }
+}
 }

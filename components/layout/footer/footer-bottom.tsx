@@ -107,21 +107,6 @@ export default function FooterBottom() {
             >
               Terms & Conditions
             </Link> */}
-
-            <Link
-              href="/sitemap"
-              className="
-                text-slate-400
-
-                transition-all
-
-                duration-300
-
-                hover:text-[#156CFF]
-              "
-            >
-              Sitemap
-            </Link>
           </nav>
         </div>
       </Container>

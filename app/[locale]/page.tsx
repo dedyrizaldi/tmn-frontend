@@ -29,7 +29,7 @@ export default async function HomePage() {
 
       <Projects projects={home.featured_projects} />
 
-      <Industries latestNews={home.latest_news} />
+      <Industries />
     </section>
   );
 }

@@ -309,5 +309,43 @@
       "nameAsc": "Nama A-Z",
       "nameDesc": "Nama Z-A"
     }
+  },
+  "home": {
+  "industries": {
+    "badge": "INDUSTRI YANG KAMI LAYANI",
+    "title": "Mendukung Berbagai <blue>Industri di Seluruh Indonesia</blue>",
+    "description": "Kami menyediakan solusi profesional untuk pembersihan industri dan pengelolaan limbah bagi berbagai sektor industri dan lingkungan operasional.",
+
+    "items": {
+      "oilGas": "Minyak & Gas",
+      "marineShipping": "Kelautan & Pelayaran",
+      "petrochemical": "Petrokimia",
+      "manufacturing": "Manufaktur",
+      "portTerminal": "Pelabuhan & Terminal"
+    },
+
+    "whyChooseLabel": "MENGAPA MEMILIH KAMI",
+    "whyChooseTitle": "Mengapa Memilih Tirta Mega Nusantara",
+    "whyChooseDescription": "Kami menggabungkan tenaga profesional, peralatan yang andal, dan prosedur yang berfokus pada keselamatan untuk memberikan solusi pembersihan industri dan pengelolaan limbah yang terpercaya.",
+
+    "reasons": {
+      "experiencedTeam": {
+        "title": "Tim Berpengalaman",
+        "description": "Didukung oleh tenaga profesional berpengalaman dengan pengetahuan praktis dalam bidang pembersihan industri dan pengelolaan limbah."
+      },
+      "safetyFirst": {
+        "title": "Keselamatan Utama",
+        "description": "Keselamatan menjadi prioritas kami dalam setiap proyek dengan prosedur yang dirancang untuk melindungi pekerja, peralatan, dan lingkungan."
+      },
+      "professionalService": {
+        "title": "Layanan Profesional",
+        "description": "Kami menyediakan layanan yang andal dan profesional sesuai dengan kebutuhan operasional setiap klien."
+      },
+      "reliableSolutions": {
+        "title": "Solusi Terpercaya",
+        "description": "Tim kami memberikan solusi yang praktis dan efisien untuk membantu klien menyelesaikan operasional industri dengan aman dan efektif."
+      }
+    }
   }
+}
 }
