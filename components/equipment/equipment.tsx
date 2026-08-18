@@ -11,7 +11,6 @@ import type {
 import EquipmentModal from "./detail-modal/equipment-modal";
 import EquipmentFilters from "./filters/equipment-filters";
 import EquipmentGrid from "./equipment-grid/equipment-grid";
-import EquipmentHero from "./hero/hero";
 import EquipmentToolbar from "./toolbar/equipment-toolbar";
 
 interface Props {

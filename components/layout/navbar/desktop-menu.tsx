@@ -1,6 +1,6 @@
 "use client";
 
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 import { Link, usePathname } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
@@ -9,16 +9,16 @@ import { navbarItems } from "./navbar.config";
 
 export default function DesktopMenu() {
   const pathname = usePathname();
+  const locale = useLocale();
   const t = useTranslations("navigation");
 
   return (
     <nav
       className="
         hidden
-        lg:flex
         items-center
         gap-8
-
+        lg:flex
         xl:gap-10
       "
     >
@@ -27,20 +27,20 @@ export default function DesktopMenu() {
           pathname === item.href ||
           (item.href !== "/" && pathname.startsWith(item.href));
 
+        const linkLocale = item.forceLocale ?? locale;
+
         return (
           <Link
             key={item.key}
             href={item.href}
+            locale={linkLocale}
             className={cn(
               `
                 group
                 relative
-
                 py-2
-
                 text-[15px]
                 font-medium
-
                 transition-all
                 duration-300
               `,
@@ -50,21 +50,15 @@ export default function DesktopMenu() {
             {t(item.key)}
 
             {/* Underline */}
-
             <span
               className={cn(
                 `
                   absolute
-
-                  left-0
                   -bottom-[6px]
-
+                  left-0
                   h-[2px]
-
                   rounded-full
-
                   bg-[#156CFF]
-
                   transition-all
                   duration-300
                 `,
@@ -73,25 +67,17 @@ export default function DesktopMenu() {
             />
 
             {/* Hover Dot */}
-
             <span
               className={cn(
                 `
                   absolute
-
-                  left-1/2
-
                   -bottom-[12px]
-
+                  left-1/2
                   h-1.5
                   w-1.5
-
                   -translate-x-1/2
-
                   rounded-full
-
                   bg-[#156CFF]
-
                   transition-all
                   duration-300
                 `,

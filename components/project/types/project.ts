@@ -48,4 +48,12 @@ export interface Project {
   results: ProjectResult[];
 
   timeline: ProjectTimeline[];
+
+  /**
+   * Surat pengalaman / experience letter.
+   *
+   * Berisi URL gambar surat pengalaman.
+   * Null jika project belum memiliki surat pengalaman.
+   */
+  experience_letter?: string | null;
 }

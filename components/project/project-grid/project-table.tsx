@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { X } from "lucide-react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 
 import { Link } from "@/i18n/navigation";
@@ -15,6 +16,54 @@ interface Props {
 
 export default function ProjectTable({ projects }: Props) {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+
+  const [selectedExperienceLetter, setSelectedExperienceLetter] = useState<
+    string | null
+  >(null);
+
+  /*
+   * =========================================================
+   * ESCAPE KEY
+   * =========================================================
+   */
+
+  useEffect(() => {
+    if (!selectedExperienceLetter) {
+      return;
+    }
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setSelectedExperienceLetter(null);
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [selectedExperienceLetter]);
+
+  /*
+   * =========================================================
+   * LOCK BODY SCROLL WHEN EXPERIENCE LETTER MODAL IS OPEN
+   * =========================================================
+   */
+
+  useEffect(() => {
+    if (!selectedExperienceLetter) {
+      return;
+    }
+
+    const originalOverflow = document.body.style.overflow;
+
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = originalOverflow;
+    };
+  }, [selectedExperienceLetter]);
 
   return (
     <>
@@ -225,8 +274,6 @@ export default function ProjectTable({ projects }: Props) {
                         "
                         aria-label={`Lihat gallery ${project.title}`}
                       >
-                        {/* Image */}
-
                         <Image
                           src={image}
                           alt={project.title}
@@ -240,8 +287,6 @@ export default function ProjectTable({ projects }: Props) {
                             group-hover:scale-110
                           "
                         />
-
-                        {/* Overlay */}
 
                         <div
                           className="
@@ -346,22 +391,106 @@ export default function ProjectTable({ projects }: Props) {
                     ================================================= */}
 
                     <td className="px-6 py-5 text-center align-middle">
-                      <span
-                        className="
-                          inline-flex
-                          items-center
-                          justify-center
-                          rounded-lg
-                          bg-slate-100
-                          px-4
-                          py-2
-                          text-xs
-                          font-medium
-                          text-slate-400
-                        "
-                      >
-                        Belum tersedia
-                      </span>
+                      {project.experience_letter ? (
+                        <button
+                          type="button"
+                          onClick={() =>
+                            setSelectedExperienceLetter(
+                              project.experience_letter ?? null,
+                            )
+                          }
+                          className="
+                            group
+                            relative
+                            mx-auto
+                            block
+                            h-24
+                            w-20
+                            overflow-hidden
+                            rounded-lg
+                            border
+                            border-slate-200
+                            bg-slate-100
+                            shadow-sm
+                            transition-all
+                            duration-200
+                            hover:-translate-y-0.5
+                            hover:border-[#156CFF]
+                            hover:shadow-md
+                            focus:outline-none
+                            focus:ring-2
+                            focus:ring-[#156CFF]
+                            focus:ring-offset-2
+                          "
+                          aria-label={`Lihat surat pengalaman ${project.title}`}
+                        >
+                          <Image
+                            src={project.experience_letter}
+                            alt={`Surat pengalaman ${project.title}`}
+                            fill
+                            unoptimized
+                            sizes="80px"
+                            className="
+                              object-cover
+                              transition-transform
+                              duration-300
+                              group-hover:scale-105
+                            "
+                          />
+
+                          {/* Hover Overlay */}
+
+                          <div
+                            className="
+                              absolute
+                              inset-0
+                              flex
+                              items-center
+                              justify-center
+                              bg-black/0
+                              transition
+                              duration-300
+                              group-hover:bg-black/30
+                            "
+                          >
+                            <span
+                              className="
+                                rounded-md
+                                bg-white/90
+                                px-2
+                                py-1
+                                text-[10px]
+                                font-semibold
+                                text-[#04162E]
+                                opacity-0
+                                shadow-sm
+                                transition
+                                duration-300
+                                group-hover:opacity-100
+                              "
+                            >
+                              Lihat Surat
+                            </span>
+                          </div>
+                        </button>
+                      ) : (
+                        <span
+                          className="
+                            inline-flex
+                            items-center
+                            justify-center
+                            rounded-lg
+                            bg-slate-100
+                            px-4
+                            py-2
+                            text-xs
+                            font-medium
+                            text-slate-400
+                          "
+                        >
+                          Belum tersedia
+                        </span>
+                      )}
                     </td>
                   </tr>
                 );
@@ -380,6 +509,106 @@ export default function ProjectTable({ projects }: Props) {
         open={selectedProject !== null}
         onClose={() => setSelectedProject(null)}
       />
+
+      {/* =========================================================
+          EXPERIENCE LETTER MODAL
+      ========================================================= */}
+
+      {selectedExperienceLetter && (
+        <div
+          className="
+            fixed
+            inset-0
+            z-[100]
+            flex
+            items-center
+            justify-center
+            bg-black/70
+            p-4
+            backdrop-blur-sm
+          "
+          role="dialog"
+          aria-modal="true"
+          aria-label="Preview Surat Pengalaman"
+          onMouseDown={(event) => {
+            if (event.target === event.currentTarget) {
+              setSelectedExperienceLetter(null);
+            }
+          }}
+        >
+          {/* Modal Container */}
+
+          <div
+            className="
+              relative
+              max-h-[92vh]
+              max-w-5xl
+              rounded-2xl
+              bg-white
+              p-2
+              shadow-2xl
+            "
+            onMouseDown={(event) => {
+              event.stopPropagation();
+            }}
+          >
+            {/* =====================================================
+                CLOSE BUTTON
+            ===================================================== */}
+
+            <button
+              type="button"
+              onClick={() => setSelectedExperienceLetter(null)}
+              className="
+                absolute
+                right-4
+                top-4
+                z-20
+                flex
+                h-10
+                w-10
+                items-center
+                justify-center
+                rounded-full
+                bg-black/60
+                text-white
+                shadow-lg
+                backdrop-blur-sm
+                transition-all
+                hover:bg-black/80
+                focus:outline-none
+                focus:ring-2
+                focus:ring-white
+              "
+              aria-label="Tutup surat pengalaman"
+            >
+              <X size={20} strokeWidth={2.5} />
+            </button>
+
+            {/* =====================================================
+                IMAGE
+            ===================================================== */}
+
+            <div className="flex max-h-[88vh] max-w-[90vw] items-center justify-center overflow-auto rounded-xl bg-slate-100">
+              <Image
+                src={selectedExperienceLetter}
+                alt="Surat Pengalaman"
+                width={1200}
+                height={1600}
+                unoptimized
+                className="
+                  max-h-[88vh]
+                  w-auto
+                  max-w-[90vw]
+                  rounded-xl
+                  object-contain
+                "
+                priority
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }

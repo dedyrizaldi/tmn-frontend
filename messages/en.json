@@ -1,254 +1,314 @@
 {
-   "navigation":{
-      "home":"Home",
-      "about":"About",
-      "services":"Services",
-      "equipment":"Equipment",
-      "projects":"Projects",
-      "qhse":"QHSE",
-      "news":"News",
-      "contact":"Contact",
-      "quote":"Request Quote"
-   },
-   "hero":{
-      "badge":"INDUSTRIAL CLEANING SPECIALIST",
-      "title":"Cleaner Solutions For A <blue>Safer Future</blue>",
-      "description":"Delivering professional tank cleaning and industrial waste management services for the Oil & Gas, Marine, Tank Terminal, and Manufacturing industries since 2007.",
-      "primary":"Our Services",
-      "watch":"Watch",
-      "company":"Company Profile"
-   },
-   "about":{
-      "badge":"ABOUT TMN",
-      "tag-line-1":"Professional.",
-      "tag-line-2":"Reliable.",
-      "tag-line-3":"Environmentally Responsible.",
-      "title":"Your Trusted Partner in Industrial Cleaning <blue>Solutions</blue>",
-      "description":"PT Tirta Mega Nusantara (TMN) has been a trusted provider of tank cleaning, industrial cleaning, sludge removal, pumping, tank washing, and hazardous waste management services since 2007.",
-      "description2":"With more than 19 years of experience, we are committed to delivering professional services for the Oil & Gas, Marine, Chemical, Manufacturing, Tank Terminal, and various industrial sectors while prioritizing quality, safety, and customer satisfaction.",
-      "button":"More About Us",
-      "about-content-1":"Established in 2007, PT Tirta Mega Nusantara has grown into one of Indonesia's leading industrial cleaning companies, providing reliable tank cleaning, sludge removal, industrial waste management, and environmental services.",
-      "about-content-2":"Supported by experienced professionals, certified procedures, and modern equipment, we are committed to delivering safe, efficient, and environmentally responsible solutions for a wide range of industries across Indonesia.",
-      "about-button":"Learn More About Us"
-   },
-   "whyChoose":{
-      "badge":"WHY CHOOSE TMN",
-      "title":"Our Commitment to Safety, Quality & the Environment",
-      "safety":{
-         "title":"Safety First",
-         "description":"Prioritizing safety in every project we undertake."
-      },
-      "certified":{
-         "title":"Certified Team",
-         "description":"Experienced and certified professionals."
-      },
-      "equipment":{
-         "title":"Modern Equipment",
-         "description":"Advanced equipment that meets industry standards."
-      },
-      "response":{
-         "title":"Fast Response",
-         "description":"Ready to respond quickly to customer needs."
-      },
-      "environment":{
-         "title":"Environmental Responsibility",
-         "description":"Committed to sustainable environmental management."
-      },
-      "zero":{
-         "title":"Zero Accident",
-         "description":"Promoting a strong safety culture across every project."
-      }
-   },
-   "services":{
-      "badge":"OUR SERVICES",
-      "title":"Comprehensive Industrial Services",
-      "button":"View All Services",
-      "tankCleaning":{
-         "title":"Tank Cleaning",
-         "description":"Professional cleaning of storage tanks to remove sludge, scale, and residue."
-      },
-      "tankWashing":{
-         "title":"Tank Washing",
-         "description":"High-pressure washing services for tanks and industrial equipment."
-      },
-      "pumping":{
-         "title":"Pumping Services",
-         "description":"Reliable pumping solutions for liquids, sludge, and chemical waste."
-      },
-      "rafting":{
-         "title":"Rafting & Mopping",
-         "description":"Manual cleaning for confined and hard-to-reach areas inside tanks."
-      },
-      "disposal":{
-         "title":"Waste Disposal",
-         "description":"Safe handling and disposal of hazardous (B3) waste in accordance with regulations."
-      }
-   },
-   "servicesOverview":{
-      "badge":"OUR SERVICES",
-      "title":"Complete <blue>Industrial Cleaning</blue> Solutions",
-      "description":"We provide comprehensive industrial cleaning solutions designed to support your operations safely, efficiently, and in compliance with environmental standards."
-   },
-   "servicesPage":{
-      "badge":"OUR SERVICES",
-      "title":"Integrated Industrial Cleaning Services",
-      "primary":"Get a Quote",
-      "secondary":"Contact Us",
-      "description":"We prioritize workplace safety, service quality, and environmental responsibility in every project we undertake.",
-      "tankCleaning":{
-         "title":"Tank Cleaning",
-         "description":"Comprehensive cleaning of storage tanks to remove sludge, scale, and residual contaminants."
-      },
-      "tankWashing":{
-         "title":"Tank Washing",
-         "description":"Tank washing services using advanced high-pressure cleaning technology for safe and efficient results."
-      },
-      "pumping":{
-         "title":"Pumping",
-         "description":"Industrial pumping services for sludge, liquids, and waste using specialized equipment."
-      },
-      "rafting":{
-         "title":"Rafting & Mopping",
-         "description":"Manual cleaning of hard-to-reach areas inside tanks to ensure thorough and optimal cleaning results."
-      },
-      "disposal":{
-         "title":"Waste Management",
-         "description":"Collection, transportation, and environmentally responsible management of hazardous and industrial waste in compliance with applicable regulations."
-      },
-      "detail":{
-         "badge":"OUR SERVICES",
-         "title":"Integrated Industrial Cleaning Services",
-         "description":"We provide a comprehensive range of professional services including Tank Cleaning, Industrial Cleaning, Sludge Removal, Pumping, Tank Washing, and Hazardous Waste Management while prioritizing safety, quality, and compliance with industry standards.",
-         "button":"View All Services",
-         "learnMore":"Learn More"
-      },
-      "process":{
-         "badge":"WORK PROCESS",
-         "title":"How We Work",
-         "description":"Every project follows a structured workflow designed to ensure safety, efficiency, and high-quality results."
-      },
-      "industries":{
-         "badge":"INDUSTRIES WE SERVE",
-         "title":"Supporting Various <blue>Industries Across Indonesia</blue>"
-      },
-      "faq":{
-         "badge":"FAQ",
-         "title":"Frequently Asked Questions",
-         "description":"Find answers to the most common questions about our services. If you need further information, our team is ready to assist you.",
-         "button":"Contact Us"
-      },
-      "modal":{
-         "cta":{
-            "badge":"READY TO START?",
-            "title":"Discuss your <service></service> requirements with our professional team.",
-            "description":"We are ready to help you plan, execute, and complete your project with the highest safety standards, superior quality, and on-time delivery.",
-            "primary":"Request a Quote",
-            "secondary":"Contact Us"
-         }
-      }
-   },
-   "projects":{
-      "badge":"FEATURED PROJECTS",
-      "title":"Delivering Results That Matter",
-      "description":"A selection of industrial cleaning projects successfully completed across various industries throughout Indonesia.",
-      "button":"View All Projects",
-      "tankCleaning":"Tank Cleaning",
-      "sludgeRemoval":"Sludge Removal",
-      "marineCleaning":"Marine Cleaning",
-      "wasteManagement":"Waste Management"
-   },
-   "qhse":{
-      "badge":"QHSE",
-      "title":"Safety, Health, Environment & Quality",
-      "description":"Safety, quality, and environmental protection are our top priorities in every project we undertake.",
-      "button":"Learn More",
-      "zero":"Zero Accident Commitment",
-      "certified":"Certified Personnel",
-      "environment":"Environmental Responsibility",
-      "procedure":"Standard Operating Procedures"
-   },
-   "equipmentPage":{
-      "hero":{
-         "badge":"OUR EQUIPMENT",
-         "title":"Modern Industrial Equipment for Every Project",
-         "description":"Our industrial fleet and equipment are designed to deliver maximum performance for tank cleaning, pumping, waste management, and other industrial services.",
-         "primary":"Contact Us",
-         "secondary":"Our Services",
-         "equipment":"Equipment Units",
-         "categories":"Categories",
-         "ready":"Ready to Operate"
-      },
-      "toolbar":{
-         "title":"All Equipment",
-         "description":"Browse all of our industrial equipment",
-         "sortBy":"Sort By",
-         "newest":"Newest",
-         "oldest":"Oldest",
-         "nameAsc":"Name (A-Z)",
-         "nameDesc":"Name (Z-A)",
-         "capacity":"Capacity",
-         "status":"Status"
-      },
-      "filters":{
-         "searchTitle":"Search Equipment",
-         "searchPlaceholder":"Search equipment..."
-      }
-   },
-   "projectPage":{
-      "hero":{
-         "home":"Home",
-         "projects":"Projects",
-         "badge":"PROJECT PORTFOLIO",
-         "title":"Industrial Projects We Have Successfully Delivered",
-         "description":"Explore our completed industrial projects including tank cleaning, industrial cleaning, sludge removal, pumping, and waste management executed with the highest standards of safety and quality.",
-         "primary":"Contact Us",
-         "secondary":"Our Services",
-          "stats":{
-              "projects":"Completed Projects",
-              "clients":"Industrial Clients",
-              "years":"Years Experience"
-          }
-      },
-      "filters":{
-            "search":"Search Project",
-            "placeholder":"Search project...",
-            "category":"Category",
-            "categories":{
-               "all":"All",
-               "tankCleaning":"Tank Cleaning",
-               "industrialCleaning":"Industrial Cleaning",
-               "wasteManagement":"Waste Management",
-               "sludgeRemoval":"Sludge Removal",
-               "pumping":"Pumping"
-            },
-             "year":"Year",
-              "years":{
-                  "all":"All Years"
-              },
-              "reset":"Reset All Filters"
+  "navigation": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "equipment": "Equipment",
+    "projects": "Projects",
+    "qhse": "QHSE",
+    "news": "News",
+    "contact": "Contact",
+    "quote": "Request Quote"
+  },
 
-         },
-          "detail":{
-              "cta":{
-                "badge":"CONTACT US",
-                "title":"Ready to Start Your Next Industrial Project?",
-                "description":"Discuss your tank cleaning, industrial cleaning, sludge removal, pumping, and waste management requirements with our professional team. We deliver safe, efficient, and reliable industrial solutions.",
-                "primary":"Request a Quotation",
-                "secondary":"Contact Us",
-                "stats":{
-                    "projects":"Completed Projects",
-                    "clients":"Industrial Clients",
-                    "commitment":"Commitment to Safety & Quality"
-                }
-              }
-          },
-         "toolbar":{
-            "sort":"Sort",
-            "newest":"Newest",
-            "oldest":"Oldest",
-            "nameAsc":"Name A-Z",
-            "nameDesc":"Name Z-A"
-         }
-     
-   }
+  "hero": {
+    "badge": "INDUSTRIAL CLEANING SPECIALIST",
+    "title": "Cleaner Solutions For A <blue>Safer Future</blue>",
+    "description": "Delivering professional tank cleaning and industrial waste management services for the Oil & Gas, Marine, Tank Terminal, and Manufacturing industries since 2007.",
+    "primary": "Our Services",
+    "watch": "Watch",
+    "company": "Company Profile"
+  },
+
+  "about": {
+    "badge": "ABOUT TMN",
+    "tag-line-1": "Professional.",
+    "tag-line-2": "Reliable.",
+    "tag-line-3": "Environmentally Responsible.",
+    "title": "Your Trusted Partner in Industrial Cleaning <blue>Solutions</blue>",
+    "description": "PT Tirta Mega Nusantara (TMN) has been a trusted provider of tank cleaning, industrial cleaning, sludge removal, pumping, tank washing, and hazardous waste management services since 2007.",
+    "description2": "With more than 19 years of experience, we are committed to delivering professional services for the Oil & Gas, Marine, Chemical, Manufacturing, Tank Terminal, and various industrial sectors while prioritizing quality, safety, and customer satisfaction.",
+    "button": "More About Us",
+    "about-content-1": "Established in 2007, PT Tirta Mega Nusantara has grown into one of Indonesia's leading industrial cleaning companies, providing reliable tank cleaning, sludge removal, industrial waste management, and environmental services.",
+    "about-content-2": "Supported by experienced professionals, certified procedures, and modern equipment, we are committed to delivering safe, efficient, and environmentally responsible solutions for a wide range of industries across Indonesia.",
+    "about-button": "Learn More About Us"
+  },
+
+  "whyChoose": {
+    "badge": "WHY CHOOSE TMN",
+    "title": "Our Commitment to Safety, Quality & the Environment",
+
+    "safety": {
+      "title": "Safety First",
+      "description": "Prioritizing safety in every project we undertake."
+    },
+
+    "certified": {
+      "title": "Certified Team",
+      "description": "Experienced and certified professionals."
+    },
+
+    "equipment": {
+      "title": "Modern Equipment",
+      "description": "Advanced equipment that meets industry standards."
+    },
+
+    "response": {
+      "title": "Fast Response",
+      "description": "Ready to respond quickly to customer needs."
+    },
+
+    "environment": {
+      "title": "Environmental Responsibility",
+      "description": "Committed to sustainable environmental management."
+    },
+
+    "zero": {
+      "title": "Zero Accident",
+      "description": "Promoting a strong safety culture across every project."
+    }
+  },
+
+  "services": {
+    "badge": "OUR SERVICES",
+   "close": "Close",
+
+    "title": "Integrated Industrial Cleaning Services",
+    "button": "View All Services",
+    "viewDetail": "View Details",
+
+    "tankCleaning": {
+      "title": "Tank Cleaning",
+      "shortDescription": "Professional cleaning of storage tanks from sludge, scale and hydrocarbon residue.",
+      "description": "Our Tank Cleaning service removes sludge, scale, sediments, and hydrocarbon residues safely and efficiently using modern equipment and certified personnel to restore tank performance and safety."
+    },
+
+    "tankWashing": {
+      "title": "Tank Washing",
+      "shortDescription": "High pressure washing for industrial tanks and vessels.",
+      "description": "High pressure water jet cleaning system designed to remove dirt, oil, grease, and residues from tanks and industrial equipment safely and efficiently."
+    },
+
+    "sludgeRemoval": {
+      "title": "Sludge Removal",
+      "shortDescription": "Safe sludge removal from tanks, ponds and industrial facilities.",
+      "description": "Professional sludge removal service using vacuum systems and pumping equipment to minimize downtime while maintaining environmental compliance."
+    },
+
+    "industrialCleaning": {
+      "title": "Industrial Cleaning",
+      "shortDescription": "Comprehensive cleaning solutions for industrial facilities.",
+      "description": "Cleaning of factories, plants, refineries, marine facilities and industrial equipment using professional methods that meet international safety standards."
+    },
+
+    "pumping": {
+      "title": "Pumping",
+      "shortDescription": "Industrial pumping service for liquid, sludge and waste transfer.",
+      "description": "High-capacity pumping services for sludge, liquid waste, chemicals, and industrial fluids using reliable pumping systems."
+    },
+
+    "wasteManagement": {
+      "title": "Waste Management",
+      "shortDescription": "Integrated hazardous and industrial waste management.",
+      "description": "Comprehensive waste management services including collection, transportation, treatment, and environmentally responsible disposal according to regulations."
+    }
+  },
+
+  "servicesOverview": {
+    "badge": "OUR SERVICES",
+    "title": "Complete <blue>Industrial Cleaning</blue> Solutions",
+    "description": "We provide comprehensive industrial cleaning solutions designed to support your operations safely, efficiently, and in compliance with environmental standards."
+  },
+
+  "servicesPage": {
+    "badge": "OUR SERVICES",
+    "title": "Integrated Industrial Cleaning Services",
+    "primary": "Get a Quote",
+    "secondary": "Contact Us",
+    "description": "We prioritize workplace safety, service quality, and environmental responsibility in every project we undertake.",
+
+    "tankCleaning": {
+      "title": "Tank Cleaning",
+      "description": "Comprehensive cleaning of storage tanks to remove sludge, scale, and residual contaminants."
+    },
+
+    "tankWashing": {
+      "title": "Tank Washing",
+      "description": "Tank washing services using advanced high-pressure cleaning technology for safe and efficient results."
+    },
+
+    "sludgeRemoval": {
+      "title": "Sludge Removal",
+      "description": "Safe sludge removal from tanks, ponds, and industrial facilities using professional vacuum and pumping equipment."
+    },
+
+    "industrialCleaning": {
+      "title": "Industrial Cleaning",
+      "description": "Comprehensive cleaning solutions for factories, plants, refineries, marine facilities, and industrial equipment."
+    },
+
+    "pumping": {
+      "title": "Pumping",
+      "description": "Industrial pumping services for sludge, liquids, chemicals, and waste using specialized equipment."
+    },
+
+    "wasteManagement": {
+      "title": "Waste Management",
+      "description": "Collection, transportation, treatment, and environmentally responsible management of hazardous and industrial waste in compliance with applicable regulations."
+    },
+
+    "detail": {
+      "badge": "OUR SERVICES",
+      "title": "Integrated Industrial Cleaning Services",
+      "description": "We provide a comprehensive range of professional services including Tank Cleaning, Industrial Cleaning, Sludge Removal, Pumping, Tank Washing, and Hazardous Waste Management while prioritizing safety, quality, and compliance with industry standards.",
+      "button": "View All Services",
+      "learnMore": "Learn More"
+    },
+
+    "process": {
+      "badge": "WORK PROCESS",
+      "title": "How We Work",
+      "description": "Every project follows a structured workflow designed to ensure safety, efficiency, and high-quality results."
+    },
+
+    "industries": {
+      "badge": "INDUSTRIES WE SERVE",
+      "title": "Supporting Various <blue>Industries Across Indonesia</blue>"
+    },
+
+    "faq": {
+      "badge": "FAQ",
+      "title": "Frequently Asked Questions",
+      "description": "Find answers to the most common questions about our services. If you need further information, our team is ready to assist you.",
+      "button": "Contact Us"
+    },
+
+    "modal": {
+      "cta": {
+        "badge": "READY TO START?",
+        "title": "Discuss your <service></service> requirements with our professional team.",
+        "description": "We are ready to help you plan, execute, and complete your project with the highest safety standards, superior quality, and on-time delivery.",
+        "primary": "Request a Quote",
+        "secondary": "Contact Us"
+      }
+    }
+  },
+
+  "projects": {
+    "badge": "FEATURED PROJECTS",
+    "title": "Delivering Results That Matter",
+    "description": "A selection of industrial cleaning projects successfully completed across various industries throughout Indonesia.",
+    "button": "View All Projects",
+    "tankCleaning": "Tank Cleaning",
+    "sludgeRemoval": "Sludge Removal",
+    "marineCleaning": "Marine Cleaning",
+    "wasteManagement": "Waste Management"
+  },
+
+  "qhse": {
+    "badge": "QHSE",
+    "title": "Safety, Health, Environment & Quality",
+    "description": "Safety, quality, and environmental protection are our top priorities in every project we undertake.",
+    "button": "Learn More",
+    "zero": "Zero Accident Commitment",
+    "certified": "Certified Personnel",
+    "environment": "Environmental Responsibility",
+    "procedure": "Standard Operating Procedures"
+  },
+
+  "equipmentPage": {
+    "hero": {
+      "badge": "OUR EQUIPMENT",
+      "title": "Modern Industrial Equipment for Every Project",
+      "description": "Our industrial fleet and equipment are designed to deliver maximum performance for tank cleaning, pumping, waste management, and other industrial services.",
+      "primary": "Contact Us",
+      "secondary": "Our Services",
+      "equipment": "Equipment Units",
+      "categories": "Categories",
+      "ready": "Ready to Operate"
+    },
+
+    "toolbar": {
+      "title": "All Equipment",
+      "description": "Browse all of our industrial equipment",
+      "sortBy": "Sort By",
+      "newest": "Newest",
+      "oldest": "Oldest",
+      "nameAsc": "Name (A-Z)",
+      "nameDesc": "Name (Z-A)",
+      "capacity": "Capacity",
+      "status": "Status"
+    },
+
+    "filters": {
+      "searchTitle": "Search Equipment",
+      "searchPlaceholder": "Search equipment..."
+    }
+  },
+
+  "projectPage": {
+    "hero": {
+      "home": "Home",
+      "projects": "Projects",
+      "badge": "PROJECT PORTFOLIO",
+      "title": "Industrial Projects We Have Successfully Delivered",
+      "description": "Explore our completed industrial projects including tank cleaning, industrial cleaning, sludge removal, pumping, and waste management executed with the highest standards of safety and quality.",
+      "primary": "Contact Us",
+      "secondary": "Our Services",
+
+      "stats": {
+        "projects": "Completed Projects",
+        "clients": "Industrial Clients",
+        "years": "Years Experience"
+      }
+    },
+
+    "filters": {
+      "search": "Search Project",
+      "placeholder": "Search project...",
+      "category": "Category",
+
+      "categories": {
+        "all": "All",
+        "tankCleaning": "Tank Cleaning",
+        "industrialCleaning": "Industrial Cleaning",
+        "wasteManagement": "Waste Management",
+        "sludgeRemoval": "Sludge Removal",
+        "pumping": "Pumping"
+      },
+
+      "year": "Year",
+
+      "years": {
+        "all": "All Years"
+      },
+
+      "reset": "Reset All Filters"
+    },
+
+    "detail": {
+      "cta": {
+        "badge": "CONTACT US",
+        
+        "title": "Ready to Start Your Next Industrial Project?",
+        "description": "Discuss your tank cleaning, industrial cleaning, sludge removal, pumping, and waste management requirements with our professional team. We deliver safe, efficient, and reliable industrial solutions.",
+        "primary": "Request a Quotation",
+        "secondary": "Contact Us",
+
+        "stats": {
+          "projects": "Completed Projects",
+          "clients": "Industrial Clients",
+          "commitment": "Commitment to Safety & Quality"
+        }
+      }
+    },
+
+    "toolbar": {
+      "sort": "Sort",
+      "newest": "Newest",
+      "oldest": "Oldest",
+      "nameAsc": "Name A-Z",
+      "nameDesc": "Name Z-A"
+    }
+  }
 }

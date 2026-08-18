@@ -1,7 +1,7 @@
 "use client";
 
 import { Menu } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -18,6 +18,7 @@ interface MobileMenuProps {
 
 export default function MobileMenu({ scrolled }: MobileMenuProps) {
   const pathname = usePathname();
+  const locale = useLocale();
   const t = useTranslations("navigation");
 
   return (
@@ -38,14 +39,16 @@ export default function MobileMenu({ scrolled }: MobileMenuProps) {
               ${
                 scrolled
                   ? `
-                    border border-slate-200
+                    border
+                    border-slate-200
                     bg-white
                     text-slate-900
                     shadow-sm
                     hover:bg-slate-100
                   `
                   : `
-                    border border-white/20
+                    border
+                    border-white/20
                     bg-black/20
                     text-white
                     backdrop-blur-md
@@ -62,7 +65,6 @@ export default function MobileMenu({ scrolled }: MobileMenuProps) {
         <SheetContent side="right" className="flex flex-col bg-white p-0">
           {/* Header */}
           <div className="border-b border-slate-200 px-6 py-5">
-            {/* gunakan logo penuh agar terlihat */}
             <Logo />
           </div>
 
@@ -74,10 +76,13 @@ export default function MobileMenu({ scrolled }: MobileMenuProps) {
                   pathname === item.href ||
                   (item.href !== "/" && pathname.startsWith(item.href));
 
+                const linkLocale = item.forceLocale ?? locale;
+
                 return (
                   <Link
                     key={item.key}
                     href={item.href}
+                    locale={linkLocale}
                     className={`
                       flex
                       items-center

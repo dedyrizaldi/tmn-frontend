@@ -12,6 +12,7 @@ export const navbarItems: NavigationItem[] = [
   {
     key: "services",
     href: "/services",
+    forceLocale: "id",
   },
   {
     key: "equipment",
@@ -25,10 +26,10 @@ export const navbarItems: NavigationItem[] = [
   //   key: "qhse",
   //   href: "/qhse",
   // },
-  {
-    key: "news",
-    href: "/news",
-  },
+  // {
+  //   key: "news",
+  //   href: "/news",
+  // },
   {
     key: "contact",
     href: "/contact",

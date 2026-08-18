@@ -36,19 +36,12 @@ export default function DetailServiceCard({
       "
     >
       {/* Image */}
-
-      <div
-        className="
-          relative
-          h-36
-          overflow-hidden
-        "
-      >
+      <div className="relative h-36 overflow-hidden">
         <Image
           src={image}
           alt={title}
           fill
-          sizes="25vw"
+          sizes="(max-width: 1024px) 100vw, 16vw"
           className="
             object-cover
             transition-transform
@@ -70,10 +63,8 @@ export default function DetailServiceCard({
       </div>
 
       {/* Content */}
-
       <div className="relative px-6 pb-7 pt-8">
         {/* Floating Icon */}
-
         <div
           className="
             absolute
@@ -100,7 +91,6 @@ export default function DetailServiceCard({
         </div>
 
         {/* Title */}
-
         <h3
           className="
             text-[15px]
@@ -115,7 +105,6 @@ export default function DetailServiceCard({
         </h3>
 
         {/* Description */}
-
         <p
           className="
             mt-4
@@ -129,10 +118,12 @@ export default function DetailServiceCard({
         </p>
 
         {/* Button */}
-
         <button
           type="button"
-          onClick={onClick}
+          onClick={(event) => {
+            event.stopPropagation();
+            onClick?.();
+          }}
           className="
             mt-6
             inline-flex
@@ -145,6 +136,7 @@ export default function DetailServiceCard({
             hover:text-[#0E5DE8]
           "
         >
+          {/** Button text sementara mengikuti locale dari parent */}
           Lihat Detail
           <ArrowRight
             size={14}

@@ -1,6 +1,7 @@
 "use client";
 
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useLocale, useTranslations } from "next-intl";
 import { useEffect, useRef, useState } from "react";
 
 import DetailServiceCard from "./detail-service-card";
@@ -11,28 +12,82 @@ interface Props {
 }
 
 export default function DetailServicesMobile({ onSelectService }: Props) {
+  const locale = useLocale();
+  const t = useTranslations("services");
+
   const sliderRef = useRef<HTMLDivElement>(null);
 
   const [active, setActive] = useState(0);
   const [canLeft, setCanLeft] = useState(false);
   const [canRight, setCanRight] = useState(true);
 
+  const updateSliderState = () => {
+    const slider = sliderRef.current;
+
+    if (!slider) {
+      return;
+    }
+
+    const card = slider.firstElementChild as HTMLElement | null;
+
+    if (!card) {
+      return;
+    }
+
+    const gap = 16;
+    const cardWidth = card.offsetWidth + gap;
+
+    const currentIndex = Math.round(slider.scrollLeft / cardWidth);
+
+    setActive(Math.max(0, Math.min(currentIndex, services.length - 1)));
+
+    setCanLeft(slider.scrollLeft > 5);
+
+    setCanRight(
+      slider.scrollLeft < slider.scrollWidth - slider.clientWidth - 5,
+    );
+  };
+
   const scroll = (direction: "left" | "right") => {
     const slider = sliderRef.current;
 
-    if (!slider) return;
+    if (!slider) {
+      return;
+    }
 
-    const card = slider.firstElementChild as HTMLElement;
+    const card = slider.firstElementChild as HTMLElement | null;
 
-    if (!card) return;
+    if (!card) {
+      return;
+    }
 
     const gap = 16;
+    const distance = card.offsetWidth + gap;
 
     slider.scrollBy({
-      left:
-        direction === "right"
-          ? card.clientWidth + gap
-          : -(card.clientWidth + gap),
+      left: direction === "right" ? distance : -distance,
+      behavior: "smooth",
+    });
+  };
+
+  const scrollToIndex = (index: number) => {
+    const slider = sliderRef.current;
+
+    if (!slider) {
+      return;
+    }
+
+    const card = slider.firstElementChild as HTMLElement | null;
+
+    if (!card) {
+      return;
+    }
+
+    const gap = 16;
+    const distance = card.offsetWidth + gap;
+
+    slider.scrollTo({
+      left: distance * index,
       behavior: "smooth",
     });
   };
@@ -40,44 +95,50 @@ export default function DetailServicesMobile({ onSelectService }: Props) {
   useEffect(() => {
     const slider = sliderRef.current;
 
-    if (!slider) return;
+    if (!slider) {
+      return;
+    }
+
+    updateSliderState();
 
     const handleScroll = () => {
-      const card = slider.firstElementChild as HTMLElement;
-
-      if (!card) return;
-
-      const width = card.clientWidth + 16;
-
-      setActive(Math.round(slider.scrollLeft / width));
-
-      setCanLeft(slider.scrollLeft > 5);
-
-      setCanRight(
-        slider.scrollLeft < slider.scrollWidth - slider.clientWidth - 5,
-      );
+      updateSliderState();
     };
 
-    slider.addEventListener("scroll", handleScroll);
+    const handleResize = () => {
+      updateSliderState();
+    };
 
-    handleScroll();
+    slider.addEventListener("scroll", handleScroll, {
+      passive: true,
+    });
 
-    return () => slider.removeEventListener("scroll", handleScroll);
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      slider.removeEventListener("scroll", handleScroll);
+
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
 
   return (
-    <>
-      {/* Navigation */}
-
+    <div className="w-full">
+      {/* Header */}
       <div className="mb-6 flex items-center justify-between">
         <p className="text-sm font-medium text-slate-500">
-          {services.length} Services
+          {services.length} {locale === "id" ? "Layanan" : "Services"}
         </p>
 
         <div className="flex gap-2">
+          {/* Previous */}
           <button
+            type="button"
             onClick={() => scroll("left")}
             disabled={!canLeft}
+            aria-label={
+              locale === "id" ? "Layanan sebelumnya" : "Previous service"
+            }
             className="
               flex
               h-10
@@ -88,18 +149,28 @@ export default function DetailServicesMobile({ onSelectService }: Props) {
               border
               border-slate-200
               bg-white
-              transition
+              text-slate-700
+              transition-all
+              duration-300
+              hover:border-[#156CFF]
               hover:bg-[#156CFF]
               hover:text-white
+              disabled:cursor-not-allowed
               disabled:opacity-40
+              disabled:hover:border-slate-200
+              disabled:hover:bg-white
+              disabled:hover:text-slate-700
             "
           >
             <ChevronLeft size={18} />
           </button>
 
+          {/* Next */}
           <button
+            type="button"
             onClick={() => scroll("right")}
             disabled={!canRight}
+            aria-label={locale === "id" ? "Layanan berikutnya" : "Next service"}
             className="
               flex
               h-10
@@ -110,10 +181,17 @@ export default function DetailServicesMobile({ onSelectService }: Props) {
               border
               border-slate-200
               bg-white
-              transition
+              text-slate-700
+              transition-all
+              duration-300
+              hover:border-[#156CFF]
               hover:bg-[#156CFF]
               hover:text-white
+              disabled:cursor-not-allowed
               disabled:opacity-40
+              disabled:hover:border-slate-200
+              disabled:hover:bg-white
+              disabled:hover:text-slate-700
             "
           >
             <ChevronRight size={18} />
@@ -122,7 +200,6 @@ export default function DetailServicesMobile({ onSelectService }: Props) {
       </div>
 
       {/* Slider */}
-
       <div
         ref={sliderRef}
         className="
@@ -155,7 +232,11 @@ export default function DetailServicesMobile({ onSelectService }: Props) {
             `}
           >
             <DetailServiceCard
-              {...service}
+              slug={service.slug}
+              title={t(`${service.key}.title`)}
+              description={t(`${service.key}.shortDescription`)}
+              image={service.image}
+              icon={service.icon}
               onClick={() => onSelectService(service)}
             />
           </div>
@@ -163,25 +244,18 @@ export default function DetailServicesMobile({ onSelectService }: Props) {
       </div>
 
       {/* Indicator */}
-
       <div className="mt-6 flex justify-center gap-2">
-        {services.map((_, index) => (
+        {services.map((service, index) => (
           <button
-            key={index}
-            onClick={() => {
-              const slider = sliderRef.current;
-
-              if (!slider) return;
-
-              const card = slider.firstElementChild as HTMLElement;
-
-              if (!card) return;
-
-              slider.scrollTo({
-                left: (card.clientWidth + 16) * index,
-                behavior: "smooth",
-              });
-            }}
+            key={service.slug}
+            type="button"
+            onClick={() => scrollToIndex(index)}
+            aria-label={
+              locale === "id"
+                ? `Buka layanan ${index + 1}`
+                : `Go to service ${index + 1}`
+            }
+            aria-current={active === index ? "true" : undefined}
             className={`
               h-2
               rounded-full
@@ -192,6 +266,6 @@ export default function DetailServicesMobile({ onSelectService }: Props) {
           />
         ))}
       </div>
-    </>
+    </div>
   );
 }

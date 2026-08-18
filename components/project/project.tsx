@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 
-import ProjectHero from "./hero/hero";
 import ProjectFilters from "./filters/project-filters";
 import ProjectToolbar from "./toolbar/project-toolbar";
 import ProjectGrid from "./project-grid/project-grid";

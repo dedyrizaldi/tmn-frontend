@@ -260,8 +260,10 @@ frontend
 │  │  │  ├─ empty-state.tsx
 │  │  │  ├─ project-badge.tsx
 │  │  │  ├─ project-card.tsx
+│  │  │  ├─ project-gallery-modal.tsx
 │  │  │  ├─ project-grid.tsx
-│  │  │  └─ project-pagination.tsx
+│  │  │  ├─ project-pagination.tsx
+│  │  │  └─ project-table.tsx
 │  │  ├─ project.data.ts
 │  │  ├─ project.tsx
 │  │  ├─ toolbar

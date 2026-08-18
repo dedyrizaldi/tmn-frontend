@@ -20,6 +20,14 @@ export interface Project {
   excerpt: string;
   description: string;
   thumbnail: string;
+
+  /**
+   * Surat pengalaman project.
+   * Berisi URL gambar surat atau null
+   * jika belum tersedia.
+   */
+  experience_letter: string | null;
+
   gallery: ProjectGallery[];
   category: ProjectCategory;
   featured: boolean;
@@ -70,8 +78,6 @@ export interface ProjectDetailResponse {
 
 export interface ProjectCategoryResponse {
   success: boolean;
-
   message: string;
-
   data: ProjectCategory[];
 }

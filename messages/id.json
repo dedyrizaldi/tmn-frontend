@@ -1,256 +1,313 @@
 {
-   "navigation":{
-      "home":"Beranda",
-      "about":"Tentang Kami",
-      "services":"Layanan",
-      "equipment":"Peralatan",
-      "projects":"Proyek",
-      "qhse":"QHSE",
-      "news":"Berita",
-      "contact":"Kontak",
-      "quote":"Minta Penawaran"
-   },
-   "hero":{
-      "badge":"SPESIALIS PEMBERSIHAN INDUSTRI",
-      "title":"Solusi Pembersihan Profesional untuk <blue>Masa Depan yang Lebih Aman</blue>",
-      "description":"Menyediakan layanan profesional Tank Cleaning, Industrial Cleaning, Sludge Removal, serta Pengelolaan Limbah Industri untuk sektor Oil & Gas, Marine, Tank Terminal, Chemical, dan Manufacturing sejak tahun 2007.",
-      "primary":"Lihat Layanan",
-      "watch":"Tonton",
-      "company":"Profil Perusahaan"
-   },
-   "about":{
-      "badge":"TENTANG TMN",
-      "tag-line-1":"Profesional.",
-      "tag-line-2":"Andal.",
-      "tag-line-3":"Bertanggung Jawab terhadap Lingkungan.",
-      "title":"Mitra Terpercaya untuk Solusi <blue>Pembersihan Industri</blue>",
-      "description":"PT Tirta Mega Nusantara (TMN) merupakan perusahaan spesialis Tank Cleaning, Industrial Cleaning, Sludge Removal, Pumping, Tank Washing, serta Pengelolaan Limbah B3 yang telah dipercaya oleh berbagai perusahaan di Indonesia sejak tahun 2007.",
-      "description2":"Dengan pengalaman lebih dari 19 tahun, kami berkomitmen memberikan layanan yang aman, profesional, efisien, dan ramah lingkungan bagi industri Oil & Gas, Marine, Chemical, Manufacturing, Tank Terminal, serta berbagai sektor industri lainnya di seluruh Indonesia.",
-      "button":"Selengkapnya Tentang Kami",
-      "about-content-1":"Didirikan pada tahun 2007, PT Tirta Mega Nusantara telah berkembang menjadi salah satu perusahaan jasa pembersihan industri terkemuka di Indonesia yang menyediakan layanan Tank Cleaning, Sludge Removal, Industrial Cleaning, Pengelolaan Limbah Industri, dan layanan lingkungan secara profesional.",
-      "about-content-2":"Didukung oleh tenaga kerja berpengalaman, prosedur kerja yang tersertifikasi, serta teknologi dan peralatan modern, kami berkomitmen menghadirkan solusi yang aman, efisien, dan bertanggung jawab terhadap lingkungan untuk memenuhi kebutuhan berbagai industri di seluruh Indonesia.",
-      "about-button":"Pelajari Lebih Lanjut Tentang Kami"
-   },
-   "whyChoose":{
-      "badge":"MENGAPA MEMILIH TMN",
-      "title":"Komitmen Kami terhadap Keselamatan, Kualitas, dan Lingkungan",
-      "safety":{
-         "title":"Keselamatan Utama",
-         "description":"Keselamatan menjadi prioritas utama dalam setiap pekerjaan yang kami lakukan."
-      },
-      "certified":{
-         "title":"Tim Bersertifikat",
-         "description":"Didukung oleh tenaga kerja profesional yang berpengalaman dan bersertifikat."
-      },
-      "equipment":{
-         "title":"Peralatan Modern",
-         "description":"Menggunakan peralatan modern yang memenuhi standar industri."
-      },
-      "response":{
-         "title":"Respons Cepat",
-         "description":"Siap memberikan respons cepat terhadap kebutuhan pelanggan."
-      },
-      "environment":{
-         "title":"Peduli Lingkungan",
-         "description":"Berkomitmen terhadap pengelolaan lingkungan yang berkelanjutan."
-      },
-      "zero":{
-         "title":"Zero Accident",
-         "description":"Menerapkan budaya kerja yang aman untuk mencapai target Zero Accident pada setiap proyek."
-      }
-   },
-   "servicesOverview":{
-      "badge":"LAYANAN KAMI",
-      "title":"Solusi <blue>Pembersihan Industri</blue> Terlengkap",
-      "description":"Kami menyediakan berbagai layanan pembersihan industri yang dirancang untuk mendukung operasional perusahaan secara aman, efisien, dan sesuai dengan standar lingkungan."
-   },
-   "servicesPage":{
-      "badge":"LAYANAN KAMI",
-      "title":"Layanan Pembersihan Industri Terpadu",
-      "primary":"Dapatkan Penawaran",
-      "secondary":"Hubungi Kami",
-      "description":"Kami menjadikan keselamatan kerja, kualitas layanan, serta kepedulian terhadap lingkungan sebagai prioritas utama dalam setiap proyek yang kami kerjakan.",
-      "tankCleaning":{
-         "title":"Tank Cleaning",
-         "description":"Pembersihan tangki penyimpanan dari sludge, kerak, dan residu secara menyeluruh."
-      },
-      "tankWashing":{
-         "title":"Tank Washing",
-         "description":"Pencucian tangki menggunakan teknologi High Pressure Cleaning yang efektif dan aman."
-      },
-      "pumping":{
-         "title":"Pumping",
-         "description":"Layanan pemompaan sludge, cairan, dan limbah industri menggunakan peralatan khusus."
-      },
-      "rafting":{
-         "title":"Rafting & Mopping",
-         "description":"Pembersihan manual pada area tangki yang sulit dijangkau untuk memastikan hasil maksimal."
-      },
-      "disposal":{
-         "title":"Pengelolaan Limbah",
-         "description":"Pengangkutan dan pengelolaan limbah B3 sesuai standar keselamatan dan peraturan yang berlaku."
-      },
-      "detail":{
-         "badge":"LAYANAN KAMI",
-         "title":"Layanan Pembersihan Industri Terpadu",
-         "description":"Kami menyediakan berbagai layanan profesional untuk kebutuhan Tank Cleaning, Industrial Cleaning, Sludge Removal, Pumping, Tank Washing, hingga Pengelolaan Limbah B3 dengan mengutamakan keselamatan, kualitas, dan kepatuhan terhadap standar industri.",
-         "button":"Lihat Semua Layanan",
-         "learnMore":"Selengkapnya"
-      },
-      "process":{
-         "badge":"PROSES KERJA",
-         "title":"Bagaimana Kami Bekerja",
-         "description":"Setiap proyek kami kerjakan melalui tahapan yang terencana, aman, dan sesuai dengan standar operasional untuk memastikan hasil yang berkualitas."
-      },
-      "industries":{
-         "badge":"INDUSTRI KAMI LAYANI",
-         "title":"Didukung Berbagai <blue>Industri di Indonesia</blue>"
-      },
-      "faq":{
-         "badge":"PERTANYAAN UMUM",
-         "title":"Pertanyaan yang sering diajukan",
-         "description":"Temukan jawaban atas pertanyaan yang paling sering diajukan mengenai layanan kami. Jika Anda memerlukan informasi lebih lanjut, tim kami siap membantu.",
-         "button":"Hubungi Kami"
-      },
-      "modal":{
-         "cta":{
-            "badge":"SIAP MEMULAI PROYEK?",
-            "title":"Diskusikan kebutuhan <service></service> Anda bersama tim profesional kami.",
-            "description":"Kami siap membantu Anda merencanakan, melaksanakan, dan menyelesaikan pekerjaan dengan standar keselamatan tinggi, kualitas terbaik, serta penyelesaian tepat waktu.",
-            "primary":"Minta Penawaran",
-            "secondary":"Hubungi Kami"
-         }
-      }
-   },
-   "services":{
-      "badge":"LAYANAN KAMI",
-      "title":"Layanan Pembersihan Industri Terpadu",
-      "button":"Lihat Semua Layanan",
-      "tankCleaning":{
-         "title":"Tank Cleaning",
-         "description":"Pembersihan tangki penyimpanan dari sludge, kerak, dan residu secara menyeluruh."
-      },
-      "tankWashing":{
-         "title":"Tank Washing",
-         "description":"Pencucian tangki menggunakan teknologi High Pressure Cleaning yang efektif dan aman."
-      },
-      "pumping":{
-         "title":"Pumping",
-         "description":"Layanan pemompaan sludge, cairan, dan limbah industri menggunakan peralatan khusus."
-      },
-      "rafting":{
-         "title":"Rafting & Mopping",
-         "description":"Pembersihan manual pada area tangki yang sulit dijangkau untuk memastikan hasil maksimal."
-      },
-      "disposal":{
-         "title":"Pengelolaan Limbah",
-         "description":"Pengangkutan dan pengelolaan limbah B3 sesuai standar keselamatan dan peraturan yang berlaku."
-      }
-   },
-   "projects":{
-      "badge":"PROYEK UNGGULAN",
-      "title":"Hasil <blue>Nyata</blue> yang Kami Berikan",
-      "description":"Berbagai proyek pembersihan industri yang telah berhasil kami selesaikan untuk berbagai sektor industri di seluruh Indonesia.",
-      "button":"Lihat Semua Proyek",
-      "tankCleaning":"Tank Cleaning",
-      "sludgeRemoval":"Sludge Removal",
-      "marineCleaning":"Pembersihan Area Marine",
-      "wasteManagement":"Pengelolaan Limbah"
-   },
-   "qhse":{
-      "badge":"QHSE",
-      "title":"Keselamatan, Kesehatan Kerja, Lingkungan & Mutu",
-      "description":"Kami menjadikan keselamatan kerja, kualitas layanan, serta kepedulian terhadap lingkungan sebagai prioritas utama dalam setiap proyek yang kami kerjakan.",
-      "button":"Pelajari Selengkapnya",
-      "zero":"Komitmen Zero Accident",
-      "certified":"Personel Bersertifikat",
-      "environment":"Kepedulian terhadap Lingkungan",
-      "procedure":"Prosedur Operasi Standar"
-   },
-   "explore":"Jelajahi Layanan",
-   "watch":"Tonton",
-   "company":"Profil Perusahaan",
-   "equipmentPage":{
-      "hero":{
-         "badge":"PERALATAN KAMI",
-         "title":"Peralatan Industri Modern untuk Mendukung Setiap Proyek",
-         "description":"Armada dan peralatan industri kami dirancang untuk memberikan performa maksimal pada pekerjaan tank cleaning, pumping, waste management, dan berbagai layanan industri lainnya.",
-         "primary":"Hubungi Kami",
-         "secondary":"Lihat Layanan",
-         "equipment":"Unit Peralatan",
-         "categories":"Kategori",
-         "ready":"Siap Operasi"
-      },
-      "toolbar":{
-         "title":"Semua Peralatan",
-         "description":"Menampilkan seluruh peralatan industri kami",
-         "sortBy":"Urutkan",
-         "newest":"Terbaru",
-         "oldest":"Terlama",
-         "nameAsc":"Nama (A-Z)",
-         "nameDesc":"Nama (Z-A)",
-         "capacity":"Kapasitas",
-         "status":"Status"
-      },
-      "filters":{
-         "searchTitle":"Cari Peralatan",
-         "searchPlaceholder":"Cari nama peralatan..."
-      }
-   },
-   "projectPage":{
-      "hero":{
-         "home":"Beranda",
-         "projects":"Proyek",
-         "badge":"PORTOFOLIO PROYEK",
-         "title":"Proyek Industri yang Telah Kami Selesaikan",
-         "description":"Lihat berbagai proyek tank cleaning, industrial cleaning, sludge removal, pumping, dan waste management yang telah kami selesaikan dengan standar keselamatan, kualitas, dan ketepatan waktu yang tinggi.",
-         "primary":"Hubungi Kami",
-         "secondary":"Lihat Layanan",
-         "stats":{
-            "projects":"Proyek Selesai",
-            "clients":"Klien Industri",
-            "years":"Tahun Pengalaman"
-         }
-      },
-      "filters":{
-         "search":"Cari Proyek",
-         "placeholder":"Cari nama proyek...",
-         "category":"Kategori",
-         "categories":{
-            "all":"Semua",
-            "tankCleaning":"Tank Cleaning",
-            "industrialCleaning":"Industrial Cleaning",
-            "wasteManagement":"Waste Management",
-            "sludgeRemoval":"Sludge Removal",
-            "pumping":"Pumping"
-         },
-         "year":"Tahun",
-         "years":{
-            "all":"Semua Tahun"
-         },
-         "reset":"Reset Semua Filter"
-      },
-      "detail":{
-      "cta":{
-         "badge":"HUBUNGI KAMI",
-         "title":"Siap Memulai Proyek Industri Anda?",
-         "description":"Diskusikan kebutuhan tank cleaning, industrial cleaning, sludge removal, pumping, dan waste management bersama tim profesional kami. Kami siap memberikan solusi yang aman, efisien, dan sesuai standar industri.",
-         "primary":"Minta Penawaran",
-         "secondary":"Hubungi Kami",
-         "stats":{
-            "projects":"Proyek Selesai",
-            "clients":"Klien Industri",
-            "commitment":"Komitmen terhadap Keselamatan & Kualitas"
-         }
-      }
-   },
-    "toolbar":{
-        "sort":"Urutkan",
-        "newest":"Terbaru",
-        "oldest":"Terlama",
-        "nameAsc":"Nama A-Z",
-        "nameDesc":"Nama Z-A"
+  "navigation": {
+    "home": "Beranda",
+    "about": "Tentang Kami",
+    "services": "Layanan",
+    "equipment": "Peralatan",
+    "projects": "Proyek",
+    "qhse": "QHSE",
+    "news": "Berita",
+    "contact": "Kontak",
+    "quote": "Minta Penawaran"
+  },
+
+  "hero": {
+    "badge": "SPESIALIS PEMBERSIHAN INDUSTRI",
+    "title": "Solusi Lebih Bersih Untuk Masa Depan Yang <blue>Lebih Aman</blue>",
+    "description": "Menyediakan layanan pembersihan tangki dan pengelolaan limbah industri profesional untuk industri Oil & Gas, Marine, Tank Terminal, dan Manufaktur sejak tahun 2007.",
+    "primary": "Layanan Kami",
+    "watch": "Tonton",
+    "company": "Profil Perusahaan"
+  },
+
+  "about": {
+    "badge": "TENTANG TMN",
+    "tag-line-1": "Profesional.",
+    "tag-line-2": "Terpercaya.",
+    "tag-line-3": "Bertanggung Jawab Terhadap Lingkungan.",
+    "title": "Mitra Terpercaya Anda dalam <blue>Solusi Pembersihan Industri</blue>",
+    "description": "PT Tirta Mega Nusantara (TMN) telah menjadi penyedia layanan terpercaya untuk tank cleaning, industrial cleaning, sludge removal, pumping, tank washing, dan pengelolaan limbah berbahaya sejak tahun 2007.",
+    "description2": "Dengan pengalaman lebih dari 19 tahun, kami berkomitmen memberikan layanan profesional untuk sektor Oil & Gas, Marine, Chemical, Manufacturing, Tank Terminal, dan berbagai sektor industri dengan mengutamakan kualitas, keselamatan, dan kepuasan pelanggan.",
+    "button": "Selengkapnya Tentang Kami",
+    "about-content-1": "Didirikan pada tahun 2007, PT Tirta Mega Nusantara telah berkembang menjadi salah satu perusahaan pembersihan industri terkemuka di Indonesia, menyediakan layanan tank cleaning, sludge removal, pengelolaan limbah industri, dan layanan lingkungan yang terpercaya.",
+    "about-content-2": "Didukung oleh tenaga profesional berpengalaman, prosedur bersertifikat, dan peralatan modern, kami berkomitmen memberikan solusi yang aman, efisien, dan bertanggung jawab terhadap lingkungan untuk berbagai industri di seluruh Indonesia.",
+    "about-button": "Pelajari Lebih Lanjut Tentang Kami"
+  },
+
+  "whyChoose": {
+    "badge": "MENGAPA MEMILIH TMN",
+    "title": "Komitmen Kami terhadap Keselamatan, Kualitas & Lingkungan",
+
+    "safety": {
+      "title": "Keselamatan Utama",
+      "description": "Mengutamakan keselamatan dalam setiap proyek yang kami kerjakan."
+    },
+
+    "certified": {
+      "title": "Tim Bersertifikat",
+      "description": "Didukung oleh tenaga profesional berpengalaman dan bersertifikat."
+    },
+
+    "equipment": {
+      "title": "Peralatan Modern",
+      "description": "Menggunakan peralatan modern yang memenuhi standar industri."
+    },
+
+    "response": {
+      "title": "Respons Cepat",
+      "description": "Siap merespons kebutuhan pelanggan dengan cepat."
+    },
+
+    "environment": {
+      "title": "Tanggung Jawab Lingkungan",
+      "description": "Berkomitmen terhadap pengelolaan lingkungan yang berkelanjutan."
+    },
+
+    "zero": {
+      "title": "Zero Accident",
+      "description": "Membangun budaya keselamatan yang kuat dalam setiap proyek."
     }
-   }
-  
+  },
+
+  "services": {
+    "badge": "LAYANAN KAMI",
+    "close": "Tutup",
+
+    "title": "Layanan Pembersihan Industri Terpadu",
+    "button": "Lihat Semua Layanan",
+    "viewDetail": "Lihat Detail",
+
+    "tankCleaning": {
+      "title": "Pembersihan Tangki",
+      "shortDescription": "Pembersihan profesional tangki penyimpanan dari sludge, kerak, dan residu hidrokarbon.",
+      "description": "Layanan pembersihan tangki kami menghilangkan sludge, kerak, sedimen, dan residu hidrokarbon dengan aman dan efisien menggunakan peralatan modern dan tenaga kerja bersertifikat untuk memulihkan kinerja dan keamanan tangki."
+    },
+
+    "tankWashing": {
+      "title": "Pencucian Tangki",
+      "shortDescription": "Pencucian bertekanan tinggi untuk tangki dan vessel industri.",
+      "description": "Sistem pembersihan menggunakan water jet bertekanan tinggi yang dirancang untuk menghilangkan kotoran, minyak, lemak, dan residu dari tangki serta peralatan industri secara aman dan efisien."
+    },
+
+    "sludgeRemoval": {
+      "title": "Pengangkatan Sludge",
+      "shortDescription": "Pengangkatan sludge secara aman dari tangki, kolam, dan fasilitas industri.",
+      "description": "Layanan pengangkatan sludge profesional menggunakan sistem vacuum dan peralatan pumping untuk meminimalkan downtime sekaligus menjaga kepatuhan terhadap standar lingkungan."
+    },
+
+    "industrialCleaning": {
+      "title": "Pembersihan Industri",
+      "shortDescription": "Solusi pembersihan menyeluruh untuk fasilitas industri.",
+      "description": "Pembersihan pabrik, plant, refinery, fasilitas marine, dan peralatan industri menggunakan metode profesional yang memenuhi standar keselamatan internasional."
+    },
+
+    "pumping": {
+      "title": "Pumping",
+      "shortDescription": "Layanan pumping industri untuk transfer cairan, sludge, dan limbah.",
+      "description": "Layanan pumping berkapasitas tinggi untuk sludge, limbah cair, bahan kimia, dan cairan industri menggunakan sistem pumping yang andal."
+    },
+
+    "wasteManagement": {
+      "title": "Pengelolaan Limbah",
+      "shortDescription": "Pengelolaan limbah B3 dan limbah industri secara terpadu.",
+      "description": "Layanan pengelolaan limbah menyeluruh yang mencakup pengumpulan, transportasi, pengolahan, dan pembuangan yang bertanggung jawab terhadap lingkungan sesuai dengan peraturan yang berlaku."
+    }
+  },
+
+  "servicesOverview": {
+    "badge": "LAYANAN KAMI",
+    "title": "Solusi <blue>Pembersihan Industri</blue> Terlengkap",
+    "description": "Kami menyediakan solusi pembersihan industri yang komprehensif untuk mendukung operasional Anda secara aman, efisien, dan sesuai dengan standar lingkungan."
+  },
+
+  "servicesPage": {
+    "badge": "LAYANAN KAMI",
+    "title": "Layanan Pembersihan Industri Terpadu",
+    "primary": "Dapatkan Penawaran",
+    "secondary": "Hubungi Kami",
+    "description": "Kami mengutamakan keselamatan kerja, kualitas layanan, dan tanggung jawab terhadap lingkungan dalam setiap proyek yang kami kerjakan.",
+
+    "tankCleaning": {
+      "title": "Pembersihan Tangki",
+      "description": "Pembersihan menyeluruh tangki penyimpanan untuk menghilangkan sludge, kerak, dan kontaminan yang tersisa."
+    },
+
+    "tankWashing": {
+      "title": "Pencucian Tangki",
+      "description": "Layanan pencucian tangki menggunakan teknologi pembersihan bertekanan tinggi untuk hasil yang aman dan efisien."
+    },
+
+    "sludgeRemoval": {
+      "title": "Pengangkatan Sludge",
+      "description": "Pengangkatan sludge secara aman dari tangki, kolam, dan fasilitas industri menggunakan peralatan vacuum dan pumping profesional."
+    },
+
+    "industrialCleaning": {
+      "title": "Pembersihan Industri",
+      "description": "Solusi pembersihan menyeluruh untuk pabrik, plant, refinery, fasilitas marine, dan berbagai peralatan industri."
+    },
+
+    "pumping": {
+      "title": "Pumping",
+      "description": "Layanan pumping industri untuk sludge, cairan, bahan kimia, dan limbah menggunakan peralatan khusus."
+    },
+
+    "wasteManagement": {
+      "title": "Pengelolaan Limbah",
+      "description": "Pengumpulan, transportasi, pengolahan, dan pengelolaan limbah B3 serta limbah industri secara bertanggung jawab sesuai dengan peraturan yang berlaku."
+    },
+
+    "detail": {
+      "badge": "LAYANAN KAMI",
+      "title": "Layanan Pembersihan Industri Terpadu",
+      "description": "Kami menyediakan berbagai layanan profesional yang mencakup Tank Cleaning, Industrial Cleaning, Sludge Removal, Pumping, Tank Washing, dan Waste Management dengan mengutamakan keselamatan, kualitas, serta kepatuhan terhadap standar industri.",
+      "button": "Lihat Semua Layanan",
+      "learnMore": "Pelajari Lebih Lanjut"
+    },
+
+    "process": {
+      "badge": "PROSES KERJA",
+      "title": "Bagaimana Kami Bekerja",
+      "description": "Setiap proyek mengikuti alur kerja terstruktur yang dirancang untuk memastikan keselamatan, efisiensi, dan hasil berkualitas tinggi."
+    },
+
+    "industries": {
+      "badge": "INDUSTRI YANG KAMI LAYANI",
+      "title": "Mendukung Berbagai <blue>Industri di Seluruh Indonesia</blue>"
+    },
+
+    "faq": {
+      "badge": "FAQ",
+      "title": "Pertanyaan yang Sering Diajukan",
+      "description": "Temukan jawaban atas pertanyaan yang paling sering diajukan mengenai layanan kami. Jika Anda membutuhkan informasi lebih lanjut, tim kami siap membantu.",
+      "button": "Hubungi Kami"
+    },
+
+    "modal": {
+      "cta": {
+        "badge": "SIAP UNTUK MEMULAI?",
+        "title": "Diskusikan kebutuhan <service></service> Anda dengan tim profesional kami.",
+        "description": "Kami siap membantu Anda merencanakan, melaksanakan, dan menyelesaikan proyek dengan standar keselamatan tertinggi, kualitas terbaik, dan penyelesaian tepat waktu.",
+        "primary": "Minta Penawaran",
+        "secondary": "Hubungi Kami"
+      }
+    }
+  },
+
+  "projects": {
+    "badge": "PROYEK UNGGULAN",
+    "title": "Memberikan Hasil yang Berdampak",
+    "description": "Berbagai proyek pembersihan industri yang telah berhasil kami selesaikan di berbagai sektor industri di seluruh Indonesia.",
+    "button": "Lihat Semua Proyek",
+    "tankCleaning": "Tank Cleaning",
+    "sludgeRemoval": "Sludge Removal",
+    "marineCleaning": "Marine Cleaning",
+    "wasteManagement": "Waste Management"
+  },
+
+  "qhse": {
+    "badge": "QHSE",
+    "title": "Keselamatan, Kesehatan, Lingkungan & Kualitas",
+    "description": "Keselamatan, kualitas, dan perlindungan lingkungan merupakan prioritas utama kami dalam setiap proyek yang kami kerjakan.",
+    "button": "Pelajari Lebih Lanjut",
+    "zero": "Komitmen Zero Accident",
+    "certified": "Personel Bersertifikat",
+    "environment": "Tanggung Jawab Lingkungan",
+    "procedure": "Prosedur Operasional Standar"
+  },
+
+  "equipmentPage": {
+    "hero": {
+      "badge": "PERALATAN KAMI",
+      "title": "Peralatan Industri Modern untuk Setiap Proyek",
+      "description": "Armada dan peralatan industri kami dirancang untuk memberikan performa maksimal dalam pekerjaan tank cleaning, pumping, waste management, dan layanan industri lainnya.",
+      "primary": "Hubungi Kami",
+      "secondary": "Layanan Kami",
+      "equipment": "Unit Peralatan",
+      "categories": "Kategori",
+      "ready": "Siap Beroperasi"
+    },
+
+    "toolbar": {
+      "title": "Semua Peralatan",
+      "description": "Lihat seluruh peralatan industri yang kami miliki",
+      "sortBy": "Urutkan Berdasarkan",
+      "newest": "Terbaru",
+      "oldest": "Terlama",
+      "nameAsc": "Nama (A-Z)",
+      "nameDesc": "Nama (Z-A)",
+      "capacity": "Kapasitas",
+      "status": "Status"
+    },
+
+    "filters": {
+      "searchTitle": "Cari Peralatan",
+      "searchPlaceholder": "Cari peralatan..."
+    }
+  },
+
+  "projectPage": {
+    "hero": {
+      "home": "Beranda",
+      "projects": "Proyek",
+      "badge": "PORTOFOLIO PROYEK",
+      "title": "Proyek Industri yang Berhasil Kami Selesaikan",
+      "description": "Jelajahi proyek industri yang telah kami selesaikan, termasuk tank cleaning, industrial cleaning, sludge removal, pumping, dan waste management dengan standar keselamatan dan kualitas tertinggi.",
+      "primary": "Hubungi Kami",
+      "secondary": "Layanan Kami",
+
+      "stats": {
+        "projects": "Proyek Selesai",
+        "clients": "Klien Industri",
+        "years": "Tahun Pengalaman"
+      }
+    },
+
+    "filters": {
+      "search": "Cari Proyek",
+      "placeholder": "Cari proyek...",
+      "category": "Kategori",
+
+      "categories": {
+        "all": "Semua",
+        "tankCleaning": "Tank Cleaning",
+        "industrialCleaning": "Industrial Cleaning",
+        "wasteManagement": "Waste Management",
+        "sludgeRemoval": "Sludge Removal",
+        "pumping": "Pumping"
+      },
+
+      "year": "Tahun",
+
+      "years": {
+        "all": "Semua Tahun"
+      },
+
+      "reset": "Reset Semua Filter"
+    },
+
+    "detail": {
+      "cta": {
+        "badge": "HUBUNGI KAMI",
+        "title": "Siap Memulai Proyek Industri Anda Berikutnya?",
+        "description": "Diskusikan kebutuhan tank cleaning, industrial cleaning, sludge removal, pumping, dan waste management Anda dengan tim profesional kami. Kami menyediakan solusi industri yang aman, efisien, dan terpercaya.",
+        "primary": "Minta Penawaran",
+        "secondary": "Hubungi Kami",
+
+        "stats": {
+          "projects": "Proyek Selesai",
+          "clients": "Klien Industri",
+          "commitment": "Komitmen terhadap Keselamatan & Kualitas"
+        }
+      }
+    },
+
+    "toolbar": {
+      "sort": "Urutkan",
+      "newest": "Terbaru",
+      "oldest": "Terlama",
+      "nameAsc": "Nama A-Z",
+      "nameDesc": "Nama Z-A"
+    }
+  }
 }
