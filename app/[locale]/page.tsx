@@ -4,7 +4,7 @@ import Industries from "@/components/home/industries/industries";
 import Projects from "@/components/home/projects/projects";
 import Services from "@/components/home/services/services";
 import TrustedClients from "@/components/home/trusted-clients/trusted-clients";
-
+import WelcomeModal from "@/components/home/welcome-modal/welcome-modal";
 import { createMetadata } from "@/lib/metadata";
 
 import { getHome } from "@/services/home.service";
@@ -19,6 +19,8 @@ export default async function HomePage() {
 
   return (
     <section className="bg-[#F8FAFC]">
+      <WelcomeModal />
+
       <Hero />
 
       <TrustedClients />

@@ -33,7 +33,7 @@ export const trustedClients = [
   },
   {
     name: "client 9",
-    logo: "/home/9.jpg",
+    logo: "/home/9.png",
   },
   {
     name: "client 10",
