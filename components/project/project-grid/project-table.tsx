@@ -47,7 +47,7 @@ export default function ProjectTable({ projects }: Props) {
 
   /*
    * =========================================================
-   * LOCK BODY SCROLL WHEN EXPERIENCE LETTER MODAL IS OPEN
+   * LOCK BODY SCROLL
    * =========================================================
    */
 
@@ -71,17 +71,31 @@ export default function ProjectTable({ projects }: Props) {
           TABLE
       ========================================================= */}
 
-      <div
-        className="
-          overflow-hidden
-          rounded-2xl
-          border
-          border-slate-200
-          bg-white
-          shadow-sm
-        "
-      >
-        <div className="overflow-x-auto">
+      <div className="w-full max-w-full overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+        {/* =======================================================
+            MOBILE SCROLL INDICATOR
+        ======================================================= */}
+
+        <div className="flex items-center justify-end border-b border-slate-100 bg-slate-50 px-4 py-2 md:hidden">
+          <span className="text-[11px] font-medium text-slate-400">
+            Geser ke kanan untuk melihat tabel →
+          </span>
+        </div>
+
+        {/* =======================================================
+            HORIZONTAL SCROLL CONTAINER
+        ======================================================= */}
+
+        <div
+          className="
+            w-full
+            max-w-full
+            overflow-x-auto
+            overflow-y-hidden
+            overscroll-x-contain
+            [-webkit-overflow-scrolling:touch]
+          "
+        >
           <table
             className="
               w-full
@@ -95,7 +109,9 @@ export default function ProjectTable({ projects }: Props) {
 
             <thead>
               <tr className="border-b border-slate-200 bg-[#04162E]">
-                {/* Perusahaan */}
+                {/* =================================================
+                    PERUSAHAAN
+                ================================================= */}
 
                 <th
                   className="
@@ -110,7 +126,9 @@ export default function ProjectTable({ projects }: Props) {
                   Perusahaan
                 </th>
 
-                {/* Foto */}
+                {/* =================================================
+                    FOTO
+                ================================================= */}
 
                 <th
                   className="
@@ -126,7 +144,9 @@ export default function ProjectTable({ projects }: Props) {
                   Foto
                 </th>
 
-                {/* Kapal */}
+                {/* =================================================
+                    KAPAL
+                ================================================= */}
 
                 <th
                   className="
@@ -142,7 +162,9 @@ export default function ProjectTable({ projects }: Props) {
                   Kapal
                 </th>
 
-                {/* Lingkup Kerja */}
+                {/* =================================================
+                    LINGKUP KERJA
+                ================================================= */}
 
                 <th
                   className="
@@ -158,7 +180,9 @@ export default function ProjectTable({ projects }: Props) {
                   Lingkup Kerja
                 </th>
 
-                {/* Tahun */}
+                {/* =================================================
+                    TAHUN
+                ================================================= */}
 
                 <th
                   className="
@@ -174,7 +198,9 @@ export default function ProjectTable({ projects }: Props) {
                   Tahun
                 </th>
 
-                {/* Surat Pengalaman */}
+                {/* =================================================
+                    SURAT PENGALAMAN
+                ================================================= */}
 
                 <th
                   className="
@@ -214,7 +240,7 @@ export default function ProjectTable({ projects }: Props) {
                       border-b
                       border-slate-100
                       transition-colors
-                      last:border-b-0
+                      duration-200
                       hover:bg-slate-50
                     "
                   >
@@ -226,6 +252,7 @@ export default function ProjectTable({ projects }: Props) {
                       <div className="max-w-[220px]">
                         <p
                           className="
+                            text-sm
                             font-semibold
                             leading-6
                             text-[#04162E]
@@ -293,17 +320,18 @@ export default function ProjectTable({ projects }: Props) {
                             absolute
                             inset-0
                             flex
-                            items-center
+                            items-end
                             justify-center
                             bg-black/0
+                            p-2
                             transition
                             duration-300
-                            group-hover:bg-black/40
+                            group-hover:bg-black/30
                           "
                         >
                           <span
                             className="
-                              rounded-lg
+                              rounded-md
                               bg-white/90
                               px-3
                               py-1.5
@@ -438,8 +466,6 @@ export default function ProjectTable({ projects }: Props) {
                             "
                           />
 
-                          {/* Hover Overlay */}
-
                           <div
                             className="
                               absolute
@@ -526,6 +552,7 @@ export default function ProjectTable({ projects }: Props) {
             bg-black/70
             p-4
             backdrop-blur-sm
+            sm:p-6
           "
           role="dialog"
           aria-modal="true"
@@ -536,7 +563,9 @@ export default function ProjectTable({ projects }: Props) {
             }
           }}
         >
-          {/* Modal Container */}
+          {/* =====================================================
+              MODAL CONTAINER
+          ===================================================== */}
 
           <div
             className="
@@ -547,22 +576,23 @@ export default function ProjectTable({ projects }: Props) {
               bg-white
               p-2
               shadow-2xl
+              sm:p-3
             "
             onMouseDown={(event) => {
               event.stopPropagation();
             }}
           >
-            {/* =====================================================
+            {/* ===================================================
                 CLOSE BUTTON
-            ===================================================== */}
+            =================================================== */}
 
             <button
               type="button"
               onClick={() => setSelectedExperienceLetter(null)}
               className="
                 absolute
-                right-4
-                top-4
+                right-3
+                top-3
                 z-20
                 flex
                 h-10
@@ -585,11 +615,22 @@ export default function ProjectTable({ projects }: Props) {
               <X size={20} strokeWidth={2.5} />
             </button>
 
-            {/* =====================================================
+            {/* ===================================================
                 IMAGE
-            ===================================================== */}
+            =================================================== */}
 
-            <div className="flex max-h-[88vh] max-w-[90vw] items-center justify-center overflow-auto rounded-xl bg-slate-100">
+            <div
+              className="
+                flex
+                max-h-[88vh]
+                max-w-[90vw]
+                items-center
+                justify-center
+                overflow-auto
+                rounded-xl
+                bg-slate-100
+              "
+            >
               <Image
                 src={selectedExperienceLetter}
                 alt="Surat Pengalaman"

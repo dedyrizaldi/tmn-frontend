@@ -12,6 +12,7 @@ export default function Industries() {
   return (
     <Section
       className="
+        w-full
         overflow-hidden
 
         bg-white
@@ -25,17 +26,20 @@ export default function Industries() {
         <div
           className="
             grid
+            min-w-0
 
             items-center
-        
-            gap-14
 
-            lg:grid-cols-[380px_1fr]
+            gap-10
+            sm:gap-12
+            lg:gap-14
+
+            lg:grid-cols-[380px_minmax(0,1fr)]
           "
         >
           {/* ================= LEFT ================= */}
 
-          <div>
+          <div className="min-w-0">
             <p
               className="
                 text-xs
@@ -56,6 +60,8 @@ export default function Industries() {
               className="
                 mt-5
 
+                max-w-full
+
                 text-[34px]
 
                 font-bold
@@ -63,6 +69,8 @@ export default function Industries() {
                 leading-[1.15]
 
                 text-[#04162E]
+
+                sm:text-[40px]
 
                 lg:text-[52px]
               "
@@ -80,12 +88,16 @@ export default function Industries() {
           <div
             className="
               grid
+              min-w-0
+              w-full
 
-              grid-cols-3
+              grid-cols-1
 
               gap-3
 
-              md:grid-cols-3
+              sm:grid-cols-2
+
+              lg:grid-cols-3
             "
           >
             {industries.map((item) => (

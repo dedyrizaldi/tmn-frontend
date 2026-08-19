@@ -189,14 +189,8 @@ export default function Project() {
    */
 
   const handlePageChange = (page: number) => {
-    /*
-     * Simpan posisi user saat ini.
-     */
     scrollPositionRef.current = window.scrollY;
 
-    /*
-     * Ganti halaman.
-     */
     setCurrentPage(page);
   };
 
@@ -244,6 +238,8 @@ export default function Project() {
 
       <section
         className="
+          w-full
+          overflow-hidden
           bg-[#F8FAFC]
           py-16
           lg:py-24
@@ -255,23 +251,29 @@ export default function Project() {
         <div
           className="
             mx-auto
+            w-full
             max-w-[1440px]
             px-5
             lg:px-8
           "
         >
+          {/* =================================================
+              MAIN GRID
+          ================================================= */}
+
           <div
             className="
               grid
+              min-w-0
               gap-8
-              lg:grid-cols-[300px_1fr]
+              lg:grid-cols-[300px_minmax(0,1fr)]
             "
           >
             {/* =================================================
                 FILTER
             ================================================= */}
 
-            <aside>
+            <aside className="min-w-0">
               <ProjectFilters
                 search={search}
                 category={category}
@@ -285,7 +287,7 @@ export default function Project() {
                 PROJECT CONTENT
             ================================================= */}
 
-            <div className="space-y-8">
+            <div className="min-w-0 space-y-8">
               {/* =================================================
                   TOOLBAR
               ================================================= */}
@@ -305,21 +307,23 @@ export default function Project() {
               <div
                 className="
                   relative
+                  min-w-0
                   min-h-[400px]
                 "
               >
                 {/* =================================================
                     EXISTING PROJECT CONTENT
-                    Tetap dirender ketika loading
                 ================================================= */}
 
-                <ProjectGrid
-                  projects={projects}
-                  viewMode={viewMode}
-                  currentPage={meta?.current_page ?? 1}
-                  totalPages={meta?.last_page ?? 1}
-                  onPageChange={handlePageChange}
-                />
+                <div className="min-w-0 max-w-full">
+                  <ProjectGrid
+                    projects={projects}
+                    viewMode={viewMode}
+                    currentPage={meta?.current_page ?? 1}
+                    totalPages={meta?.last_page ?? 1}
+                    onPageChange={handlePageChange}
+                  />
+                </div>
 
                 {/* =================================================
                     LOADING OVERLAY

@@ -11,26 +11,28 @@ export default function IndustryCard({ title, icon: Icon }: Props) {
       className="
         group
 
-        inline-flex
+        flex
+        w-full
+        min-w-0
 
         h-16
 
         items-center
+        justify-start
 
         gap-3
 
         rounded-full
 
         border
-
         border-slate-200
 
         bg-white
 
-        px-6
+        px-5
+        sm:px-6
 
         transition-all
-
         duration-300
 
         hover:-translate-y-1
@@ -48,10 +50,14 @@ export default function IndustryCard({ title, icon: Icon }: Props) {
         size={22}
         strokeWidth={1.8}
         className="
+          h-[22px]
+          w-[22px]
+
+          shrink-0
+
           text-[#156CFF]
 
           transition-colors
-
           duration-300
 
           group-hover:text-white
@@ -60,9 +66,13 @@ export default function IndustryCard({ title, icon: Icon }: Props) {
 
       <span
         className="
-          whitespace-nowrap
+          min-w-0
 
-          text-[14px]
+          overflow-hidden
+          text-ellipsis
+
+          text-[13px]
+          sm:text-[14px]
 
           font-semibold
 
@@ -73,7 +83,6 @@ export default function IndustryCard({ title, icon: Icon }: Props) {
           text-[#04162E]
 
           transition-colors
-
           duration-300
 
           group-hover:text-white
