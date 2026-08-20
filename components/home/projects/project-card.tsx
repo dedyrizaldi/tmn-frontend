@@ -3,7 +3,9 @@
 import { useState } from "react";
 
 import Image from "next/image";
+
 import { motion } from "motion/react";
+
 import { MapPin } from "lucide-react";
 
 import { Link } from "@/i18n/navigation";
@@ -57,7 +59,8 @@ export default function ProjectCard({
           hover:shadow-lg
         "
       >
-        <div className="relative h-[92px] overflow-hidden">
+        {/* Image */}
+        <div className="relative aspect-[4/3] w-full overflow-hidden">
           {/* Skeleton */}
           <div
             className={`
@@ -90,10 +93,16 @@ export default function ProjectCard({
             alt={title}
             fill
             unoptimized
-            sizes="(max-width:1024px)100vw,320px"
+            sizes="
+              (max-width: 640px) 50vw,
+              (max-width: 1024px) 33vw,
+              320px
+            "
             onLoad={() => setLoading(false)}
             className={`
-              object-cover
+              object-contain
+              object-center
+              p-2
               transition-all
               duration-500
               group-hover:scale-105
@@ -101,11 +110,14 @@ export default function ProjectCard({
             `}
           />
 
+          {/* Category */}
           <div
             className="
               absolute
               bottom-2
               left-2
+              max-w-[calc(100%-16px)]
+              truncate
               rounded
               bg-[#156CFF]
               px-2
@@ -113,13 +125,15 @@ export default function ProjectCard({
               text-[9px]
               font-semibold
               text-white
+              sm:text-[10px]
             "
           >
             {category}
           </div>
         </div>
 
-        <div className="p-3">
+        {/* Content */}
+        <div className="p-3 sm:p-4">
           <h3
             className="
               line-clamp-2
@@ -127,6 +141,8 @@ export default function ProjectCard({
               font-semibold
               leading-5
               text-slate-900
+              sm:text-sm
+              sm:leading-5
             "
           >
             {title}
@@ -136,15 +152,17 @@ export default function ProjectCard({
             className="
               mt-2
               flex
-              items-center
+              items-start
               gap-1
               text-[11px]
+              leading-4
               text-slate-500
+              sm:text-xs
             "
           >
-            <MapPin size={12} className="text-[#156CFF]" />
+            <MapPin size={12} className="mt-0.5 shrink-0 text-[#156CFF]" />
 
-            {location}
+            <span className="line-clamp-2">{location}</span>
           </div>
 
           <p
@@ -152,6 +170,7 @@ export default function ProjectCard({
               mt-2
               text-[11px]
               text-slate-500
+              sm:text-xs
             "
           >
             {year}

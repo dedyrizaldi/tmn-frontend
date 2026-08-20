@@ -18,32 +18,6 @@ export default function FooterContact() {
             <br />
           </p>
         </div>
-
-        <div className="flex gap-3">
-          <MapPin size={18} className="mt-1 text-[#156CFF]" />
-
-          <p className="text-[14px] text-slate-300">
-            <b>Operational Office</b>
-            <br />
-            JL. Sunter II NO 6A Komplek Deperla
-            <br />
-            Jakarta Utara 14230
-            <br />
-          </p>
-        </div>
-        <div className="flex items-center gap-3">
-          <Phone size={18} className="text-[#156CFF]" />
-
-          <span className="text-[14px] text-slate-300">021-2945-2321</span>
-        </div>
-
-        <div className="flex items-center gap-3">
-          <Mail size={18} className="text-[#156CFF]" />
-
-          <span className="text-[14px] text-slate-300">
-            tirtameganusantara@tmn.co.id
-          </span>
-        </div>
       </div>
     </div>
   );

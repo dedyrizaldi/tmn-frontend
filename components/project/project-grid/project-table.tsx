@@ -285,20 +285,20 @@ export default function ProjectTable({ projects }: Props) {
                         type="button"
                         onClick={() => setSelectedProject(project)}
                         className="
-                          group
-                          relative
-                          block
-                          h-20
-                          w-28
-                          overflow-hidden
-                          rounded-xl
-                          bg-slate-100
-                          text-left
-                          focus:outline-none
-                          focus:ring-2
-                          focus:ring-[#156CFF]
-                          focus:ring-offset-2
-                        "
+      group
+      relative
+      block
+      h-24
+      w-36
+      overflow-hidden
+      rounded-xl
+      bg-slate-100
+      text-left
+      focus:outline-none
+      focus:ring-2
+      focus:ring-[#156CFF]
+      focus:ring-offset-2
+    "
                         aria-label={`Lihat gallery ${project.title}`}
                       >
                         <Image
@@ -306,44 +306,46 @@ export default function ProjectTable({ projects }: Props) {
                           alt={project.title}
                           fill
                           unoptimized
-                          sizes="112px"
+                          sizes="144px"
                           className="
-                            object-cover
-                            transition-transform
-                            duration-300
-                            group-hover:scale-110
-                          "
+        object-contain
+        object-center
+        p-2
+        transition-transform
+        duration-300
+        group-hover:scale-105
+      "
                         />
 
                         <div
                           className="
-                            absolute
-                            inset-0
-                            flex
-                            items-end
-                            justify-center
-                            bg-black/0
-                            p-2
-                            transition
-                            duration-300
-                            group-hover:bg-black/30
-                          "
+        absolute
+        inset-0
+        flex
+        items-end
+        justify-center
+        bg-black/0
+        p-2
+        transition
+        duration-300
+        group-hover:bg-black/30
+      "
                         >
                           <span
                             className="
-                              rounded-md
-                              bg-white/90
-                              px-3
-                              py-1.5
-                              text-xs
-                              font-semibold
-                              text-[#04162E]
-                              opacity-0
-                              shadow-sm
-                              transition
-                              duration-300
-                              group-hover:opacity-100
-                            "
+          rounded-md
+          bg-white/90
+          px-3
+          py-1.5
+          text-xs
+          font-semibold
+          text-[#04162E]
+          opacity-0
+          shadow-sm
+          transition
+          duration-300
+          group-hover:opacity-100
+        "
                           >
                             Lihat Foto
                           </span>
