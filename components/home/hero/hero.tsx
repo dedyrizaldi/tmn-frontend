@@ -1,59 +1,40 @@
-import Container from "@/components/common/container/container";
-
 import FloatingActions from "./floating-actions";
-import HeroBackground from "./hero-background";
-import HeroContent from "./hero-content";
+import HeroSlider from "./hero-slider";
 import HeroStats from "./hero-stats";
-import ScrollIndicator from "./scroll-indicator";
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden">
-      {/* ================= HERO ================= */}
+    <section className="relative">
+      {/* ================= HERO SLIDER ================= */}
       <div
         className="
           relative
           h-[520px]
+          overflow-hidden
           sm:h-[560px]
           lg:h-[600px]
-          overflow-hidden
         "
       >
-        {/* Background */}
-        <HeroBackground />
-
-        {/* Content */}
-        <Container
-          className="
-            relative
-            z-20
-            flex
-            h-full
-            items-center
-          "
-        >
-          <HeroContent />
-        </Container>
+        <HeroSlider />
 
         {/* Floating Button */}
         <FloatingActions />
-
-        {/* Scroll */}
-        <ScrollIndicator />
       </div>
 
-      {/* ================= HERO STATS ================= */}
+      {/* ================= FLOATING HERO STATS ================= */}
       <div
         className="
           relative
           z-30
-          -mt-8
-          lg:-mt-10
+          -mt-10
+          px-4
+          sm:-mt-12
+          sm:px-6
+          lg:-mt-14
+          lg:px-8
         "
       >
-        <Container>
-          <HeroStats />
-        </Container>
+        <HeroStats />
       </div>
     </section>
   );

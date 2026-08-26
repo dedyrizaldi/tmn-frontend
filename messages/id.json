@@ -12,13 +12,30 @@
   },
 
   "hero": {
-    "badge": "SPESIALIS PEMBERSIHAN INDUSTRI",
-    "title": "Solusi Lebih Bersih Untuk Masa Depan Yang <blue>Lebih Aman</blue>",
-    "description": "Menyediakan layanan pembersihan tangki dan pengelolaan limbah industri profesional untuk industri Oil & Gas, Marine, Tank Terminal, dan Manufaktur sejak tahun 2007.",
-    "primary": "Layanan Kami",
-    "watch": "Tonton",
-    "company": "Profil Perusahaan"
+  "slides": {
+    "1": {
+      "badge": "SPESIALIS PEMBERSIHAN INDUSTRI",
+      "title": "Solusi Lebih Bersih Untuk Masa Depan Yang <blue>Lebih Aman</blue>",
+      "description": "Menyediakan layanan pembersihan tangki dan pengelolaan limbah industri profesional untuk industri Oil & Gas, Marine, Tank Terminal, dan Manufaktur sejak tahun 2007."
+    },
+
+    "2": {
+      "badge": "SOLUSI PEMBERSIHAN INDUSTRI",
+      "title": "Menjaga Kebersihan Industri Untuk <blue>Operasional Lebih Optimal</blue>",
+      "description": "Kami menyediakan solusi pembersihan tangki, industrial cleaning, sludge removal, pumping, dan pengelolaan limbah dengan tenaga profesional dan peralatan modern."
+    },
+
+    "3": {
+      "badge": "PENGALAMAN & KEPERCAYAAN",
+      "title": "Mitra Profesional untuk Kebutuhan <blue>Pembersihan Industri</blue>",
+      "description": "Berpengalaman sejak tahun 2007, TMN menghadirkan layanan profesional yang mengutamakan keselamatan, kualitas, efisiensi, dan tanggung jawab terhadap lingkungan."
+    }
   },
+
+  "primary": "Layanan Kami",
+  "watch": "Tonton",
+  "company": "Profil Perusahaan"
+},
 
   "about": {
     "badge": "TENTANG TMN",
@@ -78,19 +95,19 @@
     "viewDetail": "Lihat Detail",
 
     "tankCleaning": {
-      "title": "Pembersihan Tangki",
+      "title": "Tank Cleaning",
       "shortDescription": "Pembersihan profesional tangki penyimpanan dari sludge, kerak, dan residu hidrokarbon.",
       "description": "Layanan pembersihan tangki kami menghilangkan sludge, kerak, sedimen, dan residu hidrokarbon dengan aman dan efisien menggunakan peralatan modern dan tenaga kerja bersertifikat untuk memulihkan kinerja dan keamanan tangki."
     },
 
     "tankWashing": {
-      "title": "Pencucian Tangki",
+      "title": "Tank Washing",
       "shortDescription": "Pencucian bertekanan tinggi untuk tangki dan vessel industri.",
       "description": "Sistem pembersihan menggunakan water jet bertekanan tinggi yang dirancang untuk menghilangkan kotoran, minyak, lemak, dan residu dari tangki serta peralatan industri secara aman dan efisien."
     },
 
     "sludgeRemoval": {
-      "title": "Pengangkatan Sludge",
+      "title": "Sludge Removal",
       "shortDescription": "Pengangkatan sludge secara aman dari tangki, kolam, dan fasilitas industri.",
       "description": "Layanan pengangkatan sludge profesional menggunakan sistem vacuum dan peralatan pumping untuk meminimalkan downtime sekaligus menjaga kepatuhan terhadap standar lingkungan."
     },
@@ -108,7 +125,12 @@
     },
 
     "wasteManagement": {
-      "title": "Pengelolaan Limbah",
+      "title": "Rafting Mopping",
+      "shortDescription": "Pengelolaan limbah B3 dan limbah industri secara terpadu.",
+      "description": "Layanan pengelolaan limbah menyeluruh yang mencakup pengumpulan, transportasi, pengolahan, dan pembuangan yang bertanggung jawab terhadap lingkungan sesuai dengan peraturan yang berlaku."
+    },
+     "disposalHandling": {
+      "title": "Dsiposal Handling",
       "shortDescription": "Pengelolaan limbah B3 dan limbah industri secara terpadu.",
       "description": "Layanan pengelolaan limbah menyeluruh yang mencakup pengumpulan, transportasi, pengolahan, dan pembuangan yang bertanggung jawab terhadap lingkungan sesuai dengan peraturan yang berlaku."
     }
@@ -153,9 +175,10 @@
     },
 
     "wasteManagement": {
-      "title": "Pengelolaan Limbah",
+      "title": "Rafting Mopping",
       "description": "Pengumpulan, transportasi, pengolahan, dan pengelolaan limbah B3 serta limbah industri secara bertanggung jawab sesuai dengan peraturan yang berlaku."
     },
+
 
     "detail": {
       "badge": "LAYANAN KAMI",

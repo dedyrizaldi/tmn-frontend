@@ -59,29 +59,33 @@ export default function DetailServices({ className = "" }: Props) {
 
   return (
     <section className={className}>
-      {/* Header */}
-      <div className="mb-10 flex flex-col gap-4">
-        <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[#156CFF]">
-          {t("badge")}
-        </span>
-
-        <h2 className="text-3xl font-bold leading-tight text-[#04162E] md:text-4xl">
-          {t("title")}
-        </h2>
-      </div>
-
       {/* Desktop */}
-      <div className="hidden lg:grid lg:grid-cols-3 lg:gap-5 xl:grid-cols-6">
+      <div
+        className="
+        hidden
+        justify-center
+        gap-5
+
+        lg:flex
+      "
+      >
         {services.map((service) => (
-          <DetailServiceCard
+          <div
             key={service.slug}
-            slug={service.slug}
-            title={t(`${service.key}.title`)}
-            description={t(`${service.key}.shortDescription`)}
-            image={service.image}
-            icon={service.icon}
-            onClick={() => setSelectedService(service)}
-          />
+            className="
+            w-[calc((100%-60px)/3)]
+            xl:w-[calc((100%-100px)/6)]
+          "
+          >
+            <DetailServiceCard
+              slug={service.slug}
+              title={t(`${service.key}.title`)}
+              description={t(`${service.key}.shortDescription`)}
+              image={service.image}
+              icon={service.icon}
+              onClick={() => setSelectedService(service)}
+            />
+          </div>
         ))}
       </div>
 

@@ -6,7 +6,7 @@ export default function HeroBackground() {
       {/* Background Image */}
 
       <Image
-        src="/images/services/hero-v1.png"
+        src="/images/services/sludge-removal.jpg"
         alt="Industrial Cleaning"
         fill
         priority

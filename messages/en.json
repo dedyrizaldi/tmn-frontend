@@ -11,14 +11,31 @@
     "quote": "Request Quote"
   },
 
-  "hero": {
-    "badge": "INDUSTRIAL CLEANING SPECIALIST",
-    "title": "Cleaner Solutions For A <blue>Safer Future</blue>",
-    "description": "Delivering professional tank cleaning and industrial waste management services for the Oil & Gas, Marine, Tank Terminal, and Manufacturing industries since 2007.",
-    "primary": "Our Services",
-    "watch": "Watch",
-    "company": "Company Profile"
+ "hero": {
+  "slides": {
+    "1": {
+      "badge": "INDUSTRIAL CLEANING SPECIALIST",
+      "title": "Cleaner Solutions For A <blue>Safer Future</blue>",
+      "description": "Providing professional tank cleaning and industrial waste management services for the Oil & Gas, Marine, Tank Terminal, and Manufacturing industries since 2007."
+    },
+
+    "2": {
+      "badge": "INDUSTRIAL CLEANING SOLUTIONS",
+      "title": "Keeping Industries Clean For <blue>More Efficient Operations</blue>",
+      "description": "We provide tank cleaning, industrial cleaning, sludge removal, pumping, and waste management solutions supported by professional personnel and modern equipment."
+    },
+
+    "3": {
+      "badge": "EXPERIENCE & TRUST",
+      "title": "Your Professional Partner for <blue>Industrial Cleaning</blue>",
+      "description": "With experience since 2007, TMN delivers professional services focused on safety, quality, efficiency, and environmental responsibility."
+    }
   },
+
+  "primary": "Our Services",
+  "watch": "Watch",
+  "company": "Company Profile"
+},
 
   "about": {
     "badge": "ABOUT TMN",
@@ -108,7 +125,12 @@
     },
 
     "wasteManagement": {
-      "title": "Waste Management",
+      "title": "Rafting Mopping",
+      "shortDescription": "Integrated hazardous and industrial waste management.",
+      "description": "Comprehensive waste management services including collection, transportation, treatment, and environmentally responsible disposal according to regulations."
+    },
+     "disposalHandling": {
+      "title": "Disposal Handling",
       "shortDescription": "Integrated hazardous and industrial waste management.",
       "description": "Comprehensive waste management services including collection, transportation, treatment, and environmentally responsible disposal according to regulations."
     }

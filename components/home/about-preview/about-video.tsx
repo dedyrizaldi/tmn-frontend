@@ -52,46 +52,6 @@ export default function AboutVideo() {
 
       {/* Play Button */}
 
-      <button
-        type="button"
-        className="
-          absolute
-          left-1/2
-          top-1/2
-
-          flex
-
-          h-14
-          w-14
-
-          -translate-x-1/2
-          -translate-y-1/2
-
-          items-center
-          justify-center
-
-          rounded-full
-
-          bg-white/90
-
-          text-[#156CFF]
-
-          shadow-xl
-
-          backdrop-blur
-
-          transition-all
-          duration-300
-
-          group-hover:scale-110
-
-          sm:h-16
-          sm:w-16
-        "
-      >
-        <Play className="ml-1" size={20} fill="currentColor" />
-      </button>
-
       {/* Gradient */}
 
       <div

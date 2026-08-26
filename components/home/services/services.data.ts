@@ -21,15 +21,9 @@ export const services: ServiceItem[] = [
     description: "tankWashing.description",
     href: "/services/tank-washing",
   },
+
   {
-    image: "/images/services/pumping.png",
-    icon: "pump",
-    title: "pumping.title",
-    description: "pumping.description",
-    href: "/services/pumping",
-  },
-  {
-    image: "/images/services/rafting.png",
+    image: "/images/services/rafting.jpg",
     icon: "raft",
     title: "rafting.title",
     description: "rafting.description",

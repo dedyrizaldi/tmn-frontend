@@ -11,7 +11,7 @@ export const services = [
   {
     slug: "tank-cleaning",
     key: "tankCleaning",
-    image: "/images/services/tank-cleaning.png",
+    image: "/images/services/tank_cleaning.jpg",
     icon: Droplets,
     category: "Cleaning",
 
@@ -26,7 +26,7 @@ export const services = [
   {
     slug: "tank-washing",
     key: "tankWashing",
-    image: "/images/services/tank-washing.png",
+    image: "/images/services/tank-washing.jpg",
     icon: Waves,
     category: "Cleaning",
 
@@ -41,7 +41,7 @@ export const services = [
   {
     slug: "sludge-removal",
     key: "sludgeRemoval",
-    image: "/images/services/sludge-removal.png",
+    image: "/images/services/disposal-handling.jpg",
     icon: Truck,
     category: "Waste",
 
@@ -54,24 +54,9 @@ export const services = [
   },
 
   {
-    slug: "industrial-cleaning",
-    key: "industrialCleaning",
-    image: "/images/services/pumping.png",
-    icon: Factory,
-    category: "Industrial",
-
-    features: [
-      "Factory Cleaning",
-      "Refinery Cleaning",
-      "Plant Shutdown",
-      "Maintenance Cleaning",
-    ],
-  },
-
-  {
     slug: "pumping",
     key: "pumping",
-    image: "/images/services/tank-washing.png",
+    image: "/images/services/pumping.png",
     icon: Wrench,
     category: "Industrial",
 
@@ -86,7 +71,21 @@ export const services = [
   {
     slug: "waste-management",
     key: "wasteManagement",
-    image: "/images/services/sludge-removal.png",
+    image: "/images/services/rafting_mopping.jpg",
+    icon: ShieldCheck,
+    category: "Environment",
+
+    features: [
+      "Hazardous Waste",
+      "Industrial Waste",
+      "Transportation",
+      "Environmental Compliance",
+    ],
+  },
+  {
+    slug: "disposal-handling",
+    key: "disposalHandling",
+    image: "/images/services/sludge-removal.jpg",
     icon: ShieldCheck,
     category: "Environment",
 

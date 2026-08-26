@@ -1,6 +1,7 @@
 "use client";
 
 import useEmblaCarousel from "embla-carousel-react";
+import Autoplay from "embla-carousel-autoplay";
 
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
@@ -9,10 +10,19 @@ import { trustedClients } from "./trusted-clients.data";
 import TrustedClientsItem from "./trusted-clients-item";
 
 export default function TrustedClientsCarousel() {
-  const [emblaRef, emblaApi] = useEmblaCarousel({
-    loop: true,
-    align: "start",
-  });
+  const [emblaRef, emblaApi] = useEmblaCarousel(
+    {
+      loop: true,
+      align: "start",
+    },
+    [
+      Autoplay({
+        delay: 3000,
+        stopOnInteraction: false,
+        stopOnMouseEnter: true,
+      }),
+    ],
+  );
 
   return (
     <div className="flex items-center gap-2 sm:gap-4 md:gap-6">

@@ -4,7 +4,7 @@ export default function HeroBackground() {
   return (
     <>
       <Image
-        src="/images/about-v1.png"
+        src="/images/about-v1.jpg"
         alt="About TMN"
         fill
         priority
