@@ -224,14 +224,47 @@ export default function ProjectTable({ projects }: Props) {
 
             <tbody>
               {projects.map((project) => {
+                /*
+                 * =================================================
+                 * FOTO PEKERJAAN
+                 * =================================================
+                 *
+                 * Foto utama pada tabel sekarang mengambil foto
+                 * pertama dari gallery.
+                 *
+                 * Jika gallery kosong, gunakan thumbnail sebagai
+                 * fallback agar tabel tetap memiliki gambar.
+                 */
+
+                const galleryImage =
+                  project.gallery && project.gallery.length > 0
+                    ? project.gallery[0]?.url
+                    : null;
+
                 const image =
-                  project.thumbnail && project.thumbnail.length > 0
-                    ? project.thumbnail
-                    : "/images/project/project-placeholder.png";
+                  galleryImage && galleryImage.length > 0
+                    ? galleryImage
+                    : project.thumbnail && project.thumbnail.length > 0
+                      ? project.thumbnail
+                      : "/images/project/project-placeholder.png";
+
+                /*
+                 * =================================================
+                 * TAHUN
+                 * =================================================
+                 */
 
                 const year = project.project_date
                   ? new Date(project.project_date).getFullYear()
                   : "—";
+
+                /*
+                 * =================================================
+                 * LINGKUP KERJA
+                 * =================================================
+                 */
+
+                const scopeOfWork = project.category?.name || "—";
 
                 return (
                   <tr
@@ -249,9 +282,63 @@ export default function ProjectTable({ projects }: Props) {
                     ================================================= */}
 
                     <td className="px-6 py-5 align-middle">
-                      <div className="max-w-[220px]">
+                      <div className="flex max-w-[260px] items-center gap-4">
+                        {/* =============================================
+                            LOGO PERUSAHAAN
+                        ============================================= */}
+
+                        <div
+                          className="
+                            relative
+                            flex
+                            h-16
+                            w-16
+                            shrink-0
+                            items-center
+                            justify-center
+                            overflow-hidden
+                            rounded-xl
+                            border
+                            border-slate-200
+                            bg-white
+                          "
+                        >
+                          {project.client_logo ? (
+                            <Image
+                              src={project.client_logo}
+                              alt={`Logo ${project.client || "perusahaan"}`}
+                              fill
+                              unoptimized
+                              sizes="64px"
+                              className="
+                                object-contain
+                                p-2
+                              "
+                            />
+                          ) : (
+                            <span
+                              className="
+                                px-1
+                                text-center
+                                text-[9px]
+                                font-medium
+                                uppercase
+                                leading-3
+                                text-slate-400
+                              "
+                            >
+                              No Logo
+                            </span>
+                          )}
+                        </div>
+
+                        {/* =============================================
+                            NAMA PERUSAHAAN
+                        ============================================= */}
+                        {/* 
                         <p
                           className="
+                            min-w-0
                             text-sm
                             font-semibold
                             leading-6
@@ -259,25 +346,12 @@ export default function ProjectTable({ projects }: Props) {
                           "
                         >
                           {project.client || "—"}
-                        </p>
-
-                        {project.location && (
-                          <p
-                            className="
-                              mt-1
-                              text-xs
-                              leading-5
-                              text-slate-500
-                            "
-                          >
-                            {project.location}
-                          </p>
-                        )}
+                        </p> */}
                       </div>
                     </td>
 
                     {/* =================================================
-                        FOTO
+                        FOTO PEKERJAAN
                     ================================================= */}
 
                     <td className="px-6 py-5 align-middle">
@@ -285,67 +359,98 @@ export default function ProjectTable({ projects }: Props) {
                         type="button"
                         onClick={() => setSelectedProject(project)}
                         className="
-      group
-      relative
-      block
-      h-24
-      w-36
-      overflow-hidden
-      rounded-xl
-      bg-slate-100
-      text-left
-      focus:outline-none
-      focus:ring-2
-      focus:ring-[#156CFF]
-      focus:ring-offset-2
-    "
+                          group
+                          relative
+                          block
+                          h-24
+                          w-36
+                          overflow-hidden
+                          rounded-xl
+                          bg-slate-100
+                          text-left
+                          focus:outline-none
+                          focus:ring-2
+                          focus:ring-[#156CFF]
+                          focus:ring-offset-2
+                        "
                         aria-label={`Lihat gallery ${project.title}`}
                       >
                         <Image
                           src={image}
-                          alt={project.title}
+                          alt={
+                            project.gallery?.[0]?.name ||
+                            `Foto pekerjaan ${project.title}`
+                          }
                           fill
                           unoptimized
                           sizes="144px"
                           className="
-        object-contain
-        object-center
-        p-2
-        transition-transform
-        duration-300
-        group-hover:scale-105
-      "
+                            object-contain
+                            object-center
+                            p-2
+                            transition-transform
+                            duration-300
+                            group-hover:scale-105
+                          "
                         />
+
+                        {/* =============================================
+                            FOTO COUNT
+                        ============================================= */}
+
+                        {project.gallery && project.gallery.length > 1 && (
+                          <div
+                            className="
+                                absolute
+                                right-2
+                                top-2
+                                rounded-md
+                                bg-black/65
+                                px-2
+                                py-1
+                                text-[10px]
+                                font-semibold
+                                text-white
+                                backdrop-blur-sm
+                              "
+                          >
+                            +{project.gallery.length - 1}
+                          </div>
+                        )}
+
+                        {/* =============================================
+                            HOVER
+                        ============================================= */}
 
                         <div
                           className="
-        absolute
-        inset-0
-        flex
-        items-end
-        justify-center
-        bg-black/0
-        p-2
-        transition
-        duration-300
-        group-hover:bg-black/30
-      "
+                            absolute
+                            inset-0
+                            flex
+                            items-end
+                            justify-center
+                            bg-black/0
+                            p-2
+                            transition
+                            duration-300
+                            group-hover:bg-black/30
+                          "
                         >
                           <span
                             className="
-          rounded-md
-          bg-white/90
-          px-3
-          py-1.5
-          text-xs
-          font-semibold
-          text-[#04162E]
-          opacity-0
-          shadow-sm
-          transition
-          duration-300
-          group-hover:opacity-100
-        "
+                              rounded-md
+                              bg-white/90
+                              px-3
+                              py-1.5
+                              text-xs
+                              font-semibold
+                              text-[#04162E]
+                              opacity-0
+                              shadow-sm
+                              transition
+                              duration-300
+                              group-hover:opacity-100
+                            "
                           >
                             Lihat Foto
                           </span>
@@ -371,7 +476,9 @@ export default function ProjectTable({ projects }: Props) {
                           hover:text-[#156CFF]
                         "
                       >
-                        <span className="line-clamp-2">{project.title}</span>
+                        <span className="line-clamp-2">
+                          {project.title || "—"}
+                        </span>
                       </Link>
                     </td>
 
@@ -389,7 +496,7 @@ export default function ProjectTable({ projects }: Props) {
                           text-slate-600
                         "
                       >
-                        {project.excerpt || "—"}
+                        {scopeOfWork}
                       </p>
                     </td>
 
@@ -426,7 +533,7 @@ export default function ProjectTable({ projects }: Props) {
                           type="button"
                           onClick={() =>
                             setSelectedExperienceLetter(
-                              project.experience_letter ?? null,
+                              project.experience_letter,
                             )
                           }
                           className="
