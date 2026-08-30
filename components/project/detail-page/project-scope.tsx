@@ -31,12 +31,12 @@ export default function ProjectScope({ project }: Props) {
               </div>
             </div>
 
-            <div
+            {/* <div
               className="prose prose-slate mt-10 max-w-none"
               dangerouslySetInnerHTML={{
                 __html: project.description,
               }}
-            />
+            /> */}
           </div>
         </div>
       </Container>

@@ -3,6 +3,7 @@
 import { useState } from "react";
 
 import Image from "next/image";
+
 import { ArrowRight, Calendar, MapPin } from "lucide-react";
 
 import { Link } from "@/i18n/navigation";
@@ -21,10 +22,42 @@ export default function ProjectCard({ project, viewMode }: Props) {
 
   const isList = viewMode === "list";
 
+  /**
+   * =========================================================
+   * PROJECT IMAGE
+   * =========================================================
+   *
+   * thumbnail dari API dapat bernilai null.
+   * Gunakan placeholder jika thumbnail kosong/null.
+   */
   const image =
     project.thumbnail && project.thumbnail.length > 0
       ? project.thumbnail
       : "/images/project/project-placeholder.png";
+
+  /**
+   * =========================================================
+   * PROJECT CATEGORY
+   * =========================================================
+   *
+   * category dari API dapat bernilai null.
+   */
+  const categoryName = project.category?.name ?? "Uncategorized";
+
+  /**
+   * =========================================================
+   * PROJECT DATE
+   * =========================================================
+   *
+   * project_date dari API dapat bernilai null.
+   */
+  const formattedProjectDate = project.project_date
+    ? new Date(project.project_date).toLocaleDateString("id-ID", {
+        day: "2-digit",
+        month: "long",
+        year: "numeric",
+      })
+    : "-";
 
   return (
     <article
@@ -44,7 +77,9 @@ export default function ProjectCard({ project, viewMode }: Props) {
         ${isList ? "flex flex-col lg:flex-row" : ""}
       `}
     >
-      {/* Image */}
+      {/* =====================================================
+          IMAGE
+      ===================================================== */}
 
       <div
         className={
@@ -52,10 +87,10 @@ export default function ProjectCard({ project, viewMode }: Props) {
             ? `
                 relative
                 h-[260px]
-                lg:h-auto
-                lg:w-[380px]
                 shrink-0
                 overflow-hidden
+                lg:h-auto
+                lg:w-[380px]
               `
             : `
                 relative
@@ -64,7 +99,9 @@ export default function ProjectCard({ project, viewMode }: Props) {
               `
         }
       >
-        {/* Skeleton */}
+        {/* ===================================================
+            SKELETON
+        =================================================== */}
 
         <div
           className={`
@@ -93,6 +130,10 @@ export default function ProjectCard({ project, viewMode }: Props) {
           />
         </div>
 
+        {/* ===================================================
+            PROJECT IMAGE
+        =================================================== */}
+
         <Image
           src={image}
           alt={project.title}
@@ -100,6 +141,7 @@ export default function ProjectCard({ project, viewMode }: Props) {
           unoptimized
           sizes={isList ? "380px" : "(max-width:768px)100vw,33vw"}
           onLoad={() => setLoading(false)}
+          onError={() => setLoading(false)}
           className={`
             object-cover
             transition-all
@@ -110,9 +152,17 @@ export default function ProjectCard({ project, viewMode }: Props) {
           `}
         />
 
+        {/* ===================================================
+            CATEGORY BADGE
+        =================================================== */}
+
         <div className="absolute left-5 top-5 z-20">
-          <ProjectBadge category={project.category.name} />
+          <ProjectBadge category={categoryName} />
         </div>
+
+        {/* ===================================================
+            IMAGE OVERLAY
+        =================================================== */}
 
         <div
           className="
@@ -126,7 +176,9 @@ export default function ProjectCard({ project, viewMode }: Props) {
         />
       </div>
 
-      {/* Content */}
+      {/* =====================================================
+          CONTENT
+      ===================================================== */}
 
       <div
         className={
@@ -144,6 +196,10 @@ export default function ProjectCard({ project, viewMode }: Props) {
         }
       >
         <div>
+          {/* =================================================
+              TITLE
+          ================================================= */}
+
           <h3
             className="
               text-2xl
@@ -155,6 +211,10 @@ export default function ProjectCard({ project, viewMode }: Props) {
           >
             {project.title}
           </h3>
+
+          {/* =================================================
+              CLIENT
+          ================================================= */}
 
           {project.client && (
             <p
@@ -169,6 +229,10 @@ export default function ProjectCard({ project, viewMode }: Props) {
             </p>
           )}
 
+          {/* =================================================
+              EXCERPT
+          ================================================= */}
+          {/* 
           <p
             className="
               mt-5
@@ -178,7 +242,11 @@ export default function ProjectCard({ project, viewMode }: Props) {
             "
           >
             {project.excerpt}
-          </p>
+          </p> */}
+
+          {/* =================================================
+              PROJECT INFORMATION
+          ================================================= */}
 
           <div
             className="
@@ -190,24 +258,33 @@ export default function ProjectCard({ project, viewMode }: Props) {
               text-slate-500
             "
           >
+            {/* =================================================
+                LOCATION
+            ================================================= */}
+
             {project.location && (
               <div className="flex items-center gap-2">
                 <MapPin size={16} />
-                {project.location}
+
+                <span>{project.location}</span>
               </div>
             )}
+
+            {/* =================================================
+                PROJECT DATE
+            ================================================= */}
 
             <div className="flex items-center gap-2">
               <Calendar size={16} />
 
-              {new Date(project.project_date).toLocaleDateString("id-ID", {
-                day: "2-digit",
-                month: "long",
-                year: "numeric",
-              })}
+              <span>{formattedProjectDate}</span>
             </div>
           </div>
         </div>
+
+        {/* =====================================================
+            DETAIL BUTTON
+        ===================================================== */}
 
         <Link
           href={`/projects/${project.slug}`}

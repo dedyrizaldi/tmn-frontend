@@ -1,8 +1,10 @@
 import { ArrowRight } from "lucide-react";
+
 import { useTranslations } from "next-intl";
 
 import Container from "@/components/common/container/container";
 import Section from "@/components/common/section/section";
+
 import { Link } from "@/i18n/navigation";
 
 import type { Project } from "@/types/project";
@@ -126,10 +128,14 @@ export default function Projects({ projects }: Props) {
                     key={project.id}
                     title={project.title}
                     slug={project.slug}
-                    thumbnail={project.thumbnail}
-                    category={project.category.name}
-                    location={project.location}
-                    projectDate={project.project_date}
+                    thumbnail={
+                      project.thumbnail && project.thumbnail.length > 0
+                        ? project.thumbnail
+                        : "/images/project/project-placeholder.png"
+                    }
+                    category={project.category?.name ?? "Uncategorized"}
+                    location={project.location ?? "-"}
+                    projectDate={project.project_date ?? "-"}
                   />
                 ))}
               </ProjectsCarousel>
@@ -151,10 +157,14 @@ export default function Projects({ projects }: Props) {
                     <ProjectCard
                       title={project.title}
                       slug={project.slug}
-                      thumbnail={project.thumbnail}
-                      category={project.category.name}
-                      location={project.location}
-                      projectDate={project.project_date}
+                      thumbnail={
+                        project.thumbnail && project.thumbnail.length > 0
+                          ? project.thumbnail
+                          : "/images/project/project-placeholder.png"
+                      }
+                      category={project.category?.name ?? "Uncategorized"}
+                      location={project.location ?? "-"}
+                      projectDate={project.project_date ?? "-"}
                     />
                   </div>
                 ))}
@@ -169,9 +179,7 @@ export default function Projects({ projects }: Props) {
               border-t
               border-white/10
               pt-10
-
               lg:col-span-5
-
               lg:border-t-0
               lg:border-l
               lg:pl-8

@@ -1,6 +1,7 @@
 import { FileText } from "lucide-react";
 
 import Container from "@/components/common/container/container";
+
 import Section from "@/components/common/section/section";
 
 import type { Project } from "@/types/project";
@@ -10,20 +11,46 @@ interface Props {
 }
 
 export default function ProjectOverview({ project }: Props) {
-  const projectDate = new Date(project.project_date).toLocaleDateString(
-    "en-GB",
-    {
-      day: "2-digit",
-      month: "long",
-      year: "numeric",
-    },
-  );
+  /**
+   * =========================================================
+   * PROJECT DATE
+   * =========================================================
+   *
+   * project_date dapat bernilai null.
+   */
+  const projectDate = project.project_date
+    ? new Date(project.project_date).toLocaleDateString("en-GB", {
+        day: "2-digit",
+        month: "long",
+        year: "numeric",
+      })
+    : "-";
+
+  /**
+   * =========================================================
+   * PROJECT LOCATION
+   * =========================================================
+   *
+   * location dapat bernilai null.
+   */
+  const location = project.location ?? "-";
+
+  /**
+   * =========================================================
+   * PROJECT CATEGORY
+   * =========================================================
+   *
+   * category dapat bernilai null.
+   */
+  const category = project.category?.name ?? "Uncategorized";
 
   return (
     <Section className="bg-[#F8FAFC] py-16">
       <Container>
         <div className="grid gap-10 lg:grid-cols-2">
-          {/* Overview */}
+          {/* =================================================
+              OVERVIEW
+          ================================================= */}
 
           <div className="rounded-3xl border border-slate-200 bg-white p-8">
             <div className="flex items-center gap-4">
@@ -42,22 +69,24 @@ export default function ProjectOverview({ project }: Props) {
               </div>
             </div>
 
-            <div
+            {/* <div
               className="prose prose-slate mt-8 max-w-none"
               dangerouslySetInnerHTML={{
-                __html: project.description,
+                __html: project.description || "",
               }}
-            />
+            /> */}
           </div>
 
-          {/* Statistics */}
+          {/* =================================================
+              STATISTICS
+          ================================================= */}
 
           <div className="grid gap-5 sm:grid-cols-2">
-            <StatCard title="Client" value={project.client} />
+            <StatCard title="Client" value={project.client || "-"} />
 
-            <StatCard title="Location" value={project.location} />
+            <StatCard title="Location" value={location} />
 
-            <StatCard title="Category" value={project.category.name} />
+            <StatCard title="Category" value={category} />
 
             <StatCard title="Project Date" value={projectDate} />
           </div>
@@ -66,6 +95,12 @@ export default function ProjectOverview({ project }: Props) {
     </Section>
   );
 }
+
+/**
+ * ===========================================================
+ * STAT CARD
+ * ===========================================================
+ */
 
 function StatCard({ title, value }: { title: string; value: string }) {
   return (
